@@ -837,7 +837,6 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#projects">Portfolio</a></li>
-                    <!--<li><a href="#blog">Blog</a></li> -->
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -1064,81 +1063,6 @@
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section class="blog" id="blog">
-        <div class="container">
-            <div class="section-title">
-                <h2>Technical Insights</h2>
-            </div>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-img">
-                        <img src="/api/placeholder/600/400" alt="Blog Post">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> May 2, 2025</span>
-                            <span><i class="far fa-folder"></i> Workflow</span>
-                        </div>
-                        <h3>Optimizing Topology for Game-Ready Characters</h3>
-                        <p>An in-depth look at techniques for creating efficient character models that maintain visual fidelity while performing well in real-time environments.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-img">
-                        <img src="/api/placeholder/600/400" alt="Blog Post">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> April 18, 2025</span>
-                            <span><i class="far fa-folder"></i> Technical</span>
-                        </div>
-                        <h3>Procedural Systems: Beyond Random Generation</h3>
-                        <p>Exploring how procedural workflows can be controlled and directed to achieve specific artistic goals while maintaining efficiency.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-img">
-                        <img src="/api/placeholder/600/400" alt="Blog Post">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> March 25, 2025</span>
-                            <span><i class="far fa-folder"></i> Case Study</span>
-                        </div>
-                        <h3>Material Breakdown: Creating Realistic Metal Surfaces</h3>
-                        <p>A detailed analysis of the creation process behind physically accurate metal materials with proper reflection properties.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Client Testimonials</h2>
-            </div>
-            <div class="testimonial-slider">
-                <div class="testimonial-slide">
-                    <div class="client-image">
-                        <img src="/api/placeholder/200/200" alt="Client">
-                    </div>
-                    <div class="testimonial-text">
-                        <p>Zack's technical expertise combined with his artistic sensibility resulted in character assets that exceeded our expectations. His attention to detail and ability to optimize for our platform constraints was invaluable to our project.</p>
-                    </div>
-                    <div class="client-info">
-                        <h4>Sarah Johnson</h4>
-                        <p>Art Director, Nexus Games</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
@@ -1180,30 +1104,28 @@
                     </div>
                     <h3>Follow Me</h3>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-artstation"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/lakmalwijethungaa" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/lakmalwije/" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/lakmal_wijeth" class="social-link"><i class="fab fa-x"></i></a>
+                        <a href="https://www.instagram.com/lakmal_wije/" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/lakmal-wijethunga" class="social-link"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message"></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
+                <form action="https://formspree.io/f/mnndprno" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" class="form-control" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
@@ -1219,7 +1141,6 @@
                     <a href="#about">About</a>
                     <a href="#services">Services</a>
                     <a href="#projects">Portfolio</a>
-                    <a href="#blog">Blog</a>
                     <a href="#contact">Contact</a>
                     <a href="documents/Lakmal_wijethunga_CV.pdf"><i class="fas fa-download"></i> CV</a>
                 </div>
