@@ -38,31 +38,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Video Pause on Hover
+    // Video Pause and Sound Control
     projectCards.forEach(card => {
         const video = card.querySelector('video');
         if (video) {
+            // Initialize video
+            video.muted = true;
             video.autoplay = true;
-            video.play();
+            video.play().catch(e => console.log("Auto-play prevented:", e));
             
-            card.addEventListener('mouseenter', () => {
-                video.pause();
-            });
-            card.addEventListener('mouseleave', () => {
-                video.play();
-            });
-        }
-    });
-
-    // Video sound control
-    projectCards.forEach(card => {
-        const video = card.querySelector('video');
-        if (video) {
+            // Add sound control button
             const soundButton = document.createElement('button');
             soundButton.className = 'video-sound-btn';
             soundButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
             card.appendChild(soundButton);
             
+            // Handle mouse events
+            card.addEventListener('mouseenter', () => video.pause());
+            card.addEventListener('mouseleave', () => video.play().catch(e => {}));
+            
+            // Sound toggle
             soundButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 video.muted = !video.muted;
@@ -78,11 +73,13 @@ document.addEventListener('DOMContentLoaded', function() {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            window.scrollTo({
-                top: target.offsetTop - 70,
-                behavior: 'smooth'
-            });
-            navbar.classList.remove('active');
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+                navbar.classList.remove('active');
+            }
         });
     });
     
@@ -101,11 +98,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             let slideIndex = 0;
             setInterval(() => {
-                slides[slideIndex].classList.remove('active');
-                slides[slideIndex].classList.remove('zoom-effect');
+                slides[slideIndex].classList.remove('active', 'zoom-effect');
                 slideIndex = (slideIndex + 1) % slides.length;
-                slides[slideIndex].classList.add('active');
-                slides[slideIndex].classList.add('zoom-effect');
+                slides[slideIndex].classList.add('active', 'zoom-effect');
             }, 2000);
         }
     });
@@ -114,116 +109,117 @@ document.addEventListener('DOMContentLoaded', function() {
     const skillSection = document.querySelector('.about');
     const skillTags = document.querySelectorAll('.skill-tag');
     
-    skillTags.forEach(tag => {
-        tag.style.opacity = "0";
-        tag.style.transform = "translateY(10px)";
-    });
-    
-    function isInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.bottom >= 0
-        );
-    }
-    
-    function animateSkills() {
-        if (isInViewport(skillSection)) {
-            skillTags.forEach((tag, index) => {
-                setTimeout(() => {
-                    tag.style.opacity = "1";
-                    tag.style.transform = "translateY(0)";
-                }, 100 * index);
-            });
-            window.removeEventListener('scroll', animateSkills);
-        }
-    }
-    
-    animateSkills();
-    window.addEventListener('scroll', animateSkills);
-    
-    // Mouse interaction for skills
-    const skillsContainer = document.querySelector('.skills');
-    
-    if (skillsContainer) {
-        let mouseX = 0, mouseY = 0;
-        let rafID = null;
+    if (skillTags.length > 0) {
+        skillTags.forEach(tag => {
+            tag.style.opacity = "0";
+            tag.style.transform = "translateY(10px)";
+        });
         
-        function updateSkillTags() {
-            const { left, top } = skillsContainer.getBoundingClientRect();
-            
-            skillTags.forEach(tag => {
-                const tagRect = tag.getBoundingClientRect();
-                const tagCenterX = tagRect.left + tagRect.width/2 - left;
-                const tagCenterY = tagRect.top + tagRect.height/2 - top;
-                
-                const distX = mouseX - tagCenterX;
-                const distY = mouseY - tagCenterY;
-                const distance = Math.sqrt(distX * distX + distY * distY);
-                
-                const maxDist = 150;
-                const strength = Math.max(0, 1 - distance / maxDist);
-                
-                // More subtle effect values
-                const tiltX = distY * strength * 0.08;
-                const tiltY = -distX * strength * 0.08;
-                const lift = strength * 2;
-                
-                // Apply with better performance
-                tag.style.transform = `perspective(500px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(${lift}px)`;
-                tag.style.boxShadow = `0 ${2 + lift}px ${5 + lift * 2}px rgba(0, 0, 0, ${0.05 + strength * 0.05})`;
-            });
-            
-            rafID = null;
+        function isInViewport(element) {
+            if (!element) return false;
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0
+            );
         }
         
-        skillsContainer.addEventListener('mousemove', function(e) {
-            const { left, top } = this.getBoundingClientRect();
-            mouseX = e.clientX - left;
-            mouseY = e.clientY - top;
-            
-            if (!rafID) {
-                rafID = requestAnimationFrame(updateSkillTags);
+        function animateSkills() {
+            if (isInViewport(skillSection)) {
+                skillTags.forEach((tag, index) => {
+                    setTimeout(() => {
+                        tag.style.opacity = "1";
+                        tag.style.transform = "translateY(0)";
+                    }, 100 * index);
+                });
+                window.removeEventListener('scroll', animateSkills);
             }
-        });
+        }
         
-        skillsContainer.addEventListener('mouseleave', function() {
-            skillTags.forEach(tag => {
-                tag.style.transition = 'transform 0.6s ease, box-shadow 0.6s ease';
-                tag.style.transform = 'perspective(500px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-                tag.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.05)';
+        animateSkills();
+        window.addEventListener('scroll', animateSkills);
+        
+        // Mouse interaction for skills
+        const skillsContainer = document.querySelector('.skills');
+        if (skillsContainer) {
+            let mouseX = 0, mouseY = 0;
+            let rafID = null;
+            
+            function updateSkillTags() {
+                const { left, top } = skillsContainer.getBoundingClientRect();
                 
-                // Remove the transition after it completes
-                setTimeout(() => {
-                    tag.style.transition = '';
-                }, 600);
+                skillTags.forEach(tag => {
+                    const tagRect = tag.getBoundingClientRect();
+                    const tagCenterX = tagRect.left + tagRect.width/2 - left;
+                    const tagCenterY = tagRect.top + tagRect.height/2 - top;
+                    
+                    const distX = mouseX - tagCenterX;
+                    const distY = mouseY - tagCenterY;
+                    const distance = Math.sqrt(distX * distX + distY * distY);
+                    
+                    const maxDist = 150;
+                    const strength = Math.max(0, 1 - distance / maxDist);
+                    
+                    // Apply effect
+                    const tiltX = distY * strength * 0.08;
+                    const tiltY = -distX * strength * 0.08;
+                    const lift = strength * 2;
+                    
+                    tag.style.transform = `perspective(500px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(${lift}px)`;
+                    tag.style.boxShadow = `0 ${2 + lift}px ${5 + lift * 2}px rgba(0, 0, 0, ${0.05 + strength * 0.05})`;
+                });
+                
+                rafID = null;
+            }
+            
+            skillsContainer.addEventListener('mousemove', function(e) {
+                const { left, top } = this.getBoundingClientRect();
+                mouseX = e.clientX - left;
+                mouseY = e.clientY - top;
+                
+                if (!rafID) {
+                    rafID = requestAnimationFrame(updateSkillTags);
+                }
             });
-        });
+            
+            skillsContainer.addEventListener('mouseleave', function() {
+                skillTags.forEach(tag => {
+                    tag.style.transition = 'transform 0.6s ease, box-shadow 0.6s ease';
+                    tag.style.transform = 'perspective(500px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+                    tag.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.05)';
+                    
+                    setTimeout(() => {
+                        tag.style.transition = '';
+                    }, 600);
+                });
+            });
+        }
     }
 });
 
 // Function to change slides
 function changeSlide(n, el, e) {
     e = e || window.event;
+    if (!el) return;
     
     const container = el.closest('.slideshow-container');
+    if (!container) return;
+    
     const slides = container.querySelectorAll('.slide');
     
     let currentIndex = 0;
     slides.forEach((slide, index) => {
         if (slide.classList.contains('active')) {
             currentIndex = index;
-            slide.classList.remove('active');
-            slide.classList.remove('zoom-effect');
+            slide.classList.remove('active', 'zoom-effect');
         }
     });
     
     let newIndex = currentIndex + n;
-    if (newIndex >= slides.length) {newIndex = 0}
-    if (newIndex < 0) {newIndex = slides.length - 1}
+    if (newIndex >= slides.length) newIndex = 0;
+    if (newIndex < 0) newIndex = slides.length - 1;
     
-    slides[newIndex].classList.add('active');
-    slides[newIndex].classList.add('zoom-effect');
+    slides[newIndex].classList.add('active', 'zoom-effect');
     
     if (e) e.stopPropagation();
 }
