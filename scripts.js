@@ -1,12 +1,23 @@
+// Make sure DOM is fully loaded before running code
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle
     const hamburger = document.getElementById('hamburger');
     const navbar = document.getElementById('navbar');
     
-    hamburger.addEventListener('click', () => {
-        navbar.classList.toggle('active');
-    });
+    if (hamburger && navbar) {
+        hamburger.addEventListener('click', function() {
+            navbar.classList.toggle('active');
+        });
+    }
     
+    // Close mobile menu when clicking a menu item
+    const navLinks = document.querySelectorAll('.navbar a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navbar.classList.remove('active');
+        });
+    });
+
     // Portfolio Filter
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');

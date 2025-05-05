@@ -35,7 +35,7 @@
             <div>
                 <a href="#projects" class="btn">View Portfolio</a>
                 <a href="#contact" class="btn btn-outline">Contact Me</a>
-                <a href="documents/Lakmal_wijethunga_CV.pdf" class="btn btn-outline" style="margin-top: 1rem;"><i class="fas fa-download" style="margin-right: 0.5rem;"></i>Download CV</a>
+                <a href="documents/Lakmal_wijethunga_CV.pdf" download="Lakmal_Wijethunga_CV.pdf" class="btn btn-outline" style="margin-top: 1rem;"><i class="fas fa-download" style="margin-right: 0.5rem;"></i>Download CV</a>
             </div>
         </div>
     </section>
@@ -55,7 +55,7 @@
                     <p>I'm a passionate and versatile creative with a strong foundation in 3D visualization, generative AI, and cutting-edge digital technologies. With hands-on experience in tools like Blender and CLO3D, I bring concepts to life through visually compelling animations and simulations. My journey blends creativity with technical expertise—ranging from AI model training and object detection systems to providing IT support in dynamic, real-world environments.</p>
                     <p>Driven by curiosity and a love for innovation, I constantly explore emerging tech to push the boundaries of what's possible in digital design and smart systems. Whether it's crafting immersive visuals or building intelligent solutions, I aim to create work that is both impactful and inspiring.</p>
                     
-                    <a href="documents/Lakmal_wijethunga_CV.pdf" class="btn" style="margin-bottom: 1.5rem;"><i class="fas fa-download" style="margin-right: 0.5rem;"></i>Download CV</a>
+                    <a href="documents/Lakmal_wijethunga_CV.pdf" download="Lakmal_Wijethunga_CV.pdf" class="btn" style="margin-bottom: 1.5rem;"><i class="fas fa-download" style="margin-right: 0.5rem;"></i>Download CV</a>
                     <div class="skills">
                         <span class="skill-tag">Blender</span>
                         <span class="skill-tag">Fusion 360</span>
@@ -352,7 +352,7 @@
                     <a href="#services">Services</a>
                     <a href="#projects">Portfolio</a>
                     <a href="#contact">Contact</a>
-                    <a href="documents/Lakmal_wijethunga_CV.pdf"><i class="fas fa-download"></i> CV</a>
+                    <a href="documents/Lakmal_wijethunga_CV.pdf" download="Lakmal_Wijethunga_CV.pdf"><i class="fas fa-download"></i> CV</a>
                 </div>
                 <div class="copyright">
                     <p>&copy; 2025 Lakmal Wijethunga. All Rights Reserved.</p>
@@ -555,6 +555,48 @@
             
             if (e) e.stopPropagation();
         }
+    </script>
+    <script>
+        // Immediately-invoked function to ensure hamburger functionality
+        (function() {
+            console.log("Menu script loaded");
+            
+            // Try to get the hamburger button
+            const hamburger = document.getElementById('hamburger');
+            if (!hamburger) {
+                console.error("Hamburger button not found!");
+                return;
+            }
+            
+            // Try to get the navbar
+            const navbar = document.getElementById('navbar');
+            if (!navbar) {
+                console.error("Navbar not found!");
+                return;
+            }
+            
+            console.log("Menu elements found, adding listener");
+            
+            // Add click event with visual indicator for debugging
+            hamburger.addEventListener('click', function(e) {
+                console.log("Hamburger clicked");
+                navbar.classList.toggle('active');
+                
+                // Visual indicator that click was registered
+                hamburger.style.opacity = "0.5";
+                setTimeout(() => {
+                    hamburger.style.opacity = "1";
+                }, 200);
+                
+                e.preventDefault();
+                e.stopPropagation();
+            });
+            
+            // Make sure the hamburger is visible and properly styled
+            hamburger.style.display = "flex";
+            hamburger.style.cursor = "pointer";
+            hamburger.style.zIndex = "1001";
+        })();
     </script>
     <script src="scripts.js"></script>
 </body>
