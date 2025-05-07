@@ -195,6 +195,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Initialize like system
+    initLikeSystem();
 });
 
 // Function to change slides
@@ -222,4 +225,153 @@ function changeSlide(n, el, e) {
     slides[newIndex].classList.add('active', 'zoom-effect');
     
     if (e) e.stopPropagation();
+}
+
+// Initialize likes system
+function initLikeSystem() {
+    // Get stored likes from localStorage (for this user only)
+    let userLikes = JSON.parse(localStorage.getItem('projectLikes')) || {};
+    
+    // Add like buttons to all project cards
+    document.querySelectorAll('.project-card').forEach((card, index) => {
+        // Create unique ID for project if not exists
+        const projectId = card.id || `project-${index}`;
+        if (!card.id) card.id = projectId;
+        
+        // Get project title for tracking
+        const projectTitle = card.querySelector('.project-overlay h3')?.textContent || projectId;
+        
+        // Add visible like button directly on the card (outside overlay)
+        if (!card.querySelector('.card-like-btn')) {
+            const likeBtn = document.createElement('button');
+            likeBtn.className = 'card-like-btn';
+            if (userLikes[projectId]) likeBtn.classList.add('liked');
+            
+            // Heart icon
+            const heartIcon = document.createElement('i');
+            heartIcon.className = userLikes[projectId] ? 'fas fa-heart' : 'far fa-heart';
+            likeBtn.appendChild(heartIcon);
+            
+            // Like count
+            const likeCount = document.createElement('span');
+            likeCount.className = 'card-like-count';
+            likeCount.textContent = '...';
+            likeBtn.appendChild(likeCount);
+            
+            // Add button to card
+            card.appendChild(likeBtn);
+            
+            // Get current like count from Firebase
+            db.ref(`likes/${projectId}`).once('value').then(snapshot => {
+                const totalLikes = snapshot.val() || 0;
+                likeCount.textContent = totalLikes > 0 ? totalLikes : '0';
+            }).catch(error => {
+                console.error("Error getting likes:", error);
+                likeCount.textContent = '0';
+            });
+            
+            // Add click event listener for liking/unliking
+            likeBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // Toggle like status
+                const isLiked = likeBtn.classList.contains('liked');
+                
+                // Update UI first for responsive feel
+                if (isLiked) {
+                    // Unlike
+                    likeBtn.classList.remove('liked');
+                    heartIcon.className = 'far fa-heart';
+                } else {
+                    // Like
+                    likeBtn.classList.add('liked');
+                    heartIcon.className = 'fas fa-heart';
+                }
+                
+                // Update localStorage
+                if (isLiked) {
+                    delete userLikes[projectId];
+                } else {
+                    userLikes[projectId] = true;
+                }
+                localStorage.setItem('projectLikes', JSON.stringify(userLikes));
+                
+                // Update Firebase
+                const likesRef = db.ref(`likes/${projectId}`);
+                likesRef.transaction(currentLikes => {
+                    return isLiked ? Math.max(0, (currentLikes || 0) - 1) : (currentLikes || 0) + 1;
+                }).then(result => {
+                    const newCount = result.snapshot.val() || 0;
+                    likeCount.textContent = newCount > 0 ? newCount : '0';
+                });
+            });
+            
+            // Listen for real-time updates from Firebase
+            db.ref(`likes/${projectId}`).on('value', snapshot => {
+                const count = snapshot.val() || 0;
+                likeCount.textContent = count > 0 ? count : '0';
+            });
+        }
+    });
+    
+    const mainLikeBtn = document.querySelector('.contact-content > .like-container > .like-btn');
+    if (mainLikeBtn) {
+        const mainLikeId = 'site-overall';
+        
+        if (userLikes[mainLikeId]) {
+            mainLikeBtn.classList.add('liked');
+            mainLikeBtn.querySelector('i').className = 'fas fa-heart';
+        }
+        
+        db.ref(`likes/${mainLikeId}`).once('value').then(snapshot => {
+            const totalLikes = snapshot.val() || 0;
+            mainLikeBtn.querySelector('.like-count').textContent = totalLikes;
+        }).catch(error => {
+            console.error("Error getting main likes:", error);
+        });
+        
+        mainLikeBtn.addEventListener('click', function() {
+            const isLiked = mainLikeBtn.classList.contains('liked');
+            
+            if (isLiked) {
+                mainLikeBtn.classList.remove('liked');
+                mainLikeBtn.querySelector('i').className = 'far fa-heart';
+            } else {
+                mainLikeBtn.classList.add('liked');
+                mainLikeBtn.querySelector('i').className = 'fas fa-heart';
+            }
+            
+            if (isLiked) {
+                delete userLikes[mainLikeId];
+            } else {
+                userLikes[mainLikeId] = true;
+            }
+            localStorage.setItem('projectLikes', JSON.stringify(userLikes));
+            
+            const likesRef = db.ref(`likes/${mainLikeId}`);
+            likesRef.transaction(currentLikes => {
+                return isLiked ? Math.max(0, (currentLikes || 0) - 1) : (currentLikes || 0) + 1;
+            }).then(result => {
+                mainLikeBtn.querySelector('.like-count').textContent = result.snapshot.val() || 0;
+                
+                const heart = mainLikeBtn.querySelector('i');
+                heart.style.animation = 'none';
+                setTimeout(() => {
+                    heart.style.animation = '';
+                }, 10);
+            }).catch(error => {
+                console.error("Error updating main likes:", error);
+            });
+        });
+        
+        db.ref(`likes/${mainLikeId}`).on('value', snapshot => {
+            const count = snapshot.val() || 0;
+            mainLikeBtn.querySelector('.like-count').textContent = count;
+        });
+    }
+
+    // Remove like containers from project overlays
+    document.querySelectorAll('.project-overlay .like-container').forEach(container => {
+        container.remove();
+    });
 }

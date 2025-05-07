@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
 :root {
     --primary-color: #242F40;
@@ -273,7 +274,62 @@ section {
     transform: translateZ(0);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     will-change: transform, opacity;
+    overflow: hidden;
+    cursor: default;
 }
+
+.skill-tag:hover {
+    transform: translateY(-5px);
+    background-color: var(--secondary-color);
+    color: var(--white);
+    box-shadow: 0 5px 15px rgba(204, 164, 59, 0.3);
+}
+
+.skill-tag::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(30deg);
+    transition: transform 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.skill-tag:hover::before {
+    opacity: 1;
+    transform: rotate(30deg) translateY(-30%);
+}
+
+@keyframes skillFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.skills .skill-tag {
+    animation: skillFadeIn 0.5s ease forwards;
+    opacity: 0;
+}
+
+.skills .skill-tag:nth-child(1) { animation-delay: 0.1s; }
+.skills .skill-tag:nth-child(2) { animation-delay: 0.2s; }
+.skills .skill-tag:nth-child(3) { animation-delay: 0.3s; }
+.skills .skill-tag:nth-child(4) { animation-delay: 0.4s; }
+.skills .skill-tag:nth-child(5) { animation-delay: 0.5s; }
+.skills .skill-tag:nth-child(6) { animation-delay: 0.6s; }
+.skills .skill-tag:nth-child(7) { animation-delay: 0.7s; }
+.skills .skill-tag:nth-child(8) { animation-delay: 0.8s; }
+.skills .skill-tag:nth-child(9) { animation-delay: 0.9s; }
+.skills .skill-tag:nth-child(10) { animation-delay: 1.0s; }
 
 /* Services section */
 .services {
@@ -445,6 +501,55 @@ section {
     opacity: 1;
 }
 
+/* X-style like button */
+.card-like-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.card-like-btn:hover,
+.project-card:hover .card-like-btn {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.card-like-btn i {
+    font-size: 0.85rem;
+    transition: transform 0.3s ease;
+}
+
+.card-like-btn.liked i {
+    color: #ff4757;
+    animation: heart-burst 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.card-like-btn.liked:hover {
+    background: rgba(255, 71, 87, 0.2);
+}
+
+.card-like-btn:active {
+    transform: scale(1.1);
+}
+
+.card-like-count {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
 /* Slideshow styles */
 .slideshow-container {
     position: relative;
@@ -516,6 +621,13 @@ section {
 @keyframes zoom {
     0% { transform: scale(1); }
     100% { transform: scale(1.1); }
+}
+
+/* Keep this animation for the card-like-btn */
+@keyframes heart-burst {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
 }
 
 /* Contact section */

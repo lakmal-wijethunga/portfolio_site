@@ -59,6 +59,7 @@
                     <div class="skills">
                         <span class="skill-tag">Blender</span>
                         <span class="skill-tag">Fusion 360</span>
+                        <span class="skill-tag">Revit</span>
                         <span class="skill-tag">CLO 3D</span>
                         <span class="skill-tag">Houdini</span>
                         <span class="skill-tag">Environment Design</span>
@@ -336,6 +337,12 @@
                     </div>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
+                <div class="like-container">
+                    <button class="like-btn">
+                        <i class="far fa-heart"></i>
+                        <span class="like-count">0</span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -361,6 +368,11 @@
         </div>
     </footer>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <!-- Add before your existing script -->
+    <script src="firebase-config.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>
