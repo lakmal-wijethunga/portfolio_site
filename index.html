@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Lakmal<span>Wijethunga</span></a>
@@ -27,7 +26,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>3D Artist & Digital Creator</h1>
@@ -40,13 +38,12 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-title">
                 <h2>About Me</h2>
             </div>
-            <div class="about-content">
+            <div class="about-content reveal">
                 <div class="about-img">
                     <img src="images/artist.jpg" alt="Lakmal Wijethunga">
                 </div>
@@ -73,42 +70,41 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
             <div class="section-title">
                 <h2>My Services</h2>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card reveal">
                     <div class="service-icon">
                         <i class="fas fa-user"></i>
                     </div>
                     <h3>3D Modeling</h3>
                     <p>Designing high-quality 3D models with a focus on precision and creativity. Expertise in creating props, and assets for games, films, and interactive media, ensuring optimized topology and attention to detail.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
                     <div class="service-icon">
                         <i class="fas fa-tree"></i>
                     </div>
                     <h3>Environment Design</h3>
                     <p>Crafting immersive and detailed 3D environments that tell stories and create atmospheric experiences.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
                     <div class="service-icon">
                         <i class="fas fa-paint-brush"></i>
                     </div>
                     <h3>PBR Texturing</h3>
                     <p>Creating physically-based materials and textures that bring models to life with realistic surface properties, weathering effects, and material definition.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
                     <div class="service-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
                     <h3>Logo Animations</h3>
                     <p>Creating dynamic and visually appealing logo animations that enhance brand identity and leave a lasting impression. Expertise in motion graphics and animation techniques to bring logos to life with smooth transitions and creative effects.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
                     <div class="service-icon">
                         <i class="fas fa-code"></i>
                     </div>
@@ -119,20 +115,19 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="container">
             <div class="section-title">
                 <h2>Featured Projects</h2>
             </div>
-            <div class="filter-buttons">
+            <div class="filter-buttons reveal">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="Animations">Animations</button>
                 <button class="filter-btn" data-filter="visualizations">Environments</button>
                 <button class="filter-btn" data-filter="procedural">Procedural</button>
             </div>
             <div class="project-grid">
-                <div class="project-card" data-category="Animations">
+                <div class="project-card reveal" data-category="Animations" data-tools="Blender, After Effects">
                     <video width="100%" height="250" muted loop autoplay>
                         <source src="projects/ESS/ess_logo_animation.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -145,7 +140,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="visualizations">
+                <div class="project-card reveal" data-category="visualizations" data-tools="Blender, Revit">
                     <img src="projects/padura/padura_stage.jpg" alt="Padura Stage">
                     <div class="project-overlay">
                         <h3>Padura Concet Stage</h3>
@@ -156,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="fun">
+                <div class="project-card reveal" data-category="fun" data-tools="Stable Diffusion, AI Tools">
                     <video width="100%" height="250" muted loop autoplay>
                         <source src="projects/mama_pathuwe/mama_pathuwe.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -169,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="Animations">
+                <div class="project-card reveal" data-category="Animations" data-tools="Blender, After Effects">
                     <video width="100%" height="250" muted loop autoplay>
                         <source src="projects/icaps/logo_animation.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -182,7 +177,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="Animations">
+                <div class="project-card reveal" data-category="Animations" data-tools="Blender, After Effects">
                     <video width="100%" height="250" muted loop autoplay>
                         <source src="projects/icaps/thank_you.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -195,7 +190,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="Animations">
+                <div class="project-card reveal" data-category="Animations" data-tools="CLO 3D, Blender, Marvelous Designer">
                     <video width="100%" height="250" muted loop autoplay>
                         <source src="projects/cloth_sim/cloth_sim.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -208,7 +203,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="AI">
+                <div class="project-card reveal" data-category="AI" data-tools="Blender, Fusion 360, 3D Printing">
                     <div class="slideshow-container">
                         <div class="slide fade">
                             <img src="projects/ivenco_zeta/side.png" alt="Iveco Zeta 1">
@@ -239,7 +234,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="Animations">
+                <div class="project-card reveal" data-category="Animations" data-tools="Blender, After Effects">
                     <video width="100%" height="250" muted loop autoplay>
                         <source src="projects/pss/white_back0001-0300.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -252,7 +247,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="AI">
+                <div class="project-card reveal" data-category="AI" data-tools="Fusion 360, 3D Printing">
                     <div class="slideshow-container">
                         <div class="slide fade">
                             <img src="projects/defender_body/Screenshot 2025-04-29 220130.png" alt="Defender Body 1">
@@ -271,7 +266,7 @@
                         <p>Designed a 3D model of an RC Defender body, optimized for 3D printing. This project involved precise scaling, and ensuring structural integrity for a seamless assembly and realistic appearance.</p>
                     </div>
                 </div>
-                <div class="project-card" data-category="AI">
+                <div class="project-card reveal" data-category="AI" data-tools="Revit, Blender">
                     <div class="slideshow-container">
                         <div class="slide fade">
                             <img src="projects/CaravanFresh/1.png" alt="CaravanFresh 1">
@@ -302,13 +297,10 @@
                     </div>
                     <div class="project-overlay">
                         <h3>Caravan Fresh outlet renovation</h3>
-                        <!--<p>Designed a detailed 3D model of the Iveco Zeta truck, optimized specifically for 3D printing. This project involved precise scaling, intricate detailing, and ensuring printability for high-quality physical replicas.</p>-->
-                        <!--<div class="project-buttons">
-                            <a href="https://x.com/lakmal_wijeth/status/1916795847066403053" target="_blank" class="project-btn">View Details</a>
-                        </div> -->
+                        <p>A complete 3D visualization and design concept for the interior renovation of a Caravan Fresh outlet. The project focused on creating a modern, welcoming space with an efficient layout for customers and staff.</p>
                     </div>
                 </div>
-                <div class="project-card" data-category="AI">
+                <div class="project-card reveal" data-category="AI" data-tools="Blender, 3D Printing, Silicone Molding">
                     <div class="slideshow-container">
                         <div class="slide fade">
                             <img src="projects/Mask/Screenshot 2025-08-28 185643.png" alt="mask 1">
@@ -321,134 +313,121 @@
                     </div>
                     <div class="project-overlay">
                         <h3>Traditional Mask</h3>
-                        <p>A detailed 3D model of a traditional Sri Lankan 'Yaka' mask, digitally sculpted and optimized for 3D printing. This model serves as a master pattern for creating silicone molds, intended for the production of cultural souvenirs like keytags and fridge magnets. The design bridges traditional artistry with modern manufacturing techniques.</p>
-                        <!--<div class="project-buttons">
-                            <a href="https://x.com/lakmal_wijeth/status/1916795847066403053" target="_blank" class="project-btn">View Details</a>
-                        </div> -->
+                        <p>A detailed 3D model of a traditional Sri Lankan 'Yaka' mask, digitally sculpted and optimized for 3D printing. This model serves as a master pattern for creating silicone molds, intended for the production of cultural souvenirs like keytags and fridge magnets.</p>
                     </div>
                 </div>
-                <div class="project-card" data-category="AI">
+                <div class="project-card reveal" data-category="AI" data-tools="Fusion 360, Blender, Resin 3D Printing">
                     <div class="slideshow-container">
                         <div class="slide fade">
-                            <img src="projects/Tatra 148/1.png" alt="CaravanFresh 1">
+                            <img src="projects/Tatra 148/1.png" alt="Tatra 1">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/Tatra 148/2.png" alt="CaravanFresh 2">
+                            <img src="projects/Tatra 148/2.png" alt="Tatra 2">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/Tatra 148/3.png" alt="CaravanFresh 3">
+                            <img src="projects/Tatra 148/3.png" alt="Tatra 3">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/Tatra 148/4.png" alt="CaravanFresh 4">
+                            <img src="projects/Tatra 148/4.png" alt="Tatra 4">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/Tatra 148/5.png" alt="CaravanFresh 5">
+                            <img src="projects/Tatra 148/5.png" alt="Tatra 5">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/Tatra 148/6.png" alt="CaravanFresh 6">
+                            <img src="projects/Tatra 148/6.png" alt="Tatra 6">
                         </div>
                         <a class="prev" onclick="changeSlide(-1, this, event)">&#10094;</a>
                         <a class="next" onclick="changeSlide(1, this, event)">&#10095;</a>
                     </div>
                     <div class="project-overlay">
                         <h3>Tatra 148</h3>
-                        <p>A collection of detailed 3D models featuring heavy-duty and emergency vehicles, including a Tatra 148 Crane, Cargo Truck, Digger, Tipper, and Firetruck. Each vehicle was accurately modeled and specifically optimized for Resin 3D printing, making them perfect for creating scale models, dioramas, or functional toys.</p>
-                        <!--<div class="project-buttons">
-                            <a href="https://x.com/lakmal_wijeth/status/1916795847066403053" target="_blank" class="project-btn">View Details</a>
-                        </div> -->
+                        <p>A collection of detailed 3D models featuring heavy-duty and emergency vehicles, including a Tatra 148 Crane, Cargo Truck, Digger, Tipper, and Firetruck. Each vehicle was accurately modeled and specifically optimized for Resin 3D printing.</p>
                     </div>
                 </div>
-                <div class="project-card" data-category="AI">
+                <div class="project-card reveal" data-category="AI" data-tools="Fusion 360, 3D Printing, Electronics">
                     <div class="slideshow-container">
                         <div class="slide fade">
-                            <img src="projects/LED/1.png" alt="CaravanFresh 1">
+                            <img src="projects/LED/1.png" alt="LED Lamp 1">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/LED/2.png" alt="CaravanFresh 2">
+                            <img src="projects/LED/2.png" alt="LED Lamp 2">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/LED/3.png" alt="CaravanFresh 3">
+                            <img src="projects/LED/3.png" alt="LED Lamp 3">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/LED/4.png" alt="CaravanFresh 4">
+                            <img src="projects/LED/4.png" alt="LED Lamp 4">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/LED/5.png" alt="CaravanFresh 5">
+                            <img src="projects/LED/5.png" alt="LED Lamp 5">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/LED/6.png" alt="CaravanFresh 6">
+                            <img src="projects/LED/6.png" alt="LED Lamp 6">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/LED/7.png" alt="CaravanFresh 6">
+                            <img src="projects/LED/7.png" alt="LED Lamp 7">
                         </div>
                         <a class="prev" onclick="changeSlide(-1, this, event)">&#10094;</a>
                         <a class="next" onclick="changeSlide(1, this, event)">&#10095;</a>
                     </div>
                     <div class="project-overlay">
                         <h3>Acrylic Lamp</h3>
-                        <p>A custom-designed base for an edge-lit acrylic LED lamp. This model was engineered for 3D printing, featuring a precise 5mm slot for the acrylic panel and a hollow interior designed to neatly house all electronic components. The design is optimized for a clean aesthetic and simple assembly.</p>
-                        <!--<div class="project-buttons">
-                            <a href="https://x.com/lakmal_wijeth/status/1916795847066403053" target="_blank" class="project-btn">View Details</a>
-                        </div> -->
+                        <p>A custom-designed base for an edge-lit acrylic LED lamp. This model was engineered for 3D printing, featuring a precise 5mm slot for the acrylic panel and a hollow interior designed to neatly house all electronic components.</p>
                     </div>
                 </div>
-                <div class="project-card" data-category="AI">
+                <div class="project-card reveal" data-category="AI" data-tools="Fusion 360, CAD Software, 3D Printing">
                     <div class="slideshow-container">
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/1.png" alt="CaravanFresh 1">
+                            <img src="projects/GrassCutter/1.png" alt="Grass Cutter 1">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/2.png" alt="CaravanFresh 2">
+                            <img src="projects/GrassCutter/2.png" alt="Grass Cutter 2">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/3.png" alt="CaravanFresh 3">
+                            <img src="projects/GrassCutter/3.png" alt="Grass Cutter 3">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/4.png" alt="CaravanFresh 4">
+                            <img src="projects/GrassCutter/4.png" alt="Grass Cutter 4">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/5.png" alt="CaravanFresh 5">
+                            <img src="projects/GrassCutter/5.png" alt="Grass Cutter 5">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/6.png" alt="CaravanFresh 6">
+                            <img src="projects/GrassCutter/6.png" alt="Grass Cutter 6">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/7.png" alt="CaravanFresh 6">
+                            <img src="projects/GrassCutter/7.png" alt="Grass Cutter 7">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/8.png" alt="CaravanFresh 6">
+                            <img src="projects/GrassCutter/8.png" alt="Grass Cutter 8">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/9.png" alt="CaravanFresh 6">
+                            <img src="projects/GrassCutter/9.png" alt="Grass Cutter 9">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/10.png" alt="CaravanFresh 6">
+                            <img src="projects/GrassCutter/10.png" alt="Grass Cutter 10">
                         </div>
                         <div class="slide fade">
-                            <img src="projects/GrassCutter/11.png" alt="CaravanFresh 6">
+                            <img src="projects/GrassCutter/11.png" alt="Grass Cutter 11">
                         </div>
                         <a class="prev" onclick="changeSlide(-1, this, event)">&#10094;</a>
                         <a class="next" onclick="changeSlide(1, this, event)">&#10095;</a>
                     </div>
                     <div class="project-overlay">
                         <h3>Grass Cutter</h3>
-                        <p>Complete 3D design for the enclosure of a handheld electric grass cutter. The model features an ergonomic, two-part clamshell casing that securely houses all internal mechanical and electronic components. The design prioritizes user comfort, ease of assembly, and durability, showcasing a comprehensive approach to consumer product design.</p>
-                        <!--<div class="project-buttons">
-                            <a href="https://x.com/lakmal_wijeth/status/1916795847066403053" target="_blank" class="project-btn">View Details</a>
-                        </div> -->
+                        <p>Complete 3D design for the enclosure of a handheld electric grass cutter. The model features an ergonomic, two-part clamshell casing that securely houses all internal mechanical and electronic components.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
             <div class="section-title">
                 <h2>Get In Touch</h2>
             </div>
-            <div class="contact-content">
+            <div class="contact-content reveal">
                 <div class="contact-info">
                     <h3>Let's Connect</h3>
                     <div class="contact-details">
@@ -508,7 +487,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -529,10 +507,29 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK -->
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" title="Close">&times;</button>
+            <div class="modal-media-container">
+                </div>
+            <div class="modal-description-container">
+                <div class="modal-header">
+                    <h3 class="modal-title"></h3>
+                    <button class="modal-like-btn" title="Like this project">
+                        <i class="far fa-heart"></i>
+                        <span class="modal-like-count">...</span>
+                    </button>
+                </div>
+                <p class="modal-description"></p>
+                <div class="modal-tools-container"></div>
+                <div class="modal-buttons">
+                    </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-    <!-- Add before your existing script -->
     <script src="firebase-config.js"></script>
     <script src="scripts.js"></script>
 </body>

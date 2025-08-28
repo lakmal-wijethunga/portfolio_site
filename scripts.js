@@ -38,26 +38,131 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Video Pause and Sound Control
+    // Project Modal Logic
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+        const closeModalBtn = modal.querySelector('.modal-close');
+        const modalMediaContainer = modal.querySelector('.modal-media-container');
+        const modalTitle = modal.querySelector('.modal-title');
+        const modalLikeBtn = modal.querySelector('.modal-like-btn');
+        const modalLikeIcon = modalLikeBtn.querySelector('i');
+        const modalLikeCount = modalLikeBtn.querySelector('.modal-like-count');
+        const modalDescription = modal.querySelector('.modal-description');
+        const modalToolsContainer = modal.querySelector('.modal-tools-container');
+        const modalButtons = modal.querySelector('.modal-buttons');
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.card-like-btn, .video-sound-btn, a, .prev, .next')) {
+                    return;
+                }
+
+                const projectId = card.id;
+                const originalLikeBtn = card.querySelector('.card-like-btn');
+                const originalLikeCount = originalLikeBtn?.querySelector('.card-like-count').textContent;
+
+                if (originalLikeBtn) {
+                    modalLikeBtn.dataset.projectId = projectId;
+                    modalLikeCount.textContent = originalLikeCount;
+                    if (originalLikeBtn.classList.contains('liked')) {
+                        modalLikeBtn.classList.add('liked');
+                        modalLikeIcon.className = 'fas fa-heart';
+                    } else {
+                        modalLikeBtn.classList.remove('liked');
+                        modalLikeIcon.className = 'far fa-heart';
+                    }
+                }
+
+                const mediaElement = card.querySelector('img, video, .slideshow-container');
+                const title = card.querySelector('.project-overlay h3')?.textContent || 'Project Details';
+                const description = card.querySelector('.project-overlay p')?.textContent || 'No description available.';
+                const buttons = card.querySelector('.project-buttons');
+                const toolsString = card.dataset.tools || '';
+
+                modalMediaContainer.innerHTML = '';
+                modalToolsContainer.innerHTML = '';
+                modalButtons.innerHTML = '';
+
+                if (mediaElement) {
+                    const clonedMedia = mediaElement.cloneNode(true);
+                    if (clonedMedia.tagName === 'VIDEO') {
+                        clonedMedia.muted = false;
+                        clonedMedia.controls = true;
+                        clonedMedia.autoplay = true;
+                    }
+                    modalMediaContainer.appendChild(clonedMedia);
+                }
+                modalTitle.textContent = title;
+                modalDescription.textContent = description;
+
+                if (toolsString) {
+                    const toolsArray = toolsString.split(',').map(tool => tool.trim());
+                    const toolsTitle = document.createElement('h4');
+                    toolsTitle.textContent = 'Tools Used';
+                    modalToolsContainer.appendChild(toolsTitle);
+                    const tagsWrapper = document.createElement('div');
+                    tagsWrapper.className = 'modal-tools-tags';
+                    toolsArray.forEach(toolName => {
+                        const toolTag = document.createElement('span');
+                        toolTag.className = 'modal-tool-tag';
+                        toolTag.textContent = toolName;
+                        tagsWrapper.appendChild(toolTag);
+                    });
+                    modalToolsContainer.appendChild(tagsWrapper);
+                }
+                if (buttons) {
+                    modalButtons.innerHTML = buttons.innerHTML;
+                }
+
+                document.body.classList.add('modal-open');
+                modal.classList.add('active');
+            });
+        });
+        
+        modalLikeBtn.addEventListener('click', function() {
+            const projectId = this.dataset.projectId;
+            const originalCard = document.getElementById(projectId);
+            if (originalCard) {
+                originalCard.querySelector('.card-like-btn')?.click();
+            }
+        });
+
+        const closeModal = () => {
+            const video = modal.querySelector('video');
+            if (video) video.pause();
+            document.body.classList.remove('modal-open');
+            modal.classList.remove('active');
+        };
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+
+    // Video Pause and Sound Control (on hover for main grid)
     projectCards.forEach(card => {
         const video = card.querySelector('video');
         if (video) {
-            // Initialize video
             video.muted = true;
             video.autoplay = true;
             video.play().catch(e => console.log("Auto-play prevented:", e));
             
-            // Add sound control button
             const soundButton = document.createElement('button');
             soundButton.className = 'video-sound-btn';
             soundButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
             card.appendChild(soundButton);
             
-            // Handle mouse events
             card.addEventListener('mouseenter', () => video.pause());
             card.addEventListener('mouseleave', () => video.play().catch(e => {}));
             
-            // Sound toggle
             soundButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 video.muted = !video.muted;
@@ -88,8 +193,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('header').classList.toggle('sticky', window.scrollY > 0);
     });
 
-    // Slideshow functionality
-    const slideshowContainers = document.querySelectorAll('.slideshow-container');
+    // Slideshow functionality (for main grid)
+    const slideshowContainers = document.querySelectorAll('.project-card .slideshow-container');
     slideshowContainers.forEach(container => {
         const slides = container.querySelectorAll('.slide');
         if (slides.length > 0) {
@@ -98,6 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             let slideIndex = 0;
             setInterval(() => {
+                if (container.closest('.project-card:hover')) return; // Pause slideshow on hover
                 slides[slideIndex].classList.remove('active', 'zoom-effect');
                 slideIndex = (slideIndex + 1) % slides.length;
                 slides[slideIndex].classList.add('active', 'zoom-effect');
@@ -105,99 +211,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Skills animation
-    const skillSection = document.querySelector('.about');
-    const skillTags = document.querySelectorAll('.skill-tag');
-    
-    if (skillTags.length > 0) {
-        skillTags.forEach(tag => {
-            tag.style.opacity = "0";
-            tag.style.transform = "translateY(10px)";
-        });
-        
-        function isInViewport(element) {
-            if (!element) return false;
-            const rect = element.getBoundingClientRect();
-            return (
-                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.bottom >= 0
-            );
-        }
-        
-        function animateSkills() {
-            if (isInViewport(skillSection)) {
-                skillTags.forEach((tag, index) => {
-                    setTimeout(() => {
-                        tag.style.opacity = "1";
-                        tag.style.transform = "translateY(0)";
-                    }, 100 * index);
-                });
-                window.removeEventListener('scroll', animateSkills);
-            }
-        }
-        
-        animateSkills();
-        window.addEventListener('scroll', animateSkills);
-        
-        // Mouse interaction for skills
-        const skillsContainer = document.querySelector('.skills');
-        if (skillsContainer) {
-            let mouseX = 0, mouseY = 0;
-            let rafID = null;
-            
-            function updateSkillTags() {
-                const { left, top } = skillsContainer.getBoundingClientRect();
-                
-                skillTags.forEach(tag => {
-                    const tagRect = tag.getBoundingClientRect();
-                    const tagCenterX = tagRect.left + tagRect.width/2 - left;
-                    const tagCenterY = tagRect.top + tagRect.height/2 - top;
-                    
-                    const distX = mouseX - tagCenterX;
-                    const distY = mouseY - tagCenterY;
-                    const distance = Math.sqrt(distX * distX + distY * distY);
-                    
-                    const maxDist = 150;
-                    const strength = Math.max(0, 1 - distance / maxDist);
-                    
-                    // Apply effect
-                    const tiltX = distY * strength * 0.08;
-                    const tiltY = -distX * strength * 0.08;
-                    const lift = strength * 2;
-                    
-                    tag.style.transform = `perspective(500px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(${lift}px)`;
-                    tag.style.boxShadow = `0 ${2 + lift}px ${5 + lift * 2}px rgba(0, 0, 0, ${0.05 + strength * 0.05})`;
-                });
-                
-                rafID = null;
-            }
-            
-            skillsContainer.addEventListener('mousemove', function(e) {
-                const { left, top } = this.getBoundingClientRect();
-                mouseX = e.clientX - left;
-                mouseY = e.clientY - top;
-                
-                if (!rafID) {
-                    rafID = requestAnimationFrame(updateSkillTags);
-                }
-            });
-            
-            skillsContainer.addEventListener('mouseleave', function() {
-                skillTags.forEach(tag => {
-                    tag.style.transition = 'transform 0.6s ease, box-shadow 0.6s ease';
-                    tag.style.transform = 'perspective(500px) rotateX(0deg) rotateY(0deg) translateZ(0)';
-                    tag.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.05)';
-                    
-                    setTimeout(() => {
-                        tag.style.transition = '';
-                    }, 600);
-                });
-            });
-        }
-    }
-
     // Initialize like system
     initLikeSystem();
+
+    // Reveal on Scroll Logic using Intersection Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserverOptions = {
+        root: null,
+        threshold: 0.1,
+    };
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, revealObserverOptions);
+    revealElements.forEach(element => {
+        revealObserver.observe(element);
+    });
 });
 
 // Function to change slides
@@ -229,149 +262,77 @@ function changeSlide(n, el, e) {
 
 // Initialize likes system
 function initLikeSystem() {
-    // Get stored likes from localStorage (for this user only)
     let userLikes = JSON.parse(localStorage.getItem('projectLikes')) || {};
-    
-    // Add like buttons to all project cards
+    const modal = document.getElementById('project-modal');
+    const modalLikeBtn = modal?.querySelector('.modal-like-btn');
+    const modalLikeIcon = modalLikeBtn?.querySelector('i');
+    const modalLikeCount = modal?.querySelector('.modal-like-count');
+
     document.querySelectorAll('.project-card').forEach((card, index) => {
-        // Create unique ID for project if not exists
         const projectId = card.id || `project-${index}`;
         if (!card.id) card.id = projectId;
         
-        // Get project title for tracking
-        const projectTitle = card.querySelector('.project-overlay h3')?.textContent || projectId;
-        
-        // Add visible like button directly on the card (outside overlay)
         if (!card.querySelector('.card-like-btn')) {
             const likeBtn = document.createElement('button');
             likeBtn.className = 'card-like-btn';
-            if (userLikes[projectId]) likeBtn.classList.add('liked');
             
-            // Heart icon
             const heartIcon = document.createElement('i');
-            heartIcon.className = userLikes[projectId] ? 'fas fa-heart' : 'far fa-heart';
             likeBtn.appendChild(heartIcon);
             
-            // Like count
-            const likeCount = document.createElement('span');
-            likeCount.className = 'card-like-count';
-            likeCount.textContent = '...';
-            likeBtn.appendChild(likeCount);
+            const likeCountSpan = document.createElement('span');
+            likeCountSpan.className = 'card-like-count';
+            likeBtn.appendChild(likeCountSpan);
             
-            // Add button to card
             card.appendChild(likeBtn);
+
+            // Set initial state from localStorage
+            if (userLikes[projectId]) {
+                likeBtn.classList.add('liked');
+                heartIcon.className = 'fas fa-heart';
+            } else {
+                likeBtn.classList.remove('liked');
+                heartIcon.className = 'far fa-heart';
+            }
             
-            // Get current like count from Firebase
             db.ref(`likes/${projectId}`).once('value').then(snapshot => {
-                const totalLikes = snapshot.val() || 0;
-                likeCount.textContent = totalLikes > 0 ? totalLikes : '0';
-            }).catch(error => {
-                console.error("Error getting likes:", error);
-                likeCount.textContent = '0';
+                likeCountSpan.textContent = snapshot.val() || '0';
             });
             
-            // Add click event listener for liking/unliking
+            // This is the new, improved click handler
             likeBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 
-                // Toggle like status
-                const isLiked = likeBtn.classList.contains('liked');
+                // 1. Immediately toggle UI
+                const isNowLiked = !this.classList.contains('liked');
+                this.classList.toggle('liked', isNowLiked);
+                heartIcon.className = isNowLiked ? 'fas fa-heart' : 'far fa-heart';
                 
-                // Update UI first for responsive feel
-                if (isLiked) {
-                    // Unlike
-                    likeBtn.classList.remove('liked');
-                    heartIcon.className = 'far fa-heart';
-                } else {
-                    // Like
-                    likeBtn.classList.add('liked');
-                    heartIcon.className = 'fas fa-heart';
-                }
-                
-                // Update localStorage
-                if (isLiked) {
-                    delete userLikes[projectId];
-                } else {
+                // 2. Update localStorage
+                if (isNowLiked) {
                     userLikes[projectId] = true;
+                } else {
+                    delete userLikes[projectId];
                 }
                 localStorage.setItem('projectLikes', JSON.stringify(userLikes));
                 
-                // Update Firebase
+                // 3. Update Firebase
                 const likesRef = db.ref(`likes/${projectId}`);
                 likesRef.transaction(currentLikes => {
-                    return isLiked ? Math.max(0, (currentLikes || 0) - 1) : (currentLikes || 0) + 1;
-                }).then(result => {
-                    const newCount = result.snapshot.val() || 0;
-                    likeCount.textContent = newCount > 0 ? newCount : '0';
+                    return isNowLiked ? (currentLikes || 0) + 1 : Math.max(0, (currentLikes || 0) - 1);
                 });
             });
             
-            // Listen for real-time updates from Firebase
+            // Real-time listener to keep everything in sync
             db.ref(`likes/${projectId}`).on('value', snapshot => {
                 const count = snapshot.val() || 0;
-                likeCount.textContent = count > 0 ? count : '0';
-            });
-        }
-    });
-    
-    const mainLikeBtn = document.querySelector('.contact-content > .like-container > .like-btn');
-    if (mainLikeBtn) {
-        const mainLikeId = 'site-overall';
-        
-        if (userLikes[mainLikeId]) {
-            mainLikeBtn.classList.add('liked');
-            mainLikeBtn.querySelector('i').className = 'fas fa-heart';
-        }
-        
-        db.ref(`likes/${mainLikeId}`).once('value').then(snapshot => {
-            const totalLikes = snapshot.val() || 0;
-            mainLikeBtn.querySelector('.like-count').textContent = totalLikes;
-        }).catch(error => {
-            console.error("Error getting main likes:", error);
-        });
-        
-        mainLikeBtn.addEventListener('click', function() {
-            const isLiked = mainLikeBtn.classList.contains('liked');
-            
-            if (isLiked) {
-                mainLikeBtn.classList.remove('liked');
-                mainLikeBtn.querySelector('i').className = 'far fa-heart';
-            } else {
-                mainLikeBtn.classList.add('liked');
-                mainLikeBtn.querySelector('i').className = 'fas fa-heart';
-            }
-            
-            if (isLiked) {
-                delete userLikes[mainLikeId];
-            } else {
-                userLikes[mainLikeId] = true;
-            }
-            localStorage.setItem('projectLikes', JSON.stringify(userLikes));
-            
-            const likesRef = db.ref(`likes/${mainLikeId}`);
-            likesRef.transaction(currentLikes => {
-                return isLiked ? Math.max(0, (currentLikes || 0) - 1) : (currentLikes || 0) + 1;
-            }).then(result => {
-                mainLikeBtn.querySelector('.like-count').textContent = result.snapshot.val() || 0;
-                
-                const heart = mainLikeBtn.querySelector('i');
-                heart.style.animation = 'none';
-                setTimeout(() => {
-                    heart.style.animation = '';
-                }, 10);
-            }).catch(error => {
-                console.error("Error updating main likes:", error);
-            });
-        });
-        
-        db.ref(`likes/${mainLikeId}`).on('value', snapshot => {
-            const count = snapshot.val() || 0;
-            mainLikeBtn.querySelector('.like-count').textContent = count;
-        });
-    }
+                likeCountSpan.textContent = count;
 
-    // Remove like containers from project overlays
-    document.querySelectorAll('.project-overlay .like-container').forEach(container => {
-        container.remove();
+                if (modal && modal.classList.contains('active') && modalLikeBtn.dataset.projectId === projectId) {
+                    modalLikeCount.textContent = count;
+                    modalLikeBtn.classList.toggle('liked', likeBtn.classList.contains('liked'));
+                    modalLikeIcon.className = likeBtn.classList.contains('liked') ? 'fas fa-heart' : 'far fa-heart';
+                }
+            });
+        }
     });
 }
