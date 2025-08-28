@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Video Pause and Sound Control (on hover for main grid)
+    // Video Sound Control (hover pause removed)
     projectCards.forEach(card => {
         const video = card.querySelector('video');
         if (video) {
@@ -159,9 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
             soundButton.className = 'video-sound-btn';
             soundButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
             card.appendChild(soundButton);
-            
-            card.addEventListener('mouseenter', () => video.pause());
-            card.addEventListener('mouseleave', () => video.play().catch(e => {}));
             
             soundButton.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -203,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             let slideIndex = 0;
             setInterval(() => {
-                if (container.closest('.project-card:hover')) return; // Pause slideshow on hover
+                if (container.closest('.project-card:hover')) return;
                 slides[slideIndex].classList.remove('active', 'zoom-effect');
                 slideIndex = (slideIndex + 1) % slides.length;
                 slides[slideIndex].classList.add('active', 'zoom-effect');
@@ -214,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize like system
     initLikeSystem();
 
-    // Reveal on Scroll Logic using Intersection Observer
+    // Reveal on Scroll Logic
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserverOptions = {
         root: null,
@@ -231,6 +228,9 @@ document.addEventListener('DOMContentLoaded', function() {
     revealElements.forEach(element => {
         revealObserver.observe(element);
     });
+
+    // Initialize Parallax Hover Effect
+    initParallaxEffect();
 });
 
 // Function to change slides
@@ -285,7 +285,6 @@ function initLikeSystem() {
             
             card.appendChild(likeBtn);
 
-            // Set initial state from localStorage
             if (userLikes[projectId]) {
                 likeBtn.classList.add('liked');
                 heartIcon.className = 'fas fa-heart';
@@ -298,16 +297,13 @@ function initLikeSystem() {
                 likeCountSpan.textContent = snapshot.val() || '0';
             });
             
-            // This is the new, improved click handler
             likeBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 
-                // 1. Immediately toggle UI
                 const isNowLiked = !this.classList.contains('liked');
                 this.classList.toggle('liked', isNowLiked);
                 heartIcon.className = isNowLiked ? 'fas fa-heart' : 'far fa-heart';
                 
-                // 2. Update localStorage
                 if (isNowLiked) {
                     userLikes[projectId] = true;
                 } else {
@@ -315,14 +311,12 @@ function initLikeSystem() {
                 }
                 localStorage.setItem('projectLikes', JSON.stringify(userLikes));
                 
-                // 3. Update Firebase
                 const likesRef = db.ref(`likes/${projectId}`);
                 likesRef.transaction(currentLikes => {
                     return isNowLiked ? (currentLikes || 0) + 1 : Math.max(0, (currentLikes || 0) - 1);
                 });
             });
             
-            // Real-time listener to keep everything in sync
             db.ref(`likes/${projectId}`).on('value', snapshot => {
                 const count = snapshot.val() || 0;
                 likeCountSpan.textContent = count;
@@ -334,5 +328,35 @@ function initLikeSystem() {
                 }
             });
         }
+    });
+}
+
+// Refined Parallax Effect Function
+function initParallaxEffect() {
+    const cards = document.querySelectorAll('.project-card');
+    
+    cards.forEach(card => {
+        const maxTilt = 5; // Max tilt in degrees
+
+        card.addEventListener('mousemove', (e) => {
+            const { left, top, width, height } = card.getBoundingClientRect();
+            
+            const x = e.clientX - left;
+            const y = e.clientY - top;
+            const centerX = width / 2;
+            const centerY = height / 2;
+            
+            const deltaX = x - centerX;
+            const deltaY = y - centerY;
+            
+            const rotateX = (deltaY / centerY) * -maxTilt;
+            const rotateY = (deltaX / centerX) * maxTilt;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
     });
 }
