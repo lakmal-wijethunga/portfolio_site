@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+import { withBase } from '../utils/url';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, category, description, tools, media, links } = project.data;
+const hasVideo = media.some((m) => m.type === 'video');
+const isSlideshow = media.length > 1;
+
+const imageWidths = [480, 800, 1280];
+const imageSizes = '(max-width: 768px) 92vw, (max-width: 1200px) 45vw, 30vw';
+const first = media[0];
+---
+
+<article
+  class="project-card reveal"
+  id={project.id}
+  data-category={category}
+  data-tools={tools.join(', ')}
+  tabindex="0"
+  role="button"
+  aria-haspopup="dialog"
+  aria-label={`Open details for ${title}`}
+>
+  {
+    isSlideshow ? (
+      <div class="slideshow-container">
+        {media.map((m, i) => (
+          <div class:list={['slide', 'fade', { active: i === 0, 'zoom-effect': i === 0 }]}>
+            {m.type === 'image' ? (
+              <Image
+                src={m.src}
+                alt={m.alt ?? `${title} — image ${i + 1} of ${media.length}`}
+                widths={imageWidths}
+                sizes={imageSizes}
+                format="webp"
+                quality={80}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <video class="lazy-video" muted loop playsinline preload="metadata">
+                <source src={withBase(m.src)} type="video/mp4" />
+              </video>
+            )}
+          </div>
+        ))}
+        <button class="prev" aria-label="Previous image">
+          <Icon name="chevron-left" />
+        </button>
+        <button class="next" aria-label="Next image">
+          <Icon name="chevron-right" />
+        </button>
+      </div>
+    ) : first.type === 'image' ? (
+      <Image
+        src={first.src}
+        alt={first.alt ?? title}
+        widths={imageWidths}
+        sizes={imageSizes}
+        format="webp"
+        quality={80}
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      <video class="lazy-video" muted loop playsinline preload="metadata">
+        <source src={withBase(first.src)} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    )
+  }
+
+  <div class="project-overlay">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    {
+      links.length > 0 && (
+        <div class="project-buttons">
+          {links.map((link) => (
+            <a href={link.url} target="_blank" rel="noopener" class="project-btn">
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  <button class="card-like-btn" aria-label={`Like ${title}`} aria-pressed="false">
+    <span class="heart-outline"><Icon name="heart" set="regular" /></span>
+    <span class="heart-solid"><Icon name="heart" set="solid" /></span>
+    <span class="card-like-count">…</span>
+  </button>
+
+  {
+    hasVideo && (
+      <button class="video-sound-btn muted" aria-label="Unmute video">
+        <span class="icon-vol-off">
+          <Icon name="volume-xmark" />
+        </span>
+        <span class="icon-vol-on">
+          <Icon name="volume-high" />
+        </span>
+      </button>
+    )
+  }
+</article>

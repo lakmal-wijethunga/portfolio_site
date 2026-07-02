@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+import ProjectModal from './ProjectModal.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+const filters = [
+  { value: 'all', label: 'All' },
+  { value: 'animations', label: 'Animations' },
+  { value: 'environments', label: 'Environments' },
+  { value: 'product', label: 'Product Design' },
+  { value: 'ai', label: 'AI' },
+];
+---
+
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="section-title">
+      <h2>Featured Projects</h2>
+    </div>
+    <div class="filter-buttons reveal">
+      {
+        filters.map((filter, i) => (
+          <button
+            class:list={['filter-btn', { active: i === 0 }]}
+            data-filter={filter.value}
+            aria-pressed={i === 0 ? 'true' : 'false'}
+          >
+            {filter.label}
+          </button>
+        ))
+      }
+    </div>
+    <div class="project-grid" id="project-grid">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </div>
+</section>
+
+<ProjectModal />

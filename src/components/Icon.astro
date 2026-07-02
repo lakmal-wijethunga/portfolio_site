@@ -1,0 +1,32 @@
+---
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+/**
+ * Inlines a Font Awesome Free SVG at build time — no icon font, no CDN,
+ * no runtime cost. Icons render at 1em and inherit currentColor.
+ */
+interface Props {
+  name: string;
+  set?: 'solid' | 'regular' | 'brands';
+  class?: string;
+}
+
+const { name, set = 'solid', class: className } = Astro.props;
+
+// Resolved from the project root (not import.meta.url — during prerender
+// this module executes from inside dist/, where node_modules doesn't exist).
+const svgPath = resolve(
+  process.cwd(),
+  `node_modules/@fortawesome/fontawesome-free/svgs/${set}/${name}.svg`
+);
+
+const svg = readFileSync(svgPath, 'utf-8')
+  .replace(/<!--[\s\S]*?-->/, '')
+  .replace(
+    '<svg',
+    `<svg class="icon${className ? ` ${className}` : ''}" aria-hidden="true" focusable="false"`
+  );
+---
+
+<Fragment set:html={svg} />

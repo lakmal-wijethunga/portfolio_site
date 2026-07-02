@@ -1,0 +1,32 @@
+---
+import { getImage } from 'astro:assets';
+import heroBackground from '../assets/hero-background.jpg';
+import Icon from './Icon.astro';
+import { withBase } from '../utils/url';
+
+const heroBg = await getImage({ src: heroBackground, width: 1920, format: 'webp', quality: 75 });
+const cvUrl = withBase('documents/Lakmal_Wijethunga_CV.pdf');
+---
+
+<section class="hero" id="home" style={`--hero-bg: url(${heroBg.src})`}>
+  <div class="hero-content">
+    <h1>3D Artist & <span>Digital Creator</span></h1>
+    <p>Combining artistic vision with technical expertise to create compelling digital experiences</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn">View Portfolio</a>
+      <a href="#contact" class="btn btn-outline">Contact Me</a>
+      <a href={cvUrl} download="Lakmal_Wijethunga_CV.pdf" class="btn btn-outline">
+        <Icon name="download" />Download CV
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 0;
+  }
+</style>

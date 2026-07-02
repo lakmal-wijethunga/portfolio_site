@@ -1,0 +1,20 @@
+title: Grass Cutter
+category: product
+order: 14
+tools: [Fusion 360, CAD Software, 3D Printing]
+description: >-
+  Complete 3D design for the enclosure of a handheld electric grass cutter. The
+  model features an ergonomic, two-part clamshell casing that securely houses
+  all internal mechanical and electronic components.
+media:
+  - { type: image, src: ../../assets/projects/grass-cutter/01.png }
+  - { type: image, src: ../../assets/projects/grass-cutter/02.png }
+  - { type: image, src: ../../assets/projects/grass-cutter/03.png }
+  - { type: image, src: ../../assets/projects/grass-cutter/04.png }
+  - { type: image, src: ../../assets/projects/grass-cutter/05.png }
+  - { type: image, src: ../../assets/projects/grass-cutter/06.png }
+  - { type: image, src: ../../assets/projects/grass-cutter/07.png }
+  - { type: image, src: ../../assets/projects/grass-cutter/08.png }
+  - { type: image, src: ../../assets/projects/grass-cutter/09.png }
+  - { type: image, src: ../../assets/projects/grass-cutter/10.png }
+  - { type: image, src: ../../assets/projects/grass-cutter/11.png }

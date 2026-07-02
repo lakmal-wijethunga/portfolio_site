@@ -1,0 +1,108 @@
+---
+import '@fontsource/space-grotesk/400.css';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/space-grotesk/600.css';
+import '@fontsource/space-grotesk/700.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import '../styles/global.css';
+
+import { getImage } from 'astro:assets';
+import heroBackground from '../assets/hero-background.jpg';
+import Icon from '../components/Icon.astro';
+import { withBase } from '../utils/url';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const canonicalURL = new URL(withBase(''), Astro.site);
+const ogImage = await getImage({ src: heroBackground, width: 1200, format: 'jpeg' });
+const ogImageURL = new URL(ogImage.src, Astro.site);
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Lakmal Wijethunga',
+  jobTitle: '3D Artist & Digital Creator',
+  url: canonicalURL.href,
+  email: 'mpplwijethunga@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressRegion: 'Western Province',
+    addressLocality: 'Mirigama',
+    addressCountry: 'LK',
+  },
+  knowsAbout: [
+    '3D Modeling',
+    'Environment Design',
+    'PBR Texturing',
+    'Logo Animation',
+    '3D Printing',
+    'Generative AI',
+    'Blender',
+    'Fusion 360',
+    'CLO 3D',
+    'Houdini',
+  ],
+  sameAs: [
+    'https://www.facebook.com/lakmalwijethungaa',
+    'https://www.linkedin.com/in/lakmalwije/',
+    'https://x.com/lakmal_wijeth',
+    'https://www.instagram.com/lakmal_wije/',
+    'https://github.com/lakmal-wijethunga',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    <!-- Primary SEO -->
+    <meta name="description" content={description} />
+    <meta name="author" content="Lakmal Wijethunga" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#242F40" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href={withBase('sitemap-index.xml')} />
+    <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content="Lakmal Wijethunga Portfolio" />
+
+    <!-- Twitter/X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lakmal_wijeth" />
+    <meta name="twitter:creator" content="@lakmal_wijeth" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Structured data: Person -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body>
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <slot />
+
+    <button id="back-to-top" aria-label="Back to top">
+      <Icon name="arrow-up" />
+    </button>
+  </body>
+</html>

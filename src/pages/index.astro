@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Services from '../components/Services.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Lakmal Wijethunga | 3D Artist & Digital Creator"
+  description="Lakmal Wijethunga — 3D Artist & Digital Creator specializing in 3D modeling, environment design, PBR texturing, logo animation, and AI. Built with Blender, Fusion 360, CLO 3D, and Houdini."
+>
+  <Header />
+  <main>
+    <Hero />
+    <About />
+    <Services />
+    <ProjectsSection />
+    <Contact />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script src="../scripts/main.ts"></script>

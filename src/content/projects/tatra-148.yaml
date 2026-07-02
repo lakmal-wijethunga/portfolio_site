@@ -1,0 +1,16 @@
+title: Tatra 148
+category: product
+order: 12
+tools: [Fusion 360, Blender, Resin 3D Printing]
+description: >-
+  A collection of detailed 3D models featuring heavy-duty and emergency
+  vehicles, including a Tatra 148 Crane, Cargo Truck, Digger, Tipper, and
+  Firetruck. Each vehicle was accurately modeled and specifically optimized for
+  Resin 3D printing.
+media:
+  - { type: image, src: ../../assets/projects/tatra-148/01.png }
+  - { type: image, src: ../../assets/projects/tatra-148/02.png }
+  - { type: image, src: ../../assets/projects/tatra-148/03.png }
+  - { type: image, src: ../../assets/projects/tatra-148/04.png }
+  - { type: image, src: ../../assets/projects/tatra-148/05.png }
+  - { type: image, src: ../../assets/projects/tatra-148/06.png }

@@ -1,0 +1,12 @@
+title: Defender Body
+category: product
+order: 9
+tools: [Fusion 360, 3D Printing]
+description: >-
+  Designed a 3D model of an RC Defender body, optimized for 3D printing. This
+  project involved precise scaling, and ensuring structural integrity for a
+  seamless assembly and realistic appearance.
+media:
+  - { type: image, src: ../../assets/projects/defender-body/01.png }
+  - { type: image, src: ../../assets/projects/defender-body/02.png }
+  - { type: image, src: ../../assets/projects/defender-body/03.png }

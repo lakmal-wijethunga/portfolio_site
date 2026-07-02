@@ -1,0 +1,52 @@
+---
+import Icon from './Icon.astro';
+
+const services = [
+  {
+    icon: 'cube',
+    title: '3D Modeling',
+    text: 'Designing high-quality 3D models with a focus on precision and creativity. Expertise in creating props, and assets for games, films, and interactive media, ensuring optimized topology and attention to detail.',
+  },
+  {
+    icon: 'tree',
+    title: 'Environment Design',
+    text: 'Crafting immersive and detailed 3D environments that tell stories and create atmospheric experiences.',
+  },
+  {
+    icon: 'paintbrush',
+    title: 'PBR Texturing',
+    text: 'Creating physically-based materials and textures that bring models to life with realistic surface properties, weathering effects, and material definition.',
+  },
+  {
+    icon: 'gears',
+    title: 'Logo Animations',
+    text: 'Creating dynamic and visually appealing logo animations that enhance brand identity and leave a lasting impression. Expertise in motion graphics and animation techniques to bring logos to life with smooth transitions and creative effects.',
+  },
+  {
+    icon: 'code',
+    title: 'AI Model Training',
+    text: 'Developing and training custom AI models tailored for specific use cases, such as object detection and classification, optimized for deployment on edge devices with limited computational resources.',
+  },
+];
+---
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-title">
+      <h2>My Services</h2>
+    </div>
+    <div class="services-grid">
+      {
+        services.map((service) => (
+          <div class="service-card reveal">
+            <div class="service-icon">
+              <Icon name={service.icon} />
+            </div>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

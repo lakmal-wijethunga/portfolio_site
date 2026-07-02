@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lakmal-wijethunga.github.io/portfolio_site/sitemap-index.xml
