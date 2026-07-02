@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Project Admin | Lakmal Wijethunga</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23242F40'/%3E%3Ctext x='50' y='70' font-size='52' font-family='Arial,sans-serif' font-weight='bold' text-anchor='middle' fill='%23CCA43B'%3ELW%3C/text%3E%3C/svg%3E">
+    <style>
+        :root {
+            --primary: #242F40;
+            --secondary: #CCA43B;
+            --accent: #5C80BC;
+            --bg: #F5F5F5;
+            --white: #fff;
+            --danger: #e0492f;
+            --radius: 10px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: var(--bg);
+            color: #333;
+            line-height: 1.5;
+            padding: 2rem 1rem 4rem;
+        }
+        .wrap { max-width: 900px; margin: 0 auto; }
+        h1 { font-size: 1.8rem; color: var(--primary); margin-bottom: 0.25rem; }
+        h2 { font-size: 1.2rem; color: var(--primary); margin: 2rem 0 1rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; }
+
+        /* Login gate */
+        #gate {
+            max-width: 380px; margin: 8vh auto; background: var(--white);
+            padding: 2.5rem 2rem; border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,.12); text-align: center;
+        }
+        #gate .logo { font-size: 1.6rem; font-weight: 700; color: var(--primary); margin-bottom: .25rem; }
+        #gate .logo span { color: var(--secondary); }
+        #gate p { color: #666; margin-bottom: 1.5rem; font-size: .9rem; }
+        #gate-error { color: var(--danger); font-size: .85rem; min-height: 1.2em; margin-top: .5rem; }
+
+        label { display: block; font-weight: 600; font-size: .85rem; color: var(--primary); margin: .9rem 0 .3rem; }
+        input, select, textarea {
+            width: 100%; padding: .7rem .8rem; border: 1px solid #d5d5d5;
+            border-radius: 6px; font: inherit; background: #fafafa;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none; border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(204,164,59,.2); background: #fff;
+        }
+        textarea { min-height: 90px; resize: vertical; }
+
+        button {
+            font: inherit; font-weight: 600; cursor: pointer; border: none;
+            border-radius: 6px; padding: .65rem 1.2rem; transition: all .2s;
+        }
+        .btn-primary { background: var(--secondary); color: #fff; }
+        .btn-primary:hover { background: #b08b28; }
+        .btn-ghost { background: #eceff4; color: var(--primary); }
+        .btn-ghost:hover { background: #dde2ea; }
+        .btn-danger { background: transparent; color: var(--danger); padding: .3rem .6rem; }
+        .btn-danger:hover { background: rgba(224,73,47,.1); }
+        .btn-sm { padding: .3rem .7rem; font-size: .8rem; }
+
+        #app { display: none; }
+        .panel { background: var(--white); border-radius: var(--radius); box-shadow: 0 4px 16px rgba(0,0,0,.06); padding: 1.5rem; margin-bottom: 1.5rem; }
+
+        /* project list */
+        .plist { list-style: none; }
+        .pitem {
+            display: flex; align-items: center; gap: .75rem;
+            padding: .6rem .5rem; border-bottom: 1px solid #eee;
+        }
+        .pitem:last-child { border-bottom: none; }
+        .pitem .meta { flex: 1; min-width: 0; }
+        .pitem .ptitle { font-weight: 600; color: var(--primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .pitem .ptag {
+            font-size: .72rem; text-transform: uppercase; letter-spacing: .04em;
+            color: #fff; background: var(--accent); padding: .12rem .5rem; border-radius: 20px; margin-left: .4rem;
+        }
+        .pitem .pmedia { font-size: .78rem; color: #888; }
+        .pitem .actions { display: flex; gap: .3rem; flex-shrink: 0; }
+
+        .row { display: flex; gap: .6rem; align-items: flex-end; margin-bottom: .5rem; }
+        .row > * { flex: 1; }
+        .row .btn-danger { flex: 0 0 auto; }
+        .repeat-head { display: flex; justify-content: space-between; align-items: center; margin-top: .9rem; }
+        .hint { font-size: .8rem; color: #888; font-weight: 400; }
+        .form-actions { display: flex; gap: .6rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+        .output { display: none; }
+        .output textarea { min-height: 260px; font-family: ui-monospace, Consolas, monospace; font-size: .8rem; }
+        .steps { background: #fff8e6; border: 1px solid #f0dca0; border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1rem; font-size: .88rem; }
+        .steps ol { margin-left: 1.1rem; }
+        .steps code { background: #efe4c0; padding: .05rem .3rem; border-radius: 4px; }
+        .toast {
+            position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(120%);
+            background: var(--primary); color: #fff; padding: .8rem 1.5rem; border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .35s; z-index: 100;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .warn { font-size: .8rem; color: #a05a00; background: #fff3d6; padding: .6rem .9rem; border-radius: 6px; margin-top: 1rem; }
+        .editing-badge { display:none; background: var(--accent); color:#fff; font-size:.75rem; padding:.15rem .6rem; border-radius: 20px; margin-left:.5rem; vertical-align: middle; }
+    </style>
+</head>
+<body>
+    <!-- ============ LOGIN GATE ============ -->
+    <div id="gate">
+        <div class="logo">Lakmal<span>Wijethunga</span></div>
+        <p>Project Admin — enter password</p>
+        <input type="password" id="gate-input" placeholder="Password" autocomplete="current-password">
+        <div id="gate-error"></div>
+        <button class="btn-primary" style="width:100%;margin-top:1rem;" onclick="checkPassword()">Unlock</button>
+    </div>
+
+    <!-- ============ APP ============ -->
+    <div id="app" class="wrap">
+        <h1>Project Admin</h1>
+        <p class="subtitle">Add, edit, reorder and remove portfolio projects, then generate an updated <code>projects-data.js</code> to commit.</p>
+
+        <!-- Existing projects -->
+        <div class="panel">
+            <h2 style="margin-top:0;">Projects (<span id="count">0</span>)</h2>
+            <ul class="plist" id="plist"></ul>
+        </div>
+
+        <!-- Editor form -->
+        <div class="panel">
+            <h2 style="margin-top:0;">
+                <span id="form-mode">Add a new project</span>
+                <span class="editing-badge" id="editing-badge">editing</span>
+            </h2>
+
+            <label>Title</label>
+            <input type="text" id="f-title" placeholder="e.g. Iveco Zeta">
+
+            <label>ID / slug <span class="hint">(unique; auto-filled from title — used for likes)</span></label>
+            <input type="text" id="f-id" placeholder="iveco-zeta">
+
+            <label>Category</label>
+            <select id="f-category">
+                <option value="animations">Animations</option>
+                <option value="environments">Environments</option>
+                <option value="product">Product Design</option>
+                <option value="ai">AI</option>
+            </select>
+
+            <label>Tools <span class="hint">(comma-separated)</span></label>
+            <input type="text" id="f-tools" placeholder="Blender, Fusion 360, 3D Printing">
+
+            <label>Description</label>
+            <textarea id="f-description" placeholder="Short overview of the project..."></textarea>
+
+            <div class="repeat-head">
+                <label style="margin:0;">Media <span class="hint">(1 video = video card, 1 image = image card, 2+ = slideshow)</span></label>
+                <button class="btn-ghost btn-sm" type="button" onclick="addMediaRow()">+ Add media</button>
+            </div>
+            <div id="media-rows"></div>
+
+            <div class="repeat-head">
+                <label style="margin:0;">Links <span class="hint">(optional buttons on the card)</span></label>
+                <button class="btn-ghost btn-sm" type="button" onclick="addLinkRow()">+ Add link</button>
+            </div>
+            <div id="link-rows"></div>
+
+            <div class="form-actions">
+                <button class="btn-primary" onclick="saveProject()">Save project</button>
+                <button class="btn-ghost" onclick="resetForm()">Clear / New</button>
+            </div>
+            <div class="warn" id="media-note">
+                Media files are referenced by path. Add the image/video files under <code>projects/</code> and reference them here,
+                e.g. <code>projects/MyProject/1.png</code>.
+            </div>
+        </div>
+
+        <!-- Generate output -->
+        <div class="panel">
+            <h2 style="margin-top:0;">Publish</h2>
+            <p class="subtitle" style="margin-bottom:1rem;">Generate the data file, then download or copy it into your repo.</p>
+            <div class="form-actions" style="margin-top:0;">
+                <button class="btn-primary" onclick="generateFile()">Generate projects-data.js</button>
+                <button class="btn-ghost" onclick="downloadFile()">⬇ Download file</button>
+                <button class="btn-ghost" onclick="copyOutput()">⧉ Copy to clipboard</button>
+            </div>
+            <div class="output" id="output">
+                <label>Generated file</label>
+                <textarea id="output-text" readonly spellcheck="false"></textarea>
+                <div class="steps">
+                    <strong>To publish these changes:</strong>
+                    <ol>
+                        <li>Replace <code>projects-data.js</code> in your project folder with this file (Download, or Copy &amp; paste over it).</li>
+                        <li>Make sure any new media files are added under the <code>projects/</code> folder.</li>
+                        <li>Commit &amp; push both to GitHub — the live site updates automatically.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- Loads window.PROJECTS -->
+    <script src="projects-data.js"></script>
+    <script>
+    /* =========================================================================
+       IMPORTANT: change this password. It is a light gate only (client-side),
+       not real security — anyone who views source can read it. It simply keeps
+       the panel out of casual reach. For real protection, host admin.html
+       privately or switch to Firebase Auth later.
+       ========================================================================= */
+    const ADMIN_PASSWORD = "changeme123";
+
+    // Working copy of the projects (deep clone so we don't mutate the source until publish)
+    let projects = (typeof PROJECTS !== 'undefined') ? JSON.parse(JSON.stringify(PROJECTS)) : [];
+    let editIndex = null; // null = adding new, number = editing existing
+
+    /* ---------- Auth gate ---------- */
+    function checkPassword() {
+        const val = document.getElementById('gate-input').value;
+        if (val === ADMIN_PASSWORD) {
+            sessionStorage.setItem('admin-ok', '1');
+            showApp();
+        } else {
+            document.getElementById('gate-error').textContent = 'Incorrect password.';
+        }
+    }
+    function showApp() {
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+        renderList();
+        resetForm();
+    }
+    document.getElementById('gate-input').addEventListener('keydown', e => {
+        if (e.key === 'Enter') checkPassword();
+    });
+    if (sessionStorage.getItem('admin-ok') === '1') showApp();
+
+    /* ---------- Helpers ---------- */
+    function slugify(s) {
+        return String(s).toLowerCase().trim()
+            .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'project';
+    }
+    function toast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg; t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    /* ---------- Project list ---------- */
+    function renderList() {
+        const list = document.getElementById('plist');
+        document.getElementById('count').textContent = projects.length;
+        list.innerHTML = projects.map((p, i) => `
+            <li class="pitem">
+                <div class="actions">
+                    <button class="btn-ghost btn-sm" title="Move up" onclick="move(${i},-1)" ${i === 0 ? 'disabled' : ''}>↑</button>
+                    <button class="btn-ghost btn-sm" title="Move down" onclick="move(${i},1)" ${i === projects.length - 1 ? 'disabled' : ''}>↓</button>
+                </div>
+                <div class="meta">
+                    <span class="ptitle">${escapeAttr(p.title)}</span><span class="ptag">${escapeAttr(p.category)}</span>
+                    <div class="pmedia">${(p.media || []).length} media · ${(p.links || []).length} link(s)</div>
+                </div>
+                <div class="actions">
+                    <button class="btn-ghost btn-sm" onclick="editProject(${i})">Edit</button>
+                    <button class="btn-danger btn-sm" onclick="deleteProject(${i})">Delete</button>
+                </div>
+            </li>`).join('') || '<li class="pmedia">No projects yet.</li>';
+    }
+    function move(i, dir) {
+        const j = i + dir;
+        if (j < 0 || j >= projects.length) return;
+        [projects[i], projects[j]] = [projects[j], projects[i]];
+        renderList();
+    }
+    function deleteProject(i) {
+        if (!confirm(`Delete "${projects[i].title}"?`)) return;
+        projects.splice(i, 1);
+        if (editIndex === i) resetForm();
+        renderList();
+    }
+
+    /* ---------- Media / link rows ---------- */
+    function addMediaRow(type = 'image', src = '', opt = '') {
+        const wrap = document.getElementById('media-rows');
+        const div = document.createElement('div');
+        div.className = 'row';
+        div.innerHTML = `
+            <select style="flex:0 0 100px;">
+                <option value="image"${type === 'image' ? ' selected' : ''}>Image</option>
+                <option value="video"${type === 'video' ? ' selected' : ''}>Video</option>
+            </select>
+            <input type="text" placeholder="projects/Folder/file.png" value="${escapeAttr(src)}">
+            <input type="text" placeholder="optimized: .webp / video poster (optional)" value="${escapeAttr(opt)}">
+            <button class="btn-danger btn-sm" type="button" onclick="this.parentElement.remove()">✕</button>`;
+        wrap.appendChild(div);
+    }
+    function addLinkRow(label = '', url = '') {
+        const wrap = document.getElementById('link-rows');
+        const div = document.createElement('div');
+        div.className = 'row';
+        div.innerHTML = `
+            <input type="text" placeholder="Button label (e.g. Breakdown)" value="${escapeAttr(label)}">
+            <input type="text" placeholder="https://..." value="${escapeAttr(url)}">
+            <button class="btn-danger btn-sm" type="button" onclick="this.parentElement.remove()">✕</button>`;
+        wrap.appendChild(div);
+    }
+
+    /* ---------- Form load / save ---------- */
+    function editProject(i) {
+        const p = projects[i];
+        editIndex = i;
+        document.getElementById('f-title').value = p.title || '';
+        document.getElementById('f-id').value = p.id || '';
+        document.getElementById('f-category').value = p.category || 'animations';
+        document.getElementById('f-tools').value = (p.tools || []).join(', ');
+        document.getElementById('f-description').value = p.description || '';
+        document.getElementById('media-rows').innerHTML = '';
+        (p.media || []).forEach(m => addMediaRow(m.type, m.src, m.poster || m.webp || ''));
+        document.getElementById('link-rows').innerHTML = '';
+        (p.links || []).forEach(l => addLinkRow(l.label, l.url));
+        document.getElementById('form-mode').textContent = 'Editing: ' + p.title;
+        document.getElementById('editing-badge').style.display = 'inline-block';
+        window.scrollTo({ top: document.querySelector('#f-title').closest('.panel').offsetTop - 20, behavior: 'smooth' });
+    }
+    function resetForm() {
+        editIndex = null;
+        ['f-title', 'f-id', 'f-tools', 'f-description'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('f-category').value = 'animations';
+        document.getElementById('media-rows').innerHTML = '';
+        document.getElementById('link-rows').innerHTML = '';
+        addMediaRow();
+        document.getElementById('form-mode').textContent = 'Add a new project';
+        document.getElementById('editing-badge').style.display = 'none';
+    }
+    // Auto-fill slug from title while adding
+    document.getElementById('f-title').addEventListener('input', function () {
+        const idField = document.getElementById('f-id');
+        if (editIndex === null && (!idField.dataset.touched || idField.value === '')) {
+            idField.value = slugify(this.value);
+        }
+    });
+    document.getElementById('f-id').addEventListener('input', function () { this.dataset.touched = '1'; });
+
+    function collectRows(wrapId, keys) {
+        return [...document.getElementById(wrapId).querySelectorAll('.row')].map(row => {
+            const fields = row.querySelectorAll('select, input');
+            const obj = {};
+            keys.forEach((k, idx) => obj[k] = fields[idx].value.trim());
+            return obj;
+        }).filter(o => Object.values(o).some(v => v)); // drop empty rows
+    }
+
+    function saveProject() {
+        const title = document.getElementById('f-title').value.trim();
+        if (!title) { toast('Title is required'); return; }
+        let id = document.getElementById('f-id').value.trim() || slugify(title);
+
+        // ensure unique id (except when editing the same one)
+        const clash = projects.findIndex((p, idx) => p.id === id && idx !== editIndex);
+        if (clash !== -1) { toast('That ID is already used — choose another'); return; }
+
+        const media = collectRows('media-rows', ['type', 'src', 'opt']).filter(m => m.src).map(m => {
+            const item = { type: m.type, src: m.src };
+            if (m.opt) {
+                if (m.type === 'video') item.poster = m.opt;  // still frame shown before play
+                else item.webp = m.opt;                       // WebP source, falls back to src
+            }
+            return item;
+        });
+        const links = collectRows('link-rows', ['label', 'url']).filter(l => l.label && l.url);
+        const tools = document.getElementById('f-tools').value.split(',').map(s => s.trim()).filter(Boolean);
+
+        const project = {
+            id, title,
+            category: document.getElementById('f-category').value,
+            tools,
+            description: document.getElementById('f-description').value.trim(),
+            media,
+            links
+        };
+
+        if (editIndex === null) projects.push(project);
+        else projects[editIndex] = project;
+
+        renderList();
+        resetForm();
+        toast(editIndex === null ? 'Project added' : 'Project updated');
+    }
+
+    /* ---------- Generate file ---------- */
+    function buildFileContent() {
+        const header = `/**\n * Portfolio project data. Generated by admin.html.\n * Single source of truth for every project card on the site.\n * Edit via admin.html, or by hand, then commit.\n */\n`;
+        return header + 'const PROJECTS = ' + JSON.stringify(projects, null, 2) + ';\n\n' +
+            'if (typeof window !== "undefined") window.PROJECTS = PROJECTS;\n';
+    }
+    function generateFile() {
+        document.getElementById('output-text').value = buildFileContent();
+        document.getElementById('output').style.display = 'block';
+        toast('File generated');
+    }
+    function downloadFile() {
+        const blob = new Blob([buildFileContent()], { type: 'text/javascript' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'projects-data.js';
+        a.click();
+        URL.revokeObjectURL(a.href);
+    }
+    function copyOutput() {
+        const text = buildFileContent();
+        navigator.clipboard.writeText(text).then(() => toast('Copied to clipboard'))
+            .catch(() => { generateFile(); toast('Select the text and copy manually'); });
+    }
+
+    /* escape for values placed into HTML attributes */
+    function escapeAttr(s) {
+        return String(s == null ? '' : s)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    </script>
+</body>
+</html>
