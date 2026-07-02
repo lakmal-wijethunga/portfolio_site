@@ -1,0 +1,31 @@
+---
+import Icon from './Icon.astro';
+---
+
+<div
+  id="project-modal"
+  class="modal-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+>
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close project details">
+      <Icon name="xmark" />
+    </button>
+    <div class="modal-media-container"></div>
+    <div class="modal-description-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title"></h3>
+        <button class="modal-like-btn" aria-label="Like this project" aria-pressed="false">
+          <span class="heart-outline"><Icon name="heart" set="regular" /></span>
+          <span class="heart-solid"><Icon name="heart" set="solid" /></span>
+          <span class="modal-like-count">…</span>
+        </button>
+      </div>
+      <p class="modal-description"></p>
+      <div class="modal-tools-container"></div>
+      <div class="modal-buttons"></div>
+    </div>
+  </div>
+</div>

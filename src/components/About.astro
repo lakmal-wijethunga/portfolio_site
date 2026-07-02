@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import artistPhoto from '../assets/artist.jpg';
+import Icon from './Icon.astro';
+import { withBase } from '../utils/url';
+
+const cvUrl = withBase('documents/Lakmal_Wijethunga_CV.pdf');
+
+const skills = [
+  'Blender',
+  'Fusion 360',
+  'Revit',
+  'CLO 3D',
+  'Houdini',
+  'Environment Design',
+  'PBR Texturing',
+  'Rendering',
+  'Stable Diffusion',
+  'LLM',
+];
+---
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-title">
+      <h2>About Me</h2>
+    </div>
+    <div class="about-content reveal">
+      <div class="about-img">
+        <Image
+          src={artistPhoto}
+          alt="Lakmal Wijethunga"
+          widths={[400, 800]}
+          sizes="(max-width: 992px) 90vw, 45vw"
+          format="webp"
+          loading="lazy"
+        />
+      </div>
+      <div class="about-text">
+        <h3>Pushing the boundaries of 3D visualization</h3>
+        <p>
+          I'm a passionate and versatile creative with a strong foundation in 3D visualization,
+          generative AI, and cutting-edge digital technologies. With hands-on experience in tools
+          like Blender and CLO3D, I bring concepts to life through visually compelling animations
+          and simulations. My journey blends creativity with technical expertise—ranging from AI
+          model training and object detection systems to providing IT support in dynamic,
+          real-world environments.
+        </p>
+        <p>
+          Driven by curiosity and a love for innovation, I constantly explore emerging tech to push
+          the boundaries of what's possible in digital design and smart systems. Whether it's
+          crafting immersive visuals or building intelligent solutions, I aim to create work that
+          is both impactful and inspiring.
+        </p>
+
+        <a href={cvUrl} download="Lakmal_Wijethunga_CV.pdf" class="btn">
+          <Icon name="download" />Download CV
+        </a>
+        <div class="skills">
+          {skills.map((skill) => <span class="skill-tag">{skill}</span>)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

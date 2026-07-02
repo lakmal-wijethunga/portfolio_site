@@ -1,0 +1,27 @@
+---
+import Icon from './Icon.astro';
+---
+
+<header>
+  <div class="container nav-container">
+    <a href="#home" class="logo">Lakmal<span>Wijethunga</span></a>
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="navbar"
+    >
+      <Icon name="bars" />
+    </button>
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
