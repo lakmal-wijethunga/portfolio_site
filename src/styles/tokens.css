@@ -110,8 +110,8 @@
 /* ----------------------------------------------------- THEME-AGNOSTIC ---- */
 :root {
   /* Type families ------------------------------------------------------- */
-  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  --font-body: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Saira Variable', 'Saira', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Saira Variable', 'Saira', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
 
   /* Type scale — fluid, so there are no awkward breakpoint jumps.

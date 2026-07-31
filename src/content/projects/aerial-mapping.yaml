@@ -4,7 +4,7 @@ order: 1
 tools: [Photogrammetry, Open Source Pipeline, Drone Survey, 3D Reconstruction]
 description: >-
   An R&D project for Edirisingha Cushion Works producing an accurate orthomosaic
-  2D map and a 3D depth reconstruction of the site — built from scratch on an
+  2D map and a 3D depth reconstruction of the site, built from scratch on an
   entirely open-source pipeline, from flight capture through to the final
   georeferenced model.
 media:

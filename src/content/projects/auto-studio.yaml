@@ -4,8 +4,8 @@ order: 4
 tools: [Blender, Environment Design, Lighting Design]
 description: >-
   A concept for an automotive content-creation studio, developed for Edirisingha
-  Cushion Works. The layout is built around how a vehicle actually gets shot —
-  sightlines, lighting positions and camera travel — rather than around the
+  Cushion Works. The layout is built around how a vehicle actually gets shot:
+  sightlines, lighting positions and camera travel, rather than around the
   floor plan alone.
 media:
   - { type: image, src: ../../assets/projects/auto-studio/01.jpg }

@@ -57,7 +57,7 @@ export const services = [
   {
     icon: 'cube',
     title: '3D Modeling',
-    text: 'High-quality models built with precision — props and assets for games, film and interactive media, with optimized topology and close attention to detail.',
+    text: 'High-quality props and assets for games, film and interactive media, built with precision, optimized topology and close attention to detail.',
   },
   {
     icon: 'tree',
@@ -72,7 +72,7 @@ export const services = [
   {
     icon: 'gears',
     title: 'Logo Animation',
-    text: 'Motion graphics that sharpen brand identity — smooth transitions, considered timing and effects that leave an impression.',
+    text: 'Motion graphics that sharpen brand identity through smooth transitions, considered timing and effects that leave an impression.',
   },
   {
     icon: 'code',

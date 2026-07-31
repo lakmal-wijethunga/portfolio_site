@@ -3,215 +3,244 @@
 {"message":"connected.","label":"vite","level":"info"}
 {"message":"Syncing content","label":"content","level":"info"}
 {"message":"Synced content","label":"content","level":"info"}
-{"message":" astro  v7.1.6 ready in 2035 ms\n┃ Local    http://localhost:4321/portfolio_site\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
+{"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
+{"message":"Port 4321 is in use, trying another one...","label":"vite","level":"info"}
+{"message":" astro  v7.1.6 ready in 1917 ms\n┃ Local    http://localhost:4322/portfolio_site\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
 {"message":"watching for file changes...","label":null,"level":"info"}
-{"message":"[200] / 225ms","label":null,"level":"info"}
-{"message":"[200] / 11ms","label":null,"level":"info"}
-{"message":"dependencies optimized: firebase/app, firebase/database","label":"vite","level":"info"}
-{"message":"[200] /_image 261ms","label":null,"level":"info"}
-{"message":"[200] /_image 280ms","label":null,"level":"info"}
-{"message":"[200] /_image 283ms","label":null,"level":"info"}
-{"message":"[200] /_image 286ms","label":null,"level":"info"}
-{"message":"[200] /_image 297ms","label":null,"level":"info"}
-{"message":"[200] /_image 60ms","label":null,"level":"info"}
+{"message":"[200] / 159ms","label":null,"level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"[200] /_image 67ms","label":null,"level":"info"}
+{"message":"[200] /_image 69ms","label":null,"level":"info"}
+{"message":"[200] /_image 73ms","label":null,"level":"info"}
 {"message":"[200] /_image 74ms","label":null,"level":"info"}
-{"message":"[200] /_image 84ms","label":null,"level":"info"}
-{"message":"[200] /_image 89ms","label":null,"level":"info"}
-{"message":"[200] /_image 95ms","label":null,"level":"info"}
 {"message":"[200] /_image 106ms","label":null,"level":"info"}
+{"message":"[200] /_image 71ms","label":null,"level":"info"}
+{"message":"[200] /_image 74ms","label":null,"level":"info"}
+{"message":"[200] /_image 72ms","label":null,"level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"dependencies optimized: firebase/app, firebase/database","label":"vite","level":"info"}
+{"message":"[200] /_image 34ms","label":null,"level":"info"}
+{"message":"[200] /_image 38ms","label":null,"level":"info"}
+{"message":"[200] /_image 44ms","label":null,"level":"info"}
+{"message":"[200] /_image 57ms","label":null,"level":"info"}
+{"message":"[200] /_image 63ms","label":null,"level":"info"}
+{"message":"[200] /_image 68ms","label":null,"level":"info"}
+{"message":"[200] /_image 37ms","label":null,"level":"info"}
+{"message":"[200] /_image 39ms","label":null,"level":"info"}
+{"message":"[200] /_image 47ms","label":null,"level":"info"}
+{"message":"[200] /_image 41ms","label":null,"level":"info"}
+{"message":"[200] /_image 41ms","label":null,"level":"info"}
+{"message":"[200] /_image 42ms","label":null,"level":"info"}
+{"message":"[200] /_image 46ms","label":null,"level":"info"}
 {"message":"[200] /_image 45ms","label":null,"level":"info"}
+{"message":"[200] /_image 27ms","label":null,"level":"info"}
+{"message":"[200] /_image 36ms","label":null,"level":"info"}
+{"message":"[200] /_image 42ms","label":null,"level":"info"}
+{"message":"[200] /_image 46ms","label":null,"level":"info"}
+{"message":"[200] /_image 147ms","label":null,"level":"info"}
+{"message":"[200] /_image 160ms","label":null,"level":"info"}
+{"message":"[200] /_image 138ms","label":null,"level":"info"}
+{"message":"[200] / 9ms","label":null,"level":"info"}
+{"message":"[200] /_image 33ms","label":null,"level":"info"}
+{"message":"[200] /_image 30ms","label":null,"level":"info"}
+{"message":"[200] /_image 32ms","label":null,"level":"info"}
+{"message":"[200] /_image 31ms","label":null,"level":"info"}
+{"message":"[200] /_image 33ms","label":null,"level":"info"}
+{"message":"[200] /_image 63ms","label":null,"level":"info"}
+{"message":"[200] /_image 67ms","label":null,"level":"info"}
+{"message":"[200] /_image 70ms","label":null,"level":"info"}
+{"message":"[200] /_image 32ms","label":null,"level":"info"}
+{"message":"[200] /_image 34ms","label":null,"level":"info"}
+{"message":"[200] /_image 34ms","label":null,"level":"info"}
+{"message":"[200] /_image 50ms","label":null,"level":"info"}
+{"message":"[200] /_image 54ms","label":null,"level":"info"}
+{"message":"[200] /_image 61ms","label":null,"level":"info"}
+{"message":"[200] /_image 32ms","label":null,"level":"info"}
+{"message":"[200] /_image 36ms","label":null,"level":"info"}
+{"message":"[200] /_image 48ms","label":null,"level":"info"}
+{"message":"[200] /_image 39ms","label":null,"level":"info"}
+{"message":"[200] /_image 38ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
 {"message":"[200] /_image 40ms","label":null,"level":"info"}
 {"message":"[200] /_image 39ms","label":null,"level":"info"}
-{"message":"[200] /_image 40ms","label":null,"level":"info"}
-{"message":"[200] /_image 52ms","label":null,"level":"info"}
-{"message":"[200] /_image 36ms","label":null,"level":"info"}
-{"message":"[200] /_image 38ms","label":null,"level":"info"}
-{"message":"[200] /_image 27ms","label":null,"level":"info"}
-{"message":"[200] /_image 33ms","label":null,"level":"info"}
-{"message":"[200] /_image 34ms","label":null,"level":"info"}
-{"message":"[200] /_image 35ms","label":null,"level":"info"}
-{"message":"[200] /_image 20ms","label":null,"level":"info"}
-{"message":"[200] /_image 47ms","label":null,"level":"info"}
-{"message":"[200] /_image 49ms","label":null,"level":"info"}
-{"message":"[200] /_image 57ms","label":null,"level":"info"}
-{"message":"[200] /_image 119ms","label":null,"level":"info"}
-{"message":"[200] /_image 117ms","label":null,"level":"info"}
-{"message":"[200] /_image 125ms","label":null,"level":"info"}
-{"message":"[200] /_image 42ms","label":null,"level":"info"}
-{"message":"[200] /_image 35ms","label":null,"level":"info"}
-{"message":"[200] /_image 27ms","label":null,"level":"info"}
-{"message":"[200] /_image 82ms","label":null,"level":"info"}
-{"message":"[200] /_image 83ms","label":null,"level":"info"}
-{"message":"[200] /_image 101ms","label":null,"level":"info"}
-{"message":"[200] /_image 92ms","label":null,"level":"info"}
-{"message":"[200] /_image 84ms","label":null,"level":"info"}
-{"message":"[200] /_image 83ms","label":null,"level":"info"}
-{"message":"[200] /_image 78ms","label":null,"level":"info"}
-{"message":"[200] /_image 69ms","label":null,"level":"info"}
-{"message":"[200] /_image 36ms","label":null,"level":"info"}
-{"message":"[200] /_image 42ms","label":null,"level":"info"}
-{"message":"[200] /_image 36ms","label":null,"level":"info"}
-{"message":"[200] /_image 35ms","label":null,"level":"info"}
-{"message":"[200] /_image 32ms","label":null,"level":"info"}
-{"message":"[200] /_image 32ms","label":null,"level":"info"}
-{"message":"[200] /_image 24ms","label":null,"level":"info"}
-{"message":"[200] /_image 24ms","label":null,"level":"info"}
-{"message":"[200] /_image 30ms","label":null,"level":"info"}
-{"message":"[200] /_image 33ms","label":null,"level":"info"}
-{"message":"[200] /_image 35ms","label":null,"level":"info"}
-{"message":"[200] /_image 51ms","label":null,"level":"info"}
-{"message":"[200] /_image 22ms","label":null,"level":"info"}
-{"message":"[200] /_image 23ms","label":null,"level":"info"}
-{"message":"[200] /_image 27ms","label":null,"level":"info"}
-{"message":"[200] /_image 30ms","label":null,"level":"info"}
-{"message":"[200] /_image 27ms","label":null,"level":"info"}
-{"message":"[200] /_image 32ms","label":null,"level":"info"}
-{"message":"[200] /_image 32ms","label":null,"level":"info"}
-{"message":"[200] /_image 21ms","label":null,"level":"info"}
-{"message":"[200] /_image 25ms","label":null,"level":"info"}
+{"message":"[200] /_image 18ms","label":null,"level":"info"}
 {"message":"[200] /_image 28ms","label":null,"level":"info"}
 {"message":"[200] /_image 31ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
+{"message":"[200] /_image 83ms","label":null,"level":"info"}
+{"message":"[200] /_image 114ms","label":null,"level":"info"}
+{"message":"[200] /_image 115ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 33ms","label":null,"level":"info"}
+{"message":"[200] /_image 36ms","label":null,"level":"info"}
+{"message":"[200] /_image 69ms","label":null,"level":"info"}
+{"message":"[200] /_image 102ms","label":null,"level":"info"}
+{"message":"[200] /_image 77ms","label":null,"level":"info"}
+{"message":"[200] /_image 115ms","label":null,"level":"info"}
+{"message":"[200] /_image 102ms","label":null,"level":"info"}
+{"message":"[200] /_image 41ms","label":null,"level":"info"}
+{"message":"[200] /_image 152ms","label":null,"level":"info"}
+{"message":"[200] /_image 85ms","label":null,"level":"info"}
+{"message":"[200] /_image 128ms","label":null,"level":"info"}
+{"message":"[200] /_image 68ms","label":null,"level":"info"}
+{"message":"[200] /_image 79ms","label":null,"level":"info"}
+{"message":"[200] /_image 39ms","label":null,"level":"info"}
+{"message":"[200] /_image 43ms","label":null,"level":"info"}
+{"message":"[200] /_image 54ms","label":null,"level":"info"}
+{"message":"[200] /_image 54ms","label":null,"level":"info"}
+{"message":"[200] /_image 27ms","label":null,"level":"info"}
+{"message":"[200] /_image 43ms","label":null,"level":"info"}
+{"message":"[200] /_image 36ms","label":null,"level":"info"}
+{"message":"[200] /_image 34ms","label":null,"level":"info"}
+{"message":"[200] /_image 30ms","label":null,"level":"info"}
+{"message":"[200] /_image 34ms","label":null,"level":"info"}
+{"message":"[200] /_image 61ms","label":null,"level":"info"}
+{"message":"[200] /_image 42ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
+{"message":"[200] /_image 39ms","label":null,"level":"info"}
+{"message":"[200] /_image 43ms","label":null,"level":"info"}
+{"message":"[200] /_image 45ms","label":null,"level":"info"}
+{"message":"[200] /_image 32ms","label":null,"level":"info"}
 {"message":"[200] /_image 26ms","label":null,"level":"info"}
+{"message":"[200] /_image 31ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
+{"message":"[200] /_image 25ms","label":null,"level":"info"}
+{"message":"[200] /_image 27ms","label":null,"level":"info"}
 {"message":"[200] /_image 24ms","label":null,"level":"info"}
-{"message":"[200] /_image 22ms","label":null,"level":"info"}
-{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
-{"message":"src/scripts/likes.ts","label":"watch","level":"info"}
-{"message":"/src/styles/global.css","label":"watch","level":"info"}
-{"message":"Syncing content","label":"content","level":"info"}
-{"message":"Content config changed","label":"content","level":"info"}
-{"message":"Clearing content store","label":"content","level":"info"}
-{"message":"src/scripts/main.ts","label":"watch","level":"info"}
-{"message":"Reloaded data from acrylic-lamp.yaml","label":"glob-loader","level":"info"}
-{"message":"/src/components/About.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
-{"message":"/src/components/ThemeToggle.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
-{"message":"src/scripts/modal.ts","label":"watch","level":"info"}
-{"message":"/src/styles/global.css","label":"watch","level":"info"}
-{"message":"src/scripts/slideshow.ts","label":"watch","level":"info"}
-{"message":"src/scripts/theme.ts","label":"watch","level":"info"}
-{"message":"/src/styles/global.css","label":"watch","level":"info"}
-{"message":"/src/styles/global.css","label":"watch","level":"info"}
-{"message":"/src/styles/global.css","label":"watch","level":"info"}
-{"message":"/src/styles/global.css","label":"watch","level":"info"}
-{"message":"src/scripts/likes.ts","label":"watch","level":"info"}
-{"message":"Reloaded data from caravan-fresh.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from cloth-sim.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from ess-logo.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from grass-cutter.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from defender-body.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from icaps-logo.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from icaps-thankyou.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from iveco-zeta.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from mama-pathuwe.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from padura-stage.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from pss-logo.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from tatra-148.yaml","label":"glob-loader","level":"info"}
-{"message":"Reloaded data from traditional-mask.yaml","label":"glob-loader","level":"info"}
-{"message":"/src/components/Contact.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
-{"message":"/src/components/Footer.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
-{"message":"/src/components/Header.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
-{"message":"/src/components/Icon.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
-{"message":"/src/components/ProjectCard.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
-{"message":"src/scripts/likes.ts","label":"watch","level":"info"}
-{"message":"src/pages/index.astro","label":"watch","level":"info"}
-{"message":"connected.","label":"vite","level":"info"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:35332:17)\n    at EventEmitter.listenerForInvokeHandler (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:26821:19)\n    at Object.send (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:11765:37)\n    at Object.invoke (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/module-runner.js:662:31)","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Synced content","label":"content","level":"info"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"connected.","label":"vite","level":"info"}
-{"message":"server restarted.","label":"vite","level":"info"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:35332:17)\n    at EventEmitter.listenerForInvokeHandler (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:26821:19)\n    at Object.send (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:11765:37)\n    at Object.invoke (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/module-runner.js:662:31)","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
-{"message":"connected.","label":"vite","level":"info"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"connected.","label":"vite","level":"info"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Cannot find module '@fontsource/roboto/300.css' imported from 'D:/Potfolio_Site/portfolio_site/src/layouts/BaseLayout.astro'\n  Stack trace:\n    at fetchModule (file:///D:/Potfolio_Site/portfolio_site/node_modules/vite/dist/node/chunks/node.js:34179:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"Syncing content","label":"content","level":"info"}
-{"message":"Content config changed","label":"content","level":"info"}
-{"message":"Clearing content store","label":"content","level":"info"}
-{"message":"[InvalidContentEntryDataError] projects → aerial-mapping data does not match collection schema.\n\n  category: Invalid option: expected one of \"animations\"|\"environments\"|\"product\"|\"ai\"\n\n  Hint:\n    See https://docs.astro.build/en/guides/content-collections/ for more information on content schemas.\n  Error reference:\n    https://docs.astro.build/en/reference/errors/invalid-content-entry-data-error/\n  Stack trace:\n    at D:\\Potfolio_Site\\portfolio_site\\src\\content\\projects\\aerial-mapping.yaml\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
-{"message":"[200] / 353ms","label":null,"level":"info"}
-{"message":"[200] / 352ms","label":null,"level":"info"}
-{"message":"[200] / 352ms","label":null,"level":"info"}
-{"message":"[200] / 341ms","label":null,"level":"info"}
-{"message":"[200] / 153ms","label":null,"level":"info"}
-{"message":"server restarted.","label":"vite","level":"info"}
-{"message":"[200] / 181ms","label":null,"level":"info"}
 {"message":"[200] / 8ms","label":null,"level":"info"}
+{"message":"[200] /_image 30ms","label":null,"level":"info"}
+{"message":"[200] /_image 27ms","label":null,"level":"info"}
+{"message":"[200] /_image 31ms","label":null,"level":"info"}
+{"message":"[200] /_image 31ms","label":null,"level":"info"}
+{"message":"[200] /_image 27ms","label":null,"level":"info"}
+{"message":"[200] /_image 61ms","label":null,"level":"info"}
+{"message":"[200] /_image 60ms","label":null,"level":"info"}
+{"message":"[200] /_image 62ms","label":null,"level":"info"}
+{"message":"[200] /_image 25ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 32ms","label":null,"level":"info"}
+{"message":"[200] /_image 40ms","label":null,"level":"info"}
+{"message":"[200] /_image 48ms","label":null,"level":"info"}
+{"message":"[200] /_image 53ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 40ms","label":null,"level":"info"}
+{"message":"[200] /_image 38ms","label":null,"level":"info"}
+{"message":"[200] /_image 36ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
+{"message":"[200] /_image 36ms","label":null,"level":"info"}
+{"message":"[200] /_image 18ms","label":null,"level":"info"}
+{"message":"[200] /_image 24ms","label":null,"level":"info"}
+{"message":"[200] /_image 28ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 80ms","label":null,"level":"info"}
+{"message":"[200] /_image 108ms","label":null,"level":"info"}
+{"message":"[200] /_image 108ms","label":null,"level":"info"}
+{"message":"[200] /_image 31ms","label":null,"level":"info"}
+{"message":"[200] /_image 33ms","label":null,"level":"info"}
+{"message":"[200] /_image 36ms","label":null,"level":"info"}
+{"message":"[200] /_image 71ms","label":null,"level":"info"}
+{"message":"[200] /_image 95ms","label":null,"level":"info"}
+{"message":"[200] /_image 102ms","label":null,"level":"info"}
+{"message":"[200] /_image 72ms","label":null,"level":"info"}
+{"message":"[200] /_image 104ms","label":null,"level":"info"}
+{"message":"[200] /_image 133ms","label":null,"level":"info"}
+{"message":"[200] /_image 73ms","label":null,"level":"info"}
+{"message":"[200] /_image 100ms","label":null,"level":"info"}
+{"message":"[200] /_image 37ms","label":null,"level":"info"}
+{"message":"[200] /_image 44ms","label":null,"level":"info"}
+{"message":"[200] /_image 52ms","label":null,"level":"info"}
+{"message":"[200] /_image 34ms","label":null,"level":"info"}
+{"message":"[200] /_image 39ms","label":null,"level":"info"}
+{"message":"[200] /_image 49ms","label":null,"level":"info"}
+{"message":"[200] /_image 43ms","label":null,"level":"info"}
+{"message":"[200] /_image 33ms","label":null,"level":"info"}
+{"message":"[200] /_image 43ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
+{"message":"[200] /_image 38ms","label":null,"level":"info"}
+{"message":"[200] /_image 38ms","label":null,"level":"info"}
+{"message":"[200] /_image 69ms","label":null,"level":"info"}
+{"message":"[200] /_image 50ms","label":null,"level":"info"}
+{"message":"[200] /_image 54ms","label":null,"level":"info"}
+{"message":"[200] /_image 33ms","label":null,"level":"info"}
+{"message":"[200] /_image 36ms","label":null,"level":"info"}
+{"message":"[200] /_image 37ms","label":null,"level":"info"}
+{"message":"[200] /_image 22ms","label":null,"level":"info"}
+{"message":"[200] /_image 26ms","label":null,"level":"info"}
+{"message":"[200] /_image 27ms","label":null,"level":"info"}
+{"message":"[200] /_image 21ms","label":null,"level":"info"}
+{"message":"[200] /_image 27ms","label":null,"level":"info"}
+{"message":"[200] /_image 24ms","label":null,"level":"info"}
+{"message":"[200] /_image 21ms","label":null,"level":"info"}
+{"message":"[200] /_image 21ms","label":null,"level":"info"}
+{"message":"/src/components/About.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 26ms","label":null,"level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"[200] /_image 30ms","label":null,"level":"info"}
+{"message":"[200] /_image 28ms","label":null,"level":"info"}
+{"message":"[200] /_image 31ms","label":null,"level":"info"}
+{"message":"[200] /_image 31ms","label":null,"level":"info"}
+{"message":"[200] /_image 26ms","label":null,"level":"info"}
+{"message":"[200] /_image 55ms","label":null,"level":"info"}
+{"message":"[200] /_image 38ms","label":null,"level":"info"}
+{"message":"[200] /_image 42ms","label":null,"level":"info"}
+{"message":"[200] /_image 57ms","label":null,"level":"info"}
+{"message":"[200] /_image 40ms","label":null,"level":"info"}
+{"message":"[200] /_image 67ms","label":null,"level":"info"}
+{"message":"[200] /_image 70ms","label":null,"level":"info"}
+{"message":"[200] /_image 42ms","label":null,"level":"info"}
+{"message":"[200] /_image 43ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 40ms","label":null,"level":"info"}
+{"message":"[200] /_image 41ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
+{"message":"[200] /_image 35ms","label":null,"level":"info"}
+{"message":"[200] /_image 34ms","label":null,"level":"info"}
+{"message":"[200] /_image 36ms","label":null,"level":"info"}
+{"message":"[200] /_image 19ms","label":null,"level":"info"}
+{"message":"[200] /_image 27ms","label":null,"level":"info"}
+{"message":"[200] /_image 28ms","label":null,"level":"info"}
+{"message":"[200] /_image 32ms","label":null,"level":"info"}
+{"message":"[200] /_image 84ms","label":null,"level":"info"}
+{"message":"[200] /_image 108ms","label":null,"level":"info"}
+{"message":"[200] /_image 108ms","label":null,"level":"info"}
+{"message":"[200] /_image 24ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 31ms","label":null,"level":"info"}
+{"message":"[200] /_image 69ms","label":null,"level":"info"}
+{"message":"[200] /_image 100ms","label":null,"level":"info"}
+{"message":"[200] /_image 105ms","label":null,"level":"info"}
+{"message":"[200] /_image 87ms","label":null,"level":"info"}
+{"message":"[200] /_image 105ms","label":null,"level":"info"}
+{"message":"[200] /_image 142ms","label":null,"level":"info"}
+{"message":"[200] /_image 111ms","label":null,"level":"info"}
+{"message":"[200] /_image 79ms","label":null,"level":"info"}
+{"message":"[200] /_image 25ms","label":null,"level":"info"}
+{"message":"[200] /_image 25ms","label":null,"level":"info"}
+{"message":"[200] /_image 30ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 28ms","label":null,"level":"info"}
+{"message":"[200] /_image 25ms","label":null,"level":"info"}
+{"message":"[200] /_image 27ms","label":null,"level":"info"}
+{"message":"[200] /_image 28ms","label":null,"level":"info"}
+{"message":"[200] /_image 26ms","label":null,"level":"info"}
+{"message":"[200] /_image 25ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 46ms","label":null,"level":"info"}
+{"message":"[200] /_image 20ms","label":null,"level":"info"}
+{"message":"[200] /_image 25ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 31ms","label":null,"level":"info"}
+{"message":"[200] /_image 32ms","label":null,"level":"info"}
+{"message":"[200] /_image 25ms","label":null,"level":"info"}
+{"message":"[200] /_image 23ms","label":null,"level":"info"}
+{"message":"[200] /_image 29ms","label":null,"level":"info"}
+{"message":"[200] /_image 30ms","label":null,"level":"info"}
+{"message":"[200] /_image 32ms","label":null,"level":"info"}
+{"message":"[200] /_image 32ms","label":null,"level":"info"}
+{"message":"[200] /_image 28ms","label":null,"level":"info"}
