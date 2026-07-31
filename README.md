@@ -8,7 +8,7 @@ content, imagery and video carried over unchanged.
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/portfolio_site
+npm run dev      # http://localhost:4321
 npm run build    # static output in dist/
 npm run preview  # serve the built output
 npm run check    # astro check — types + template diagnostics
@@ -118,8 +118,9 @@ Categories are a fixed enum. Adding one means updating the enum in
 ## Deployment
 
 `.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push
-to `main`. `astro.config.mjs` sets `base: '/portfolio_site'` — served from a
-different path, that value and the repo name must change together.
+to `main`. The site is served from the custom domain `lakmal.site` (`public/CNAME`),
+with `astro.config.mjs` set to `base: '/'` accordingly — if the custom domain is
+ever removed, that `base` needs to go back to the repo's project-page subpath.
 
 Firebase Realtime Database rules are in `firebase-rules.json`: everything is
 locked except `likes`, which is publicly readable and can only ever hold a

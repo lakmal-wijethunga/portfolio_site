@@ -1,6 +1,6 @@
 /**
  * Prefix a public/ asset path with the configured base path
- * (the site deploys under /portfolio_site/ on GitHub Pages).
+ * (currently '/', since the site is served from lakmal.site's root).
  */
 export function withBase(path: string): string {
   const base = import.meta.env.BASE_URL;
