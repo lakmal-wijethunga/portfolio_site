@@ -1,0 +1,702 @@
+/*
+ * ============================================================================
+ * COMPONENTS — buttons, header, hero, about, services
+ * ============================================================================*/
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  --btn-pad-y: 0.85rem;
+  --btn-pad-x: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  padding: var(--btn-pad-y) var(--btn-pad-x);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-1) var(--ease-out),
+    border-color var(--dur-1) var(--ease-out),
+    color var(--dur-1) var(--ease-out),
+    transform var(--dur-1) var(--ease-out);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn .icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.btn--solid {
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+.btn--solid:hover {
+  background: var(--accent-hover);
+}
+
+.btn--ghost {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+.btn--ghost:hover {
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Small square icon button, e.g. theme toggle and socials. */
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: var(--control-h);
+  height: var(--control-h);
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: transparent;
+  transition:
+    color var(--dur-1) var(--ease-out),
+    border-color var(--dur-1) var(--ease-out),
+    background-color var(--dur-1) var(--ease-out);
+}
+
+.icon-btn .icon {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.icon-btn:hover {
+  color: var(--accent-text);
+  border-color: var(--accent-line);
+  background: var(--accent-quiet);
+}
+
+/* ==========================================================================
+   HEADER + NAVIGATION
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-header);
+  height: var(--header-h);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out),
+    backdrop-filter var(--dur-2) var(--ease-out);
+}
+
+/* Only becomes a solid bar once the page has scrolled — over the hero it is
+   invisible chrome. */
+.site-header.is-stuck {
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  border-bottom-color: var(--line);
+  backdrop-filter: blur(14px) saturate(1.4);
+}
+
+@supports not (background: color-mix(in srgb, red 50%, transparent)) {
+  .site-header.is-stuck {
+    background: var(--surface);
+  }
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  height: 100%;
+}
+
+/* --- brand ---------------------------------------------------------------- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-shrink: 0;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: var(--r-sm);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.brand:hover .brand-mark {
+  transform: rotate(-8deg);
+}
+
+.brand-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name strong {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.brand-name span {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* --- desktop nav ---------------------------------------------------------- */
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.25rem, 1.4vw, 1rem);
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  border-radius: var(--r-xs);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0.7rem;
+  bottom: 0.15rem;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.nav-link:hover,
+.nav-link.is-current {
+  color: var(--ink);
+}
+
+.nav-link:hover::after,
+.nav-link.is-current::after {
+  transform: scaleX(1);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* Every control in this group shares one height and one corner radius, so the
+   toggle and the CV button read as a matched pair. The button keeps its
+   horizontal padding — it has a label to fit — but its height is fixed rather
+   than derived from vertical padding. */
+.header-actions > * {
+  height: var(--control-h);
+  border-radius: var(--r-sm);
+}
+
+.header-actions .btn {
+  padding-block: 0;
+}
+
+/* --- theme toggle --------------------------------------------------------- */
+/* Both icons are always in the DOM; only one is ever visible, which keeps the
+   button width stable and avoids a layout shift on toggle. */
+.theme-toggle {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Both icon wrappers are stacked in the same cell, so swapping them cannot
+   change the button's size. */
+.theme-toggle > span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    opacity var(--dur-1) var(--ease-out);
+}
+
+.theme-toggle > span .icon {
+  width: 15px;
+  height: 15px;
+}
+
+.theme-toggle .icon-sun {
+  opacity: 0;
+  transform: translateY(120%) rotate(-90deg);
+}
+
+[data-theme='dark'] .theme-toggle .icon-sun {
+  opacity: 1;
+  transform: none;
+}
+[data-theme='dark'] .theme-toggle .icon-moon {
+  opacity: 0;
+  transform: translateY(-120%) rotate(90deg);
+}
+
+/* --- mobile menu ---------------------------------------------------------- */
+.menu-toggle {
+  display: none;
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: grid;
+  grid-template-rows: var(--header-h) 1fr auto;
+  background: var(--surface);
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity var(--dur-2) var(--ease-out),
+    visibility var(--dur-2);
+}
+
+.mobile-menu.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.mobile-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-inline: var(--gutter);
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-6) var(--gutter);
+}
+
+.mobile-nav a {
+  display: flex;
+  align-items: center;
+  padding-block: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 9vw, 2.9rem);
+  font-weight: 600;
+  letter-spacing: var(--ls-heading);
+  border-bottom: 1px solid var(--line);
+  /* Staggered entrance, driven by --i set in the markup. */
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--dur-2) var(--ease-out),
+    transform var(--dur-2) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 45ms + 90ms);
+}
+
+.mobile-menu.is-open .mobile-nav a {
+  opacity: 1;
+  transform: none;
+}
+
+.mobile-nav a:hover {
+  color: var(--accent-text);
+}
+
+.mobile-menu-foot {
+  padding: var(--sp-6) var(--gutter) var(--sp-8);
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+  .menu-toggle {
+    display: inline-grid;
+  }
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  padding-top: calc(var(--header-h) + var(--sp-8));
+  padding-bottom: var(--sp-6);
+  overflow: hidden;
+}
+
+/* Type-led hero: constrained so the headline breaks where it should instead of
+   stretching the full 1440px shell. */
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 62rem;
+}
+
+/* “Available” pill with a pulsing dot — small signal of availability that a
+   freelance portfolio benefits from. */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.7rem;
+  margin-bottom: var(--sp-5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--surface-raised);
+}
+
+.status-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3ddc84;
+  flex-shrink: 0;
+}
+
+.status-dot::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid #3ddc84;
+  animation: pulse-ring 2.4s var(--ease-out) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.6);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+.hero-title {
+  margin-bottom: var(--sp-5);
+}
+
+.hero-title .line {
+  display: block;
+}
+
+.hero-lede {
+  max-width: 56ch;
+  margin-bottom: var(--sp-7);
+  font-size: var(--fs-lg);
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+/* --- stats strip --------------------------------------------------------- */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  align-items: center;
+  gap: var(--sp-5);
+  margin-top: var(--sp-9);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--line);
+}
+
+.stat {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.scroll-cue {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.scroll-cue-rail {
+  position: relative;
+  width: 1px;
+  height: 42px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.scroll-cue-rail::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  height: 40%;
+  background: var(--accent);
+  animation: cue-slide 2s var(--ease-in-out) infinite;
+}
+
+@keyframes cue-slide {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(250%);
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: var(--sp-7);
+  }
+  .scroll-cue {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+    row-gap: var(--sp-5);
+  }
+}
+
+/* ==========================================================================
+   ABOUT
+   ========================================================================== */
+/* Prose left, capability index right — both columns carry content, so neither
+   is padding for the other. */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.about-body > * + * {
+  margin-top: var(--sp-5);
+}
+
+.about-body h3 {
+  font-size: var(--fs-xl);
+  max-width: 30ch;
+}
+
+.about-body p {
+  max-width: 66ch;
+  color: var(--ink-muted);
+}
+
+/* Toolkit: a numbered technical index instead of a cloud of pills. Reads as
+   a capability list rather than SEO keyword soup. */
+.toolkit {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.toolkit-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  padding: 0.75rem 0.25rem;
+  border-bottom: 1px solid var(--line);
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.toolkit-item:hover {
+  color: var(--accent-text);
+}
+
+.toolkit-item .num {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--ink-faint);
+}
+
+.toolkit-item .name {
+  font-size: var(--fs-sm);
+}
+
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   SERVICES
+   ========================================================================== */
+/* Numbered rows, not cards. A card grid forces every service into the same
+   box; rows let the copy breathe and scale to any number of entries. */
+.service-list {
+  border-top: 1px solid var(--line);
+}
+
+.service-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: var(--sp-5);
+  padding-block: clamp(1.5rem, 3vw, 2.4rem);
+  border-bottom: 1px solid var(--line);
+  transition: background-color var(--dur-2) var(--ease-out);
+}
+
+/* Hover bleeds slightly past the text column so the row feels like a target
+   without needing a visible container. */
+.service-row::before {
+  content: '';
+  position: absolute;
+  inset: 0 calc(var(--gutter) * -0.4);
+  background: var(--accent-quiet);
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease-out);
+  pointer-events: none;
+}
+
+.service-row:hover::before {
+  opacity: 1;
+}
+
+.service-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  padding-top: 0.35rem;
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.service-row:hover .service-num {
+  color: var(--accent-text);
+}
+
+.service-main {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr) auto;
+  gap: var(--sp-5);
+  align-items: start;
+}
+
+.service-title {
+  font-size: var(--fs-lg);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.service-row:hover .service-title {
+  transform: translateX(4px);
+}
+
+.service-text {
+  font-size: var(--fs-sm);
+  color: var(--ink-muted);
+  max-width: 62ch;
+}
+
+.service-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  transition:
+    color var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out),
+    transform var(--dur-2) var(--ease-out);
+}
+
+.service-icon .icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.service-row:hover .service-icon {
+  color: var(--accent-text);
+  border-color: var(--accent-line);
+  transform: rotate(-6deg) scale(1.05);
+}
+
+@media (max-width: 860px) {
+  .service-row {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: var(--sp-4);
+  }
+  .service-main {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--sp-3);
+  }
+  .service-text {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,39 @@
+---
+/**
+ * Services as numbered rows instead of a card grid. Cards force every service
+ * into an identical box and truncate the longer descriptions; rows let each one
+ * run to its natural length and read like an index of capabilities.
+ */
+import Icon from './Icon.astro';
+import { services } from '../data/site';
+---
+
+<section class="section section--sunken" id="services">
+  <div class="shell">
+    <div class="section-head">
+      <p class="section-index">02 — Services</p>
+      <h2>What I can build for you</h2>
+      <p class="section-lede">
+        Five disciplines, one pipeline — from the first blockout through to a final frame or a
+        print-ready mesh.
+      </p>
+    </div>
+
+    <div class="service-list">
+      {
+        services.map((service, i) => (
+          <article class="service-row reveal">
+            <p class="service-num">{String(i + 1).padStart(2, '0')}</p>
+            <div class="service-main">
+              <h3 class="service-title">{service.title}</h3>
+              <p class="service-text">{service.text}</p>
+              <div class="service-icon">
+                <Icon name={service.icon} />
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

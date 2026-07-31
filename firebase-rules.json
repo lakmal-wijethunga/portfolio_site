@@ -1,0 +1,19 @@
+{
+  "//": "Recommended Firebase Realtime Database rules for this site.",
+  "//1": "Projects are NOT stored in Firebase (they live in projects-data.js), so the",
+  "//2": "only writable data is the public like counter. These rules lock everything",
+  "//3": "down except 'likes', which is publicly readable and can only ever be a",
+  "//4": "non-negative number — so nobody can dump arbitrary data into your database.",
+  "//5": "Apply: Firebase console -> Realtime Database -> Rules -> paste (without the // lines) -> Publish.",
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "likes": {
+      ".read": true,
+      "$projectId": {
+        ".write": true,
+        ".validate": "newData.isNumber() && newData.val() >= 0"
+      }
+    }
+  }
+}

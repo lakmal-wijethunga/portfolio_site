@@ -1,0 +1,706 @@
+/*
+ * ============================================================================
+ * PORTFOLIO — work toolbar, project cards, slideshows, modal
+ * ============================================================================*/
+
+/* ==========================================================================
+   FILTER TOOLBAR
+   ========================================================================== */
+/* Sticks under the header so the filter stays reachable while scrolling a long
+   grid — one of the clearest UX wins over the old static filter row. */
+.work-toolbar {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-7);
+  padding-block: var(--sp-3);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+@supports not (background: color-mix(in srgb, red 50%, transparent)) {
+  .work-toolbar {
+    background: var(--surface);
+  }
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  transition:
+    color var(--dur-1) var(--ease-out),
+    background-color var(--dur-1) var(--ease-out),
+    border-color var(--dur-1) var(--ease-out);
+}
+
+.filter-btn .count {
+  font-size: 0.5625rem;
+  color: var(--ink-faint);
+}
+
+.filter-btn:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.filter-btn.is-active {
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.filter-btn.is-active .count {
+  color: var(--accent-ink);
+  opacity: 0.7;
+}
+
+.work-count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   PROJECT GRID
+   ========================================================================== */
+/* A plain equal-width grid: every project gets the same footprint, so no card
+   is left stretching to fill a half-empty row. */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.2vw, 2rem);
+}
+
+.project-card[hidden] {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .work-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .work-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* --- card ----------------------------------------------------------------- */
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface-raised);
+  cursor: pointer;
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out);
+}
+
+.project-card:hover,
+.project-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--surface-sunken);
+  border-bottom: 1px solid var(--line);
+  border-radius: var(--r-sm) var(--r-sm) 0 0;
+}
+
+.card-media img,
+.card-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(var(--img-tint));
+  transition:
+    transform var(--dur-3) var(--ease-out),
+    filter var(--dur-2) var(--ease-out);
+}
+
+.project-card:hover .card-media img,
+.project-card:hover .card-media video {
+  transform: scale(1.045);
+  filter: brightness(1);
+}
+
+/* Full-bleed transparent button over the media: the single accessible control
+   that opens the modal. Sits above the media but below the slideshow arrows and
+   the sound toggle, which are its siblings rather than its children. */
+.card-open-btn {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  background: transparent;
+  border: 0;
+}
+
+/* “View” affordance — appears on hover so the card reads as interactive.
+   Unlike the old design, the title and description are NOT hidden behind
+   hover: they are always visible in the card body below. */
+.card-open {
+  position: absolute;
+  inset: auto var(--sp-3) var(--sp-3) auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: var(--r-pill);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--dur-2) var(--ease-out),
+    transform var(--dur-2) var(--ease-out);
+  pointer-events: none;
+}
+
+.card-open .icon {
+  width: 0.75em;
+  height: 0.75em;
+  fill: currentColor;
+}
+
+.project-card:hover .card-open,
+.card-open-btn:focus-visible .card-open {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ring the media, not the invisible button's own box. */
+.card-open-btn:focus-visible {
+  outline: 2px solid var(--cool);
+  outline-offset: -3px;
+}
+
+/* Media-type chip (video / gallery / still) top-left of the media. */
+.card-badge {
+  position: absolute;
+  inset: var(--sp-3) auto auto var(--sp-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f4f2ee;
+  background: rgb(0 0 0 / 55%);
+  backdrop-filter: blur(6px);
+  border-radius: var(--r-xs);
+  pointer-events: none;
+}
+
+.card-badge .icon {
+  width: 0.7em;
+  height: 0.7em;
+  fill: currentColor;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  flex: 1;
+  padding: var(--sp-4) var(--sp-4) var(--sp-5);
+}
+
+.card-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.card-title {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.project-card:hover .card-title {
+  color: var(--accent-text);
+}
+
+.card-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: auto;
+}
+
+.tool-tag {
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+}
+
+/* --- like button ---------------------------------------------------------- */
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.15rem 0.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--ink-faint);
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.like-btn .icon {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+.like-btn:hover {
+  color: var(--heart);
+}
+
+/* Tabular figures so the count doesn't shift the button's width as it ticks
+   from 9 to 10. */
+.like-count {
+  font-variant-numeric: tabular-nums;
+  min-width: 1.2em;
+  text-align: left;
+}
+
+.like-btn .heart-solid {
+  display: none;
+}
+
+.like-btn.is-liked {
+  color: var(--heart);
+}
+
+.like-btn.is-liked .heart-solid {
+  display: block;
+  animation: heart-pop var(--dur-2) var(--ease-out);
+}
+
+.like-btn.is-liked .heart-outline {
+  display: none;
+}
+
+@keyframes heart-pop {
+  0% {
+    transform: scale(0.6);
+  }
+  55% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* --- sound button --------------------------------------------------------- */
+.sound-btn {
+  position: absolute;
+  inset: auto auto var(--sp-3) var(--sp-3);
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  color: #f4f2ee;
+  background: rgb(0 0 0 / 55%);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  transition: background-color var(--dur-1) var(--ease-out);
+}
+
+.sound-btn:hover {
+  background: rgb(0 0 0 / 78%);
+}
+
+.sound-btn .icon {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+.sound-btn .icon-vol-on {
+  display: none;
+}
+.sound-btn.is-muted .icon-vol-on {
+  display: none;
+}
+.sound-btn.is-muted .icon-vol-off {
+  display: block;
+}
+.sound-btn:not(.is-muted) .icon-vol-on {
+  display: block;
+}
+.sound-btn:not(.is-muted) .icon-vol-off {
+  display: none;
+}
+
+/* ==========================================================================
+   SLIDESHOW (shared by cards and the modal)
+   ========================================================================== */
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 700ms var(--ease-out);
+  pointer-events: none;
+}
+
+.slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Slow Ken Burns drift on the visible slide only. */
+.slide.is-active img {
+  animation: slow-zoom 7s var(--ease-out) forwards;
+}
+
+@keyframes slow-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-active img {
+    animation: none;
+  }
+}
+
+.slide-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: #f4f2ee;
+  background: rgb(0 0 0 / 50%);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition:
+    opacity var(--dur-2) var(--ease-out),
+    background-color var(--dur-1) var(--ease-out);
+}
+
+.slide-nav .icon {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.slide-nav--prev {
+  left: var(--sp-3);
+}
+.slide-nav--next {
+  right: var(--sp-3);
+}
+
+.project-card:hover .slide-nav,
+.project-card:focus-within .slide-nav,
+.modal-media .slide-nav {
+  opacity: 1;
+}
+
+.slide-nav:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Slide counter dots */
+.slide-dots {
+  position: absolute;
+  inset: auto 0 var(--sp-3);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  pointer-events: none;
+}
+
+.slide-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 45%);
+  transition:
+    background-color var(--dur-1) var(--ease-out),
+    transform var(--dur-1) var(--ease-out);
+}
+
+.slide-dots span.is-active {
+  background: var(--accent);
+  transform: scale(1.4);
+}
+
+/* Touch devices have no hover, so always show the arrows. */
+@media (hover: none) {
+  .slide-nav,
+  .card-open {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   PROJECT MODAL
+   ========================================================================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--sp-4);
+  background: rgb(4 4 6 / 72%);
+  backdrop-filter: blur(10px);
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity var(--dur-2) var(--ease-out),
+    visibility var(--dur-2);
+}
+
+.modal.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  width: min(1180px, 100%);
+  max-height: min(88svh, 900px);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transform: translateY(18px) scale(0.985);
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.modal.is-open .modal-panel {
+  transform: none;
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: var(--ink);
+  background: var(--surface-overlay);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition:
+    color var(--dur-1) var(--ease-out),
+    background-color var(--dur-1) var(--ease-out),
+    transform var(--dur-2) var(--ease-out);
+}
+
+.modal-close .icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.modal-close:hover {
+  color: var(--accent-ink);
+  background: var(--accent);
+  transform: rotate(90deg);
+}
+
+.modal-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+  background: var(--surface-sunken);
+  overflow: hidden;
+}
+
+.modal-media > * {
+  width: 100%;
+  height: 100%;
+}
+
+.modal-media img,
+.modal-media video {
+  width: 100%;
+  height: 100%;
+  max-height: min(88svh, 900px);
+  object-fit: contain;
+}
+
+/* The slideshow is absolutely positioned internally, so it needs a sized box. */
+.modal-media .slideshow {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  max-height: min(88svh, 900px);
+}
+
+.modal-media .slideshow img {
+  object-fit: contain;
+}
+
+.modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--sp-7) var(--sp-6) var(--sp-6);
+  border-left: 1px solid var(--line);
+  overflow-y: auto;
+}
+
+.modal-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.modal-title {
+  font-size: var(--fs-xl);
+}
+
+.modal-description {
+  color: var(--ink-muted);
+  font-size: var(--fs-sm);
+}
+
+.modal-block {
+  display: grid;
+  gap: var(--sp-3);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+}
+
+.modal-block h4 {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.modal-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.modal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: auto;
+  padding-top: var(--sp-4);
+}
+
+.modal-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 960px) {
+  .modal {
+    padding: 0;
+  }
+  .modal-panel {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    max-height: 100svh;
+    height: 100svh;
+    border: 0;
+    border-radius: 0;
+    width: 100%;
+  }
+  .modal-media {
+    max-height: 46svh;
+  }
+  .modal-media img,
+  .modal-media video,
+  .modal-media .slideshow {
+    max-height: 46svh;
+  }
+  .modal-info {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: var(--sp-5) var(--sp-5) var(--sp-8);
+  }
+}

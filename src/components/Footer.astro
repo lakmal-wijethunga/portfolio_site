@@ -1,0 +1,67 @@
+---
+import Icon from './Icon.astro';
+import { withBase } from '../utils/url';
+import { site, navItems, socials } from '../data/site';
+
+const cvUrl = withBase(site.cvFile);
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="brand">
+          <span class="brand-mark" aria-hidden="true">{site.initials}</span>
+          <span class="brand-name">
+            <strong>{site.name}</strong>
+            <span>{site.role}</span>
+          </span>
+        </a>
+        <p class="footer-tagline">
+          3D modeling, environment design, PBR texturing, logo animation and applied AI — from
+          {site.locationShort}.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer">
+        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        <a href={cvUrl} download={site.cvDownloadName}>
+          <Icon name="download" />CV
+        </a>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <div class="footer-socials">
+        {
+          socials.map((social) => (
+            <a href={social.url} target="_blank" rel="noopener" aria-label={social.label}>
+              <Icon name={social.icon} set="brands" />
+            </a>
+          ))
+        }
+      </div>
+      <p>Built with Astro</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-socials {
+    display: flex;
+    gap: var(--sp-4);
+  }
+
+  .footer-socials a .icon {
+    width: 14px;
+    height: 14px;
+    color: var(--ink-faint);
+    transition: color var(--dur-1) var(--ease-out);
+  }
+
+  .footer-socials a:hover .icon {
+    color: var(--accent-text);
+  }
+</style>

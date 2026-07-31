@@ -1,0 +1,15 @@
+title: Dathukanda Ancient Temple Renovation
+category: environments
+order: 3
+tools: [Blender, Google Gemini, Generative AI, Architectural Visualization]
+description: >-
+  Renovation visualization for the Dathukanda Ancient Temple, combining Blender
+  modelling with AI-assisted concept imagery. The work gives the temple's
+  custodians a clear read on how proposed changes sit against the existing
+  structure before any of it is built.
+media:
+  - type: video
+    src: videos/dathukanda-temple.mp4
+  - { type: image, src: ../../assets/projects/dathukanda-temple/01.jpg }
+  - { type: image, src: ../../assets/projects/dathukanda-temple/02.jpg }
+  - { type: image, src: ../../assets/projects/dathukanda-temple/03.jpg }

@@ -1,0 +1,27 @@
+---
+/**
+ * Light/dark switch. The button is inert until hydrated by main.ts; both icons
+ * ship in the markup and CSS decides which is visible, so the toggle never
+ * causes a layout shift or a wrong-icon flash.
+ */
+import Icon from './Icon.astro';
+---
+
+<button
+  class="icon-btn theme-toggle"
+  data-theme-toggle
+  type="button"
+  aria-label="Switch between light and dark theme"
+>
+  <span class="icon-sun"><Icon name="sun" /></span>
+  <span class="icon-moon"><Icon name="moon" /></span>
+</button>
+
+<style is:global>
+  /* Global so the icon-swap rules can key off [data-theme] on <html>. */
+  .theme-toggle .icon-sun,
+  .theme-toggle .icon-moon {
+    display: grid;
+    place-items: center;
+  }
+</style>

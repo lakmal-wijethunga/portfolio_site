@@ -1,0 +1,175 @@
+---
+/**
+ * A single project in the work grid.
+ *
+ * Two deliberate departures from the old card:
+ *
+ * 1. Title, category and tools are ALWAYS visible in a caption block under the
+ *    media. The old design hid them inside a hover overlay, which meant touch
+ *    users never saw them and sighted users had to hunt.
+ * 2. The data the modal needs is carried in `data-*` attributes rather than
+ *    scraped out of the visible DOM, so the modal never depends on the card's
+ *    markup staying the same shape.
+ */
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+import { withBase } from '../utils/url';
+import { categoryLabel } from '../data/site';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+const { title, category, description, tools, media, links } = project.data;
+
+const hasVideo = media.some((m) => m.type === 'video');
+const isGallery = media.length > 1;
+const first = media[0]!;
+
+// Every card occupies the same grid cell, so one candidate set covers them all.
+const imageWidths = [420, 700, 1000];
+const imageSizes = '(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 31vw';
+
+const badge = hasVideo
+  ? { icon: 'play', text: 'Video' }
+  : isGallery
+    ? { icon: 'images', text: `${media.length} images` }
+    : { icon: 'image', text: 'Still' };
+---
+
+<article
+  class="project-card reveal"
+  id={project.id}
+  data-category={category}
+  data-title={title}
+  data-description={description}
+  data-tools={tools.join(', ')}
+  data-category-label={categoryLabel[category] ?? category}
+  data-links={JSON.stringify(links)}
+>
+  <div class="card-media">
+    {
+      isGallery ? (
+        <div class="slideshow" data-slideshow>
+          {media.map((m, i) => (
+            <div class:list={['slide', { 'is-active': i === 0 }]}>
+              {m.type === 'image' ? (
+                <Image
+                  src={m.src}
+                  alt={m.alt ?? `${title} — image ${i + 1} of ${media.length}`}
+                  widths={imageWidths}
+                  sizes={imageSizes}
+                  format="webp"
+                  quality={80}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <video muted loop playsinline preload="metadata">
+                  <source src={withBase(m.src)} type="video/mp4" />
+                </video>
+              )}
+            </div>
+          ))}
+
+          <button class="slide-nav slide-nav--prev" type="button" aria-label="Previous image">
+            <Icon name="chevron-left" />
+          </button>
+          <button class="slide-nav slide-nav--next" type="button" aria-label="Next image">
+            <Icon name="chevron-right" />
+          </button>
+
+          <div class="slide-dots" aria-hidden="true">
+            {media.map((_, i) => <span class:list={[{ 'is-active': i === 0 }]} />)}
+          </div>
+        </div>
+      ) : first.type === 'image' ? (
+        <Image
+          src={first.src}
+          alt={first.alt ?? title}
+          widths={imageWidths}
+          sizes={imageSizes}
+          format="webp"
+          quality={80}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <video muted loop playsinline preload="metadata">
+          <source src={withBase(first.src)} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )
+    }
+
+    <span class="card-badge">
+      <Icon name={badge.icon} />
+      {badge.text}
+    </span>
+
+    <!-- The accessible control that opens the modal. A full-bleed button rather
+         than role="button" on the card, so the card can still contain its own
+         buttons (like, sound, slideshow arrows) without nesting them. -->
+    <button class="card-open-btn" type="button" data-open aria-label={`Open details for ${title}`}>
+      <span class="card-open">
+        View<Icon name="arrow-up-right-from-square" />
+      </span>
+    </button>
+
+    {
+      hasVideo && (
+        <button class="sound-btn is-muted" type="button" aria-label="Unmute video">
+          <span class="icon-vol-off">
+            <Icon name="volume-xmark" />
+          </span>
+          <span class="icon-vol-on">
+            <Icon name="volume-high" />
+          </span>
+        </button>
+      )
+    }
+  </div>
+
+  <div class="card-body">
+    <div class="card-eyebrow">
+      <span>{String(index + 1).padStart(2, '0')} / {categoryLabel[category] ?? category}</span>
+      <button class="like-btn" type="button" aria-pressed="false" aria-label={`Like ${title}`}>
+        <span class="heart-outline"><Icon name="heart" set="regular" /></span>
+        <span class="heart-solid"><Icon name="heart" set="solid" /></span>
+        <span class="like-count">…</span>
+      </button>
+    </div>
+
+    <h3 class="card-title">{title}</h3>
+    <p class="card-desc">{description}</p>
+
+    {
+      tools.length > 0 && (
+        <div class="card-tools">
+          {tools.slice(0, 3).map((tool) => (
+            <span class="tool-tag">{tool}</span>
+          ))}
+          {tools.length > 3 && <span class="tool-tag">+{tools.length - 3}</span>}
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  /* Clamped so a long description can't make one card twice the height of its
+     neighbours — the full text is in the modal. */
+  .card-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: var(--fs-sm);
+    line-height: 1.55;
+    color: var(--ink-muted);
+  }
+</style>

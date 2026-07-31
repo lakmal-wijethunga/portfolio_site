@@ -1,0 +1,20 @@
+title: Automobile Content Studio Concept
+category: environments
+order: 4
+tools: [Blender, Environment Design, Lighting Design]
+description: >-
+  A concept for an automotive content-creation studio, developed for Edirisingha
+  Cushion Works. The layout is built around how a vehicle actually gets shot —
+  sightlines, lighting positions and camera travel — rather than around the
+  floor plan alone.
+media:
+  - { type: image, src: ../../assets/projects/auto-studio/01.jpg }
+  - { type: image, src: ../../assets/projects/auto-studio/02.jpg }
+  - { type: image, src: ../../assets/projects/auto-studio/03.jpg }
+  - { type: image, src: ../../assets/projects/auto-studio/04.jpg }
+  - { type: image, src: ../../assets/projects/auto-studio/05.jpg }
+  - { type: image, src: ../../assets/projects/auto-studio/06.jpg }
+  - { type: image, src: ../../assets/projects/auto-studio/07.jpg }
+  - { type: image, src: ../../assets/projects/auto-studio/08.jpg }
+  - { type: image, src: ../../assets/projects/auto-studio/09.jpg }
+  - { type: image, src: ../../assets/projects/auto-studio/10.jpg }

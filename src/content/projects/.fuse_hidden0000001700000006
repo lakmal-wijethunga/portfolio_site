@@ -1,0 +1,13 @@
+title: Dynamic Cloth Simulation
+category: animations
+order: 6
+tools: [CLO 3D, Blender, Marvelous Designer]
+description: >-
+  Showcasing a dynamic cloth simulation created using CLO 3D for garment design
+  and Blender 3D for advanced simulation and rendering.
+media:
+  - type: video
+    src: videos/cloth-sim.mp4
+links:
+  - label: Breakdown
+    url: https://x.com/lakmal_wijeth/status/1847795826401431816

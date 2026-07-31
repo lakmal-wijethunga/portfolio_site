@@ -1,0 +1,12 @@
+title: Traditional Mask
+category: product
+order: 11
+tools: [Blender, 3D Printing, Silicone Molding]
+description: >-
+  A detailed 3D model of a traditional Sri Lankan 'Yaka' mask, digitally
+  sculpted and optimized for 3D printing. This model serves as a master pattern
+  for creating silicone molds, intended for the production of cultural
+  souvenirs like keytags and fridge magnets.
+media:
+  - { type: image, src: ../../assets/projects/traditional-mask/01.png }
+  - { type: image, src: ../../assets/projects/traditional-mask/02.png }

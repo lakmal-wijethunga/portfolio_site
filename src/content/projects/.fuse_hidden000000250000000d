@@ -1,0 +1,17 @@
+title: Acrylic Lamp
+category: product
+order: 13
+tools: [Fusion 360, 3D Printing, Electronics]
+description: >-
+  A custom-designed base for an edge-lit acrylic LED lamp. This model was
+  engineered for 3D printing, featuring a precise 5mm slot for the acrylic
+  panel and a hollow interior designed to neatly house all electronic
+  components.
+media:
+  - { type: image, src: ../../assets/projects/acrylic-lamp/01.png }
+  - { type: image, src: ../../assets/projects/acrylic-lamp/02.png }
+  - { type: image, src: ../../assets/projects/acrylic-lamp/03.png }
+  - { type: image, src: ../../assets/projects/acrylic-lamp/04.png }
+  - { type: image, src: ../../assets/projects/acrylic-lamp/05.png }
+  - { type: image, src: ../../assets/projects/acrylic-lamp/06.png }
+  - { type: image, src: ../../assets/projects/acrylic-lamp/07.png }

@@ -1,0 +1,11 @@
+title: මම පැතුවේ....
+category: ai
+order: 3
+tools: [Stable Diffusion, AI Tools]
+description: Music video generated with AI✨
+media:
+  - type: video
+    src: videos/mama-pathuwe.mp4
+links:
+  - label: View Details
+    url: https://x.com/lakmal_wijeth/status/1825449903465918786

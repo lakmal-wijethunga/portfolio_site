@@ -1,0 +1,142 @@
+---
+/**
+ * Contact. The email address is promoted to a large, obvious link — most people
+ * would rather mail directly than fill in a form — with the Formspree form as
+ * the secondary path. Fields use real, persistent labels rather than
+ * placeholder-only hints, which vanish the moment someone starts typing.
+ */
+import Icon from './Icon.astro';
+import { site, socials } from '../data/site';
+---
+
+<section class="section" id="contact">
+  <div class="shell">
+    <div class="section-head">
+      <p class="section-index">04 — Contact</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-lead reveal">
+        <h2>Let's build something worth rendering.</h2>
+        <p class="lede contact-blurb">
+          Freelance work, collaborations or a question about a project — mail me directly and I'll
+          reply within a couple of days.
+        </p>
+
+        <a class="email-link" href={`mailto:${site.email}`}>
+          {site.email}
+          <Icon name="arrow-right" />
+        </a>
+
+        <dl class="contact-rows">
+          <div class="contact-row">
+            <span class="icon-wrap"><Icon name="location-dot" /></span>
+            <div>
+              <dt>Location</dt>
+              <dd>{site.location}</dd>
+            </div>
+          </div>
+          <div class="contact-row">
+            <span class="icon-wrap"><Icon name="phone" /></span>
+            <div>
+              <dt>Phone</dt>
+              <dd><a href={`tel:${site.phoneHref}`}>{site.phone}</a></dd>
+            </div>
+          </div>
+          <div class="contact-row">
+            <span class="icon-wrap"><Icon name="clock" /></span>
+            <div>
+              <dt>Availability</dt>
+              <dd>{site.availability}</dd>
+            </div>
+          </div>
+        </dl>
+
+        <div class="socials">
+          {
+            socials.map((social) => (
+              <a
+                href={social.url}
+                class="icon-btn social-btn"
+                target="_blank"
+                rel="noopener"
+                aria-label={social.label}
+              >
+                <Icon name={social.icon} set="brands" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <form class="contact-form reveal" action={site.formEndpoint} method="POST">
+        <div class="form-head">
+          <h3>Send a message</h3>
+          <p class="mono-label">Usually answered within 48 hours</p>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="contact-name">Name <span class="req">*</span></label>
+            <input
+              class="control"
+              type="text"
+              id="contact-name"
+              name="name"
+              autocomplete="name"
+              placeholder="Jane Doe"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="contact-email">Email <span class="req">*</span></label>
+            <input
+              class="control"
+              type="email"
+              id="contact-email"
+              name="email"
+              autocomplete="email"
+              placeholder="jane@studio.com"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="contact-subject">Subject</label>
+          <input
+            class="control"
+            type="text"
+            id="contact-subject"
+            name="subject"
+            placeholder="Product visualization for a new enclosure"
+          />
+        </div>
+
+        <div class="field">
+          <label for="contact-message">Message <span class="req">*</span></label>
+          <textarea
+            class="control"
+            id="contact-message"
+            name="message"
+            placeholder="A short brief, a timeline, and anything you already have in hand."
+            required></textarea>
+        </div>
+
+        <div class="form-foot">
+          <p class="form-note">Never shared. No newsletter.</p>
+          <button class="btn btn--solid" type="submit">
+            Send message<Icon name="paper-plane" />
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-blurb {
+    max-width: 42ch;
+    margin-bottom: var(--sp-6);
+  }
+</style>

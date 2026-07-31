@@ -1,0 +1,15 @@
+/*
+ * Single entry point for the site's styles. Imported once by BaseLayout.astro
+ * and bundled by Astro into one stylesheet at build time.
+ *
+ * Order matters and is the only precedence mechanism used here — no layers, no
+ * !important, no ID selectors beyond the two fixed chrome elements:
+ *   1. tokens      colour / type / space / motion variables, per theme
+ *   2. base        reset, element defaults, layout primitives, utilities
+ *   3. components  everything with a class of its own
+ */
+@import './tokens.css';
+@import './base.css';
+@import './components.css';
+@import './portfolio.css';
+@import './contact.css';

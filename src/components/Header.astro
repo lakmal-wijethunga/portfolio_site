@@ -1,0 +1,97 @@
+---
+/**
+ * Fixed header. Transparent over the hero, frosted once scrolled (see
+ * .site-header.is-stuck). The mobile menu is a full-screen overlay rather than
+ * a dropdown — big touch targets, and it can hold the theme toggle and CV link
+ * without cramping.
+ */
+import Icon from './Icon.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { withBase } from '../utils/url';
+import { site, navItems } from '../data/site';
+
+const cvUrl = withBase(site.cvFile);
+---
+
+<header class="site-header" id="site-header">
+  <div class="shell header-inner">
+    <a href="#top" class="brand" aria-label={`${site.name} — home`}>
+      <span class="brand-mark" aria-hidden="true">{site.initials}</span>
+      <span class="brand-name">
+        <strong>{site.name}</strong>
+        <span>{site.role}</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a class="nav-link" href={item.href} data-nav-link>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <ThemeToggle />
+      <a href={cvUrl} download={site.cvDownloadName} class="btn btn--ghost btn-cv">
+        <Icon name="download" />
+        <span>CV</span>
+      </a>
+      <button
+        class="icon-btn menu-toggle"
+        id="menu-open"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <Icon name="bars" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile overlay menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="mobile-menu-head">
+    <button class="icon-btn" id="menu-close" type="button" aria-label="Close menu">
+      <Icon name="xmark" />
+    </button>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Mobile">
+    {
+      navItems.map((item, i) => (
+        <a href={item.href} style={`--i:${i}`} data-menu-link>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <div class="mobile-menu-foot">
+    <a href={cvUrl} download={site.cvDownloadName} class="btn btn--solid">
+      <Icon name="download" />Download CV
+    </a>
+  </div>
+</div>
+
+<style>
+  /* The CV button is redundant on small screens — the overlay menu has it. */
+  @media (max-width: 700px) {
+    .btn-cv {
+      display: none;
+    }
+  }
+
+  /* Keep the brand from eating the row on very narrow screens. */
+  @media (max-width: 420px) {
+    .brand-name span {
+      display: none;
+    }
+  }
+</style>

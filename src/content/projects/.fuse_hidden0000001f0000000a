@@ -1,0 +1,17 @@
+title: Caravan Fresh Outlet Renovation
+category: environments
+order: 10
+tools: [Revit, Blender]
+description: >-
+  A complete 3D visualization and design concept for the interior renovation of
+  a Caravan Fresh outlet. The project focused on creating a modern, welcoming
+  space with an efficient layout for customers and staff.
+media:
+  - { type: image, src: ../../assets/projects/caravan-fresh/01.png }
+  - { type: image, src: ../../assets/projects/caravan-fresh/02.png }
+  - { type: image, src: ../../assets/projects/caravan-fresh/03.png }
+  - { type: image, src: ../../assets/projects/caravan-fresh/04.png }
+  - { type: image, src: ../../assets/projects/caravan-fresh/05.png }
+  - { type: image, src: ../../assets/projects/caravan-fresh/06.png }
+  - { type: image, src: ../../assets/projects/caravan-fresh/07.png }
+  - { type: image, src: ../../assets/projects/caravan-fresh/08.png }

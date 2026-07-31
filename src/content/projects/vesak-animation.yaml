@@ -1,0 +1,11 @@
+title: Vesak Lantern Animation
+category: animations
+order: 7
+tools: [Blender, Lighting, Animation]
+description: >-
+  A Vesak lantern animation built in Blender. The piece leans on the one thing a
+  lantern is really about — light through paper — with the timing kept slow
+  enough to let the glow carry the frame.
+media:
+  - type: video
+    src: videos/vesak-animation.mp4

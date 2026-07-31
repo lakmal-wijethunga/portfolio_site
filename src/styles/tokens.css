@@ -1,0 +1,190 @@
+/*
+ * ============================================================================
+ * DESIGN TOKENS — "Atelier"
+ * ============================================================================
+ * A single source of truth for colour, type, space, motion and elevation.
+ *
+ * Colour is declared TWICE — once per theme — but only ever *consumed* through
+ * the semantic names below (--surface, --ink, --accent…). No component should
+ * ever reference a raw hex value; that is what makes a two-theme site
+ * maintainable instead of a pile of `:is(.dark) &` overrides.
+ *
+ * Theme resolution order (see BaseLayout.astro's inline script):
+ *   1. localStorage('theme')  — an explicit user choice always wins
+ *   2. prefers-color-scheme   — otherwise follow the OS
+ * The resolved value is written to <html data-theme="…"> before first paint,
+ * so there is no flash of the wrong theme.
+ * ==========================================================================*/
+
+/* ------------------------------------------------------------------ DARK  */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* Surfaces — a near-black with a hint of blue so renders read as warm */
+  --surface: #0b0b0f;
+  --surface-raised: #14141b;
+  --surface-overlay: #1b1b24;
+  --surface-sunken: #07070a;
+  --surface-inverse: #f4f2ee;
+
+  /* Ink */
+  --ink: #f4f2ee;
+  --ink-muted: #a5a2ae;
+  --ink-faint: #6c6a77;
+  --ink-inverse: #0b0b0f;
+
+  /* Hairlines */
+  --line: rgb(255 255 255 / 10%);
+  --line-strong: rgb(255 255 255 / 22%);
+
+  /* Brand accent — gold, the through-line from the previous site */
+  --accent: #f0b429;
+  --accent-hover: #ffc84d;
+  --accent-text: #f0b429; /* accent used as text/icon colour */
+  --accent-ink: #17120a; /* text placed ON accent */
+  --accent-quiet: rgb(240 180 41 / 13%);
+  --accent-line: rgb(240 180 41 / 38%);
+
+  /* Support accent — cool blue, for links + focus */
+  --cool: #8fa9ff;
+  --cool-quiet: rgb(143 169 255 / 14%);
+
+  --heart: #ff5c72;
+
+  /* Elevation — heavy, diffuse shadows read as depth on dark fields */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
+  --shadow-md: 0 18px 40px -18px rgb(0 0 0 / 80%);
+  --shadow-lg: 0 40px 90px -30px rgb(0 0 0 / 85%);
+
+  /* Decorative */
+  --grain-opacity: 0.045;
+  --grid-line: rgb(255 255 255 / 4%);
+  --img-tint: 0.92; /* slight dimming of imagery so type stays dominant */
+}
+
+/* ------------------------------------------------------------------ LIGHT */
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* Warm paper rather than pure white — kinder to the eye, and it makes the
+     renders (which are mostly cool greys) sit forward off the page. */
+  --surface: #faf8f4;
+  --surface-raised: #ffffff;
+  --surface-overlay: #ffffff;
+  --surface-sunken: #f1ede5;
+  --surface-inverse: #14131a;
+
+  --ink: #14131a;
+  --ink-muted: #55535f;
+  --ink-faint: #86838f;
+  --ink-inverse: #faf8f4;
+
+  --line: rgb(20 19 26 / 12%);
+  --line-strong: rgb(20 19 26 / 26%);
+
+  /* The same gold, darkened until it clears WCAG AA both ways: as a fill behind
+     --accent-ink (4.80:1) and as text on --surface (4.60:1). --accent-text goes
+     a shade darker again for small mono labels (6.36:1). */
+  --accent: #a85f00;
+  --accent-hover: #8f5000;
+  --accent-text: #8a4c00;
+  --accent-ink: #fffdf7;
+  --accent-quiet: rgb(168 95 0 / 10%);
+  --accent-line: rgb(168 95 0 / 32%);
+
+  --cool: #3f52c4;
+  --cool-quiet: rgb(63 82 196 / 10%);
+
+  --heart: #e0374f;
+
+  --shadow-sm: 0 1px 2px rgb(20 19 26 / 6%);
+  --shadow-md: 0 16px 36px -20px rgb(20 19 26 / 22%);
+  --shadow-lg: 0 36px 80px -32px rgb(20 19 26 / 26%);
+
+  --grain-opacity: 0;
+  --grid-line: rgb(20 19 26 / 5%);
+  --img-tint: 1;
+}
+
+/* ----------------------------------------------------- THEME-AGNOSTIC ---- */
+:root {
+  /* Type families ------------------------------------------------------- */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Type scale — fluid, so there are no awkward breakpoint jumps.
+     Named by role, not by size, so a heading can be re-ranked freely. */
+  --fs-display: clamp(2.9rem, 1.6rem + 6.2vw, 7rem);
+  --fs-xxl: clamp(2.1rem, 1.4rem + 3vw, 3.9rem);
+  --fs-xl: clamp(1.6rem, 1.25rem + 1.5vw, 2.4rem);
+  --fs-lg: clamp(1.25rem, 1.1rem + 0.7vw, 1.6rem);
+  --fs-md: 1.0625rem;
+  --fs-sm: 0.9375rem;
+  --fs-xs: 0.8125rem;
+  --fs-2xs: 0.6875rem;
+
+  --lh-tight: 1.02;
+  --lh-snug: 1.18;
+  --lh-body: 1.68;
+
+  --ls-display: -0.035em;
+  --ls-heading: -0.02em;
+  --ls-mono: 0.14em;
+
+  /* Space — 4px base, geometric-ish so rhythm stays obvious */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 2.5rem;
+  --sp-8: 3rem;
+  --sp-9: 4rem;
+  --sp-10: 5rem;
+  --sp-11: 6.5rem;
+  --sp-12: 8rem;
+
+  /* Vertical rhythm between major sections */
+  --section-y: clamp(4.5rem, 9vw, 9rem);
+
+  /* Layout */
+  --page-max: 1440px;
+  --gutter: clamp(1.25rem, 4vw, 4.5rem);
+  --header-h: 68px;
+  /* Shared height for every control in the header, so the theme toggle and the
+     CV button line up as one group rather than two differently sized boxes. */
+  --control-h: 40px;
+
+  /* Radii — mostly sharp. This is a drafting-table aesthetic, not a SaaS one. */
+  --r-xs: 2px;
+  --r-sm: 4px;
+  --r-md: 10px;
+  --r-lg: 18px;
+  --r-pill: 999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-1: 160ms;
+  --dur-2: 320ms;
+  --dur-3: 620ms;
+
+  --z-grain: 1;
+  --z-header: 60;
+  --z-fab: 70;
+  --z-menu: 80;
+  --z-modal: 90;
+}
+
+/* Honour the OS "reduce motion" setting globally. Individual components add
+   their own guards too, but this catches anything declarative. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 1ms;
+    --dur-2: 1ms;
+    --dur-3: 1ms;
+  }
+}

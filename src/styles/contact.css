@@ -1,0 +1,330 @@
+/*
+ * ============================================================================
+ * CONTACT, FOOTER, FLOATING CHROME
+ * ============================================================================*/
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.contact-lead h2 {
+  max-width: 18ch;
+  margin-bottom: var(--sp-5);
+}
+
+/* The email is the primary call to action, so it is set as a large link with
+   an animated underline rather than buried in a list of details. */
+.email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: var(--ls-heading);
+  color: var(--ink);
+  word-break: break-all;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  transition:
+    background-size var(--dur-2) var(--ease-out),
+    color var(--dur-1) var(--ease-out);
+}
+
+.email-link:hover {
+  color: var(--accent-text);
+  background-size: 100% 2px;
+}
+
+.contact-rows {
+  display: grid;
+  margin-top: var(--sp-7);
+  border-top: 1px solid var(--line);
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: var(--sp-4);
+  align-items: center;
+  padding-block: var(--sp-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-row .icon-wrap {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--accent-text);
+  background: var(--accent-quiet);
+  border-radius: var(--r-sm);
+}
+
+.contact-row .icon-wrap .icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.contact-row dt {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.contact-row dd {
+  font-size: var(--fs-sm);
+  color: var(--ink);
+}
+
+.contact-row dd a:hover {
+  color: var(--accent-text);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-6);
+}
+
+.social-btn {
+  width: 44px;
+  height: 44px;
+}
+
+/* --- form ----------------------------------------------------------------- */
+/* Real, always-visible labels instead of placeholder-only fields: the old
+   pattern loses the field name as soon as the user starts typing. */
+.contact-form {
+  display: grid;
+  gap: var(--sp-4);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-head {
+  display: grid;
+  gap: var(--sp-2);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.field label {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.field label .req {
+  color: var(--accent-text);
+}
+
+.control {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  font-size: var(--fs-sm);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  transition:
+    border-color var(--dur-1) var(--ease-out),
+    box-shadow var(--dur-1) var(--ease-out),
+    background-color var(--dur-1) var(--ease-out);
+}
+
+.control::placeholder {
+  color: var(--ink-faint);
+}
+
+.control:hover {
+  border-color: var(--line-strong);
+}
+
+.control:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-quiet);
+}
+
+textarea.control {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.form-note {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 960px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  padding-block: var(--sp-8) var(--sp-6);
+  border-top: 1px solid var(--line);
+  background: var(--surface-sunken);
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  padding-bottom: var(--sp-6);
+  border-bottom: 1px solid var(--line);
+}
+
+.footer-tagline {
+  max-width: 34ch;
+  margin-top: var(--sp-3);
+  font-size: var(--fs-sm);
+  color: var(--ink-muted);
+}
+
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, auto));
+  gap: var(--sp-2) var(--sp-8);
+}
+
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--ink-muted);
+}
+
+.footer-nav a .icon {
+  width: 0.85em;
+  height: 0.85em;
+  fill: currentColor;
+}
+
+.footer-nav a:hover {
+  color: var(--accent-text);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding-top: var(--sp-5);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.footer-bottom a:hover {
+  color: var(--accent-text);
+}
+
+/* ==========================================================================
+   FLOATING CHROME — scroll progress + back to top
+   ========================================================================== */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--cool));
+  transition: width 90ms linear;
+}
+
+#to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: var(--z-fab);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(14px) scale(0.9);
+  pointer-events: none;
+  transition:
+    opacity var(--dur-2) var(--ease-out),
+    transform var(--dur-2) var(--ease-out),
+    background-color var(--dur-1) var(--ease-out);
+}
+
+#to-top .icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+#to-top.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+#to-top:hover {
+  background: var(--accent-hover);
+}

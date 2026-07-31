@@ -1,0 +1,72 @@
+---
+/**
+ * Hero. Type-led: the headline carries the whole viewport against a faint
+ * drafting grid, with no competing imagery — the work itself starts a scroll
+ * below, and the grid section is where it should make its case.
+ */
+import { getCollection } from 'astro:content';
+import Icon from './Icon.astro';
+import { withBase } from '../utils/url';
+import { site, services } from '../data/site';
+
+const projects = await getCollection('projects');
+const tools = new Set(projects.flatMap((p) => p.data.tools));
+
+const stats = [
+  // Deliberately not derived from the collection: this counts total delivered
+  // work, not the subset shown in the grid below.
+  { value: '100+', label: 'Projects shipped' },
+  { value: `${tools.size}`, label: 'Tools & software' },
+  { value: `0${services.length}`, label: 'Core disciplines' },
+];
+
+const cvUrl = withBase(site.cvFile);
+---
+
+<section class="hero" id="top">
+  <div class="grid-backdrop" aria-hidden="true"></div>
+
+  <div class="shell">
+    <div class="hero-copy">
+      <p class="hero-eyebrow">
+        <span class="status-dot" aria-hidden="true"></span>
+        {site.availability} — {site.locationShort}
+      </p>
+
+      <h1 class="hero-title">
+        <span class="line">3D Artist</span>
+        <span class="line text-outline">&amp; Digital Creator</span>
+      </h1>
+
+      <p class="hero-lede">
+        I model, texture, light and animate — bringing artistic direction and technical
+        engineering together into work that holds up in a render and on a printer bed.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#work" class="btn btn--solid">
+          View portfolio<Icon name="arrow-right" />
+        </a>
+        <a href="#contact" class="btn btn--ghost">Start a project</a>
+        <a href={cvUrl} download={site.cvDownloadName} class="btn btn--ghost">
+          <Icon name="download" />Download CV
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      {
+        stats.map((stat) => (
+          <div class="stat">
+            <span class="stat-value">{stat.value}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))
+      }
+      <div class="scroll-cue" aria-hidden="true">
+        <span class="scroll-cue-rail"></span>
+        <span>Scroll</span>
+      </div>
+    </div>
+  </div>
+</section>

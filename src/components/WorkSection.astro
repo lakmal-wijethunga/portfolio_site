@@ -1,0 +1,62 @@
+---
+/**
+ * The work grid. Category counts are computed at build time and shown in the
+ * filter chips so a visitor knows how much sits behind each one before
+ * clicking; the toolbar is sticky so the filter stays reachable through a long
+ * scroll. Every card shares one footprint — three up, then two, then one.
+ */
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+import ProjectModal from './ProjectModal.astro';
+import { categories } from '../data/site';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+const counts = new Map<string, number>();
+for (const project of projects) {
+  counts.set(project.data.category, (counts.get(project.data.category) ?? 0) + 1);
+}
+const countFor = (value: string) => (value === 'all' ? projects.length : (counts.get(value) ?? 0));
+---
+
+<!-- Plain surface: Services above it is already a sunken band, and two sunken
+     sections in a row would merge into one long slab. -->
+<section class="section" id="work">
+  <div class="shell">
+    <div class="section-head">
+      <p class="section-index">03 — Selected work</p>
+      <h2>Featured projects</h2>
+      <p class="section-lede">
+        Animation, environments, product design and AI experiments. Open any project for the full
+        description, the tools used and every frame.
+      </p>
+    </div>
+
+    <div class="work-toolbar">
+      <div class="filter-group" role="group" aria-label="Filter projects by category">
+        {
+          categories.map((category, i) => (
+            <button
+              class:list={['filter-btn', { 'is-active': i === 0 }]}
+              type="button"
+              data-filter={category.value}
+              aria-pressed={i === 0 ? 'true' : 'false'}
+            >
+              {category.label}
+              <span class="count">{countFor(category.value)}</span>
+            </button>
+          ))
+        }
+      </div>
+      <p class="work-count" data-work-count aria-live="polite">
+        Showing {projects.length} of {projects.length}
+      </p>
+    </div>
+
+    <div class="work-grid" id="work-grid">
+      {projects.map((project, i) => <ProjectCard project={project} index={i} />)}
+    </div>
+  </div>
+</section>
+
+<ProjectModal />

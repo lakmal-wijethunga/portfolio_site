@@ -1,0 +1,18 @@
+title: Iveco Zeta
+category: product
+order: 7
+tools: [Blender, Fusion 360, 3D Printing]
+description: >-
+  Designed a detailed 3D model of the Iveco Zeta truck, optimized specifically
+  for 3D printing. This project involved precise scaling, intricate detailing,
+  and ensuring printability for high-quality physical replicas.
+media:
+  - { type: image, src: ../../assets/projects/iveco-zeta/01.png }
+  - { type: image, src: ../../assets/projects/iveco-zeta/02.png }
+  - { type: image, src: ../../assets/projects/iveco-zeta/03.png }
+  - { type: image, src: ../../assets/projects/iveco-zeta/04.png }
+  - { type: image, src: ../../assets/projects/iveco-zeta/05.png }
+  - { type: image, src: ../../assets/projects/iveco-zeta/06.png }
+links:
+  - label: View Details
+    url: https://x.com/lakmal_wijeth/status/1916795847066403053
