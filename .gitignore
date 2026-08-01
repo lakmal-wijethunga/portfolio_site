@@ -1,2 +1,6 @@
 node_modules
 dist
+
+# Source 3D assets. Only the optimized GLB in public/models/ is committed —
+# the raw STL/GLB exports are large and would permanently bloat git history.
+3d models/

@@ -363,6 +363,75 @@
   overflow: hidden;
 }
 
+/* --- wireframe model layer ------------------------------------------------
+   Fixed rather than absolute: the model is pinned to the viewport and rides
+   along behind the page from the hero down to the work grid, where main.ts
+   adds .is-dismissed and the rAF loop stops.
+
+   z-index 0 keeps it above the page background but below every `.section`
+   (all of which are position:relative), so it can never sit on top of text.
+   That also means it never receives pointer events — hero3d.ts hit-tests this
+   element's rect on document-level listeners instead. */
+.hero-3d {
+  position: fixed;
+  inset-block: 0;
+  right: 0;
+  z-index: 0;
+  width: min(52%, 860px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+
+/* Faded up only once the GLB has decoded, so there is no empty flash. */
+.hero-3d.is-ready {
+  opacity: 1;
+}
+
+.hero-3d.is-dismissed {
+  opacity: 0;
+}
+
+.hero-3d-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The canvas is unreachable by the cursor (see above), so the affordance has to
+   be painted on whatever *is* under the pointer — hence a body-level class.
+   Links and buttons set their own cursor, so they are unaffected. */
+body.is-model-hot {
+  cursor: grab;
+}
+
+body.is-model-dragging,
+body.is-model-dragging * {
+  cursor: grabbing;
+  user-select: none;
+}
+
+@media (max-width: 1023px) {
+  /* Below the desktop breakpoint the copy uses the full width, so the model
+     sits directly behind body text rather than beside it. It drops right back
+     to a faint watermark — at any more than this the gold wireframe eats the
+     contrast of the lede sitting on top of it. */
+  .hero-3d {
+    width: 100%;
+  }
+
+  .hero-3d.is-ready {
+    opacity: 0.12;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* main.ts never mounts the viewer in this case; belt and braces. */
+  .hero-3d {
+    display: none;
+  }
+}
+
 /* Type-led hero: constrained so the headline breaks where it should instead of
    stretching the full 1440px shell. */
 .hero-copy {

@@ -243,6 +243,28 @@ initScrollChrome();
 initActiveNav();
 initReveal();
 
+/* --------------------------------------------------------- hero 3D model */
+/**
+ * three.js and the GLB are a separate chunk, fetched only once the page is
+ * interactive and only where the model earns its bandwidth: not under reduced
+ * motion, and not on a metered connection.
+ */
+function loadHero3D() {
+  const host = document.getElementById('hero-3d');
+  if (!host || prefersReducedMotion) return;
+
+  const connection = (navigator as { connection?: { saveData?: boolean } }).connection;
+  if (connection?.saveData) return;
+
+  import('./hero3d')
+    .then((module) => module.initHero3D(host))
+    .catch(() => {
+      /* chunk blocked or WebGL unavailable — the hero stands on its own */
+    });
+}
+
+loadHero3D();
+
 /* -------------------------------------------------------------- like system */
 const loadLikes = () =>
   import('./likes')

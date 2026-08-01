@@ -1,8 +1,11 @@
 ---
 /**
  * Hero. Type-led: the headline carries the whole viewport against a faint
- * drafting grid, with no competing imagery — the work itself starts a scroll
- * below, and the grid section is where it should make its case.
+ * drafting grid, balanced on the right by a wireframe of the Nagaraksha sculpt.
+ *
+ * The model lives in a fixed layer (see #hero-3d below) that outlives this
+ * section — it stays behind the page through About and Services and only steps
+ * aside once the work grid arrives, where the real imagery takes over.
  */
 import { getCollection } from 'astro:content';
 import Icon from './Icon.astro';
@@ -22,6 +25,10 @@ const stats = [
 
 const cvUrl = withBase(site.cvFile);
 ---
+
+<!-- Outside .hero on purpose: this is position:fixed, and it has to survive the
+     hero scrolling away. main.ts mounts the canvas here, or leaves it empty. -->
+<div class="hero-3d" id="hero-3d" aria-hidden="true"></div>
 
 <section class="hero" id="top">
   <div class="grid-backdrop" aria-hidden="true"></div>
