@@ -1,0 +1,202 @@
+/*
+ * Single-project page (/work/[id]/).
+ *
+ * A reading layout rather than a grid one: a narrow measure for the prose, and
+ * full-width media below it. Reuses .shell, .section-index, .lede, .tool-tag
+ * and .btn from the shared sheets — only what is genuinely new lives here.
+ */
+
+.project-page {
+  /* Clear the fixed header, which is transparent over the hero on the homepage
+     but has nothing to sit over here. */
+  padding-top: calc(var(--header-h) + var(--sp-8));
+  padding-bottom: var(--section-y);
+}
+
+/* --- breadcrumb ----------------------------------------------------------- */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-8);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.breadcrumb a {
+  color: var(--ink-faint);
+  transition: color var(--dur-1) var(--ease-out);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent-text);
+}
+
+.breadcrumb [aria-current='page'] {
+  color: var(--ink-muted);
+  /* A long project title should not push the trail onto three lines. */
+  max-width: 34ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- header --------------------------------------------------------------- */
+.project-article {
+  display: grid;
+  gap: var(--sp-9);
+}
+
+.project-head {
+  display: grid;
+  gap: var(--sp-5);
+  max-width: 62ch;
+}
+
+.project-head h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.project-lede {
+  color: var(--ink-muted);
+}
+
+/* --- meta ----------------------------------------------------------------- */
+.project-meta {
+  display: grid;
+  gap: var(--sp-4);
+  padding-block: var(--sp-5);
+  border-block: 1px solid var(--line);
+}
+
+.project-meta-row {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: var(--sp-4);
+  align-items: baseline;
+}
+
+.project-meta dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.project-meta dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--ink-muted);
+}
+
+@media (max-width: 560px) {
+  .project-meta-row {
+    grid-template-columns: 1fr;
+    gap: var(--sp-2);
+  }
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+/* --- media ---------------------------------------------------------------- */
+.project-media {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+.project-figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface-sunken);
+}
+
+.project-figure img,
+.project-figure video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* --- pager ---------------------------------------------------------------- */
+.project-pager {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--sp-4);
+  align-items: center;
+  margin-top: var(--sp-10);
+  padding-top: var(--sp-7);
+  border-top: 1px solid var(--line);
+}
+
+.pager-link {
+  display: grid;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  transition:
+    border-color var(--dur-1) var(--ease-out),
+    background var(--dur-1) var(--ease-out);
+}
+
+.pager-link:hover {
+  border-color: var(--line);
+  background: var(--surface-raised);
+}
+
+.pager-link .mono-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  color: var(--accent-text);
+}
+
+.pager-link .icon {
+  width: 0.85em;
+  height: 0.85em;
+  fill: currentColor;
+}
+
+.pager-title {
+  font-size: var(--fs-sm);
+  color: var(--ink-muted);
+}
+
+.pager-next {
+  justify-items: end;
+  text-align: right;
+}
+
+.pager-all {
+  justify-items: center;
+}
+
+@media (max-width: 640px) {
+  .project-pager {
+    grid-template-columns: 1fr;
+  }
+
+  .pager-next {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .pager-all {
+    justify-items: start;
+  }
+}

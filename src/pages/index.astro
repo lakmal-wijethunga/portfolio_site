@@ -7,15 +7,48 @@ import Services from '../components/Services.astro';
 import WorkSection from '../components/WorkSection.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { absoluteUrl, personId } from '../utils/seo';
 import { site } from '../data/site';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const home = absoluteUrl('/', Astro.site);
+
+/**
+ * ProfilePage marks this as the canonical page *about* a person, and the
+ * ItemList enumerates the work so Google can see the twenty-two project pages
+ * as one collection rather than twenty-two orphans.
+ */
+const profileSchema = {
+  '@type': 'ProfilePage',
+  '@id': `${home}#profile`,
+  url: home,
+  name: `${site.name} — ${site.role}`,
+  mainEntity: { '@id': personId(Astro.site) },
+  hasPart: {
+    '@type': 'ItemList',
+    name: 'Selected work',
+    numberOfItems: projects.length,
+    itemListElement: projects.map((project, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: project.data.title,
+      url: absoluteUrl(`work/${project.id}/`, Astro.site),
+    })),
+  },
+};
 ---
 
+<!-- Title leads with the discipline, not the name: nobody searches "Lakmal
+     Wijethunga" unless they have already found him. Description is kept under
+     160 characters so Google renders it whole. -->
 <BaseLayout
-  title={`${site.name} | ${site.role}`}
-  description="Lakmal Wijethunga — 3D Artist & Digital Creator specializing in 3D modeling, environment design, PBR texturing, logo animation, and applied AI. Built with Blender, Fusion 360, CLO 3D, and Houdini."
+  title={`3D Artist & Product Visualization | ${site.name}`}
+  description="Freelance 3D artist in Sri Lanka. 3D modeling, environment design, PBR texturing, logo animation and applied AI, built in Blender and Fusion 360."
+  schema={[profileSchema]}
 >
   <Header />
-  <main>
+  <main id="main">
     <Hero />
     <About />
     <Services />

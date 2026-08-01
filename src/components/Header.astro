@@ -7,15 +7,17 @@
  */
 import Icon from './Icon.astro';
 import ThemeToggle from './ThemeToggle.astro';
-import { withBase } from '../utils/url';
+import { withBase, navHref } from '../utils/url';
 import { site, navItems } from '../data/site';
 
 const cvUrl = withBase(site.cvFile);
+// Anchors are bare hashes on the homepage and root-relative everywhere else.
+const href = (hash: string) => navHref(hash, Astro.url.pathname);
 ---
 
 <header class="site-header" id="site-header">
   <div class="shell header-inner">
-    <a href="#top" class="brand" aria-label={`${site.name} — home`}>
+    <a href={href('#top')} class="brand" aria-label={`${site.name} — home`}>
       <span class="brand-mark" aria-hidden="true">{site.initials}</span>
       <span class="brand-name">
         <strong>{site.name}</strong>
@@ -28,7 +30,7 @@ const cvUrl = withBase(site.cvFile);
         {
           navItems.map((item) => (
             <li>
-              <a class="nav-link" href={item.href} data-nav-link>{item.label}</a>
+              <a class="nav-link" href={href(item.href)} data-nav-link>{item.label}</a>
             </li>
           ))
         }
@@ -66,7 +68,7 @@ const cvUrl = withBase(site.cvFile);
   <nav class="mobile-nav" aria-label="Mobile">
     {
       navItems.map((item, i) => (
-        <a href={item.href} style={`--i:${i}`} data-menu-link>
+        <a href={href(item.href)} style={`--i:${i}`} data-menu-link>
           {item.label}
         </a>
       ))

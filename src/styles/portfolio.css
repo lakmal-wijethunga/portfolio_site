@@ -660,12 +660,19 @@
   gap: 0.35rem;
 }
 
+/* Primary route out of the dialog and into the project's own page. Carries the
+   `margin-top: auto` that used to sit on .modal-links, so the whole action
+   cluster still pins to the bottom of the column. */
+.modal-full-link {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
 .modal-links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
-  margin-top: auto;
-  padding-top: var(--sp-4);
+  padding-top: var(--sp-2);
 }
 
 .modal-foot {
