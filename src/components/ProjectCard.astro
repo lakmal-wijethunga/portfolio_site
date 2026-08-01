@@ -15,7 +15,7 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import Icon from './Icon.astro';
 import { withBase } from '../utils/url';
-import { categoryLabel } from '../data/site';
+import { site, categoryLabel } from '../data/site';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -24,6 +24,8 @@ interface Props {
 
 const { project, index } = Astro.props;
 const { title, category, description, tools, media, links } = project.data;
+
+const href = withBase(`work/${project.id}/`);
 
 const hasVideo = media.some((m) => m.type === 'video');
 const isGallery = media.length > 1;
@@ -38,6 +40,22 @@ const badge = hasVideo
   : isGallery
     ? { icon: 'images', text: `${media.length} images` }
     : { icon: 'image', text: 'Still' };
+
+const label = categoryLabel[category] ?? category;
+
+/**
+ * Alt text when a project's YAML doesn't supply its own.
+ *
+ * The old fallback was "<title> — image 3 of 8", which describes nothing and
+ * is what Google Images had to work with for every one of these. Leading with
+ * the subject and discipline at least puts the meaningful words first; the
+ * counter is demoted to a disambiguator. Real per-image alt in the YAML still
+ * beats this and should replace it.
+ */
+const altFor = (index: number) =>
+  isGallery
+    ? `${title} — ${label.toLowerCase()} by ${site.name} (${index + 1}/${media.length})`
+    : `${title} — ${label.toLowerCase()} by ${site.name}`;
 ---
 
 <article
@@ -47,8 +65,9 @@ const badge = hasVideo
   data-title={title}
   data-description={description}
   data-tools={tools.join(', ')}
-  data-category-label={categoryLabel[category] ?? category}
+  data-category-label={label}
   data-links={JSON.stringify(links)}
+  data-href={href}
 >
   <div class="card-media">
     {
@@ -59,7 +78,7 @@ const badge = hasVideo
               {m.type === 'image' ? (
                 <Image
                   src={m.src}
-                  alt={m.alt ?? `${title} — image ${i + 1} of ${media.length}`}
+                  alt={m.alt ?? altFor(i)}
                   widths={imageWidths}
                   sizes={imageSizes}
                   format="webp"
@@ -89,7 +108,7 @@ const badge = hasVideo
       ) : first.type === 'image' ? (
         <Image
           src={first.src}
-          alt={first.alt ?? title}
+          alt={first.alt ?? altFor(0)}
           widths={imageWidths}
           sizes={imageSizes}
           format="webp"
@@ -110,14 +129,18 @@ const badge = hasVideo
       {badge.text}
     </span>
 
-    <!-- The accessible control that opens the modal. A full-bleed button rather
-         than role="button" on the card, so the card can still contain its own
-         buttons (like, sound, slideshow arrows) without nesting them. -->
-    <button class="card-open-btn" type="button" data-open aria-label={`Open details for ${title}`}>
-      <span class="card-open">
+    <!-- A real link to the project's own page, not a button. With JavaScript it
+         is intercepted and opens the modal; without it (and for ctrl/middle
+         click, and for crawlers) it navigates to /work/<id>/.
+
+         The title is repeated in an .sr-only span so the anchor text is the
+         project name rather than twenty-two identical links reading "View". -->
+    <a class="card-open-btn" href={href} data-open>
+      <span class="sr-only">{title}</span>
+      <span class="card-open" aria-hidden="true">
         View<Icon name="arrow-up-right-from-square" />
       </span>
-    </button>
+    </a>
 
     {
       hasVideo && (

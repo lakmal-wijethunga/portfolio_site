@@ -1,0 +1,265 @@
+---
+/**
+ * A single project, at its own URL.
+ *
+ * This is the page that makes the portfolio rankable. The homepage grid can
+ * only ever be one document about twenty-two unrelated things; each project
+ * here is one document about one thing, with its own title, description,
+ * heading, images and structured data.
+ *
+ * Every image is rendered inline rather than hidden in a slideshow — a
+ * carousel shows Google one frame, and image search is the single best
+ * discovery channel for 3D work.
+ */
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Icon from '../../components/Icon.astro';
+import { withBase } from '../../utils/url';
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  pageTitle,
+  personId,
+  projectDescription,
+} from '../../utils/seo';
+import { site, categoryLabel } from '../../data/site';
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+  // Prev/next wrap around, so every project page has two outbound internal
+  // links and a crawler entering on any one of them can reach all the others.
+  return projects.map((project, i) => ({
+    params: { id: project.id },
+    props: {
+      project,
+      prev: projects[(i - 1 + projects.length) % projects.length]!,
+      next: projects[(i + 1) % projects.length]!,
+    },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  prev: CollectionEntry<'projects'>;
+  next: CollectionEntry<'projects'>;
+}
+
+const { project, prev, next } = Astro.props;
+const { title, category, description, tools, media, links, poster, date } = project.data;
+
+const label = categoryLabel[category] ?? category;
+const pageUrl = absoluteUrl(`work/${project.id}/`, Astro.site);
+const images = media.filter((m) => m.type === 'image');
+const videos = media.filter((m) => m.type === 'video');
+
+// Share image: the project's own poster, else its first still. A video project
+// with neither falls through to the site-wide card in BaseLayout.
+const shareImage = poster ?? images[0]?.src;
+
+// Absolute URLs for the schema's `image` array. Google wants real, fetchable
+// URLs here, so these go through the same build pipeline as the page images.
+const schemaImages = await Promise.all(
+  [poster, ...images.map((m) => m.src)]
+    .filter((src): src is Exclude<typeof src, undefined> => Boolean(src))
+    .slice(0, 6)
+    .map(async (src) => {
+      const rendered = await getImage({ src, width: 1200, format: 'jpeg' });
+      return new URL(rendered.src, Astro.site).href;
+    })
+);
+
+const creativeWork: Record<string, unknown> = {
+  '@type': 'CreativeWork',
+  '@id': `${pageUrl}#project`,
+  name: title,
+  description,
+  url: pageUrl,
+  author: { '@id': personId(Astro.site) },
+  creator: { '@id': personId(Astro.site) },
+  inLanguage: 'en',
+  genre: label,
+  isPartOf: { '@id': `${absoluteUrl('/', Astro.site)}#website` },
+  ...(tools.length > 0 && { keywords: tools.join(', ') }),
+  ...(schemaImages.length > 0 && { image: schemaImages }),
+  ...(date && { datePublished: date }),
+  ...(links.length > 0 && { sameAs: links.map((l) => l.url) }),
+};
+
+// Only emitted when the data is complete: Google requires `uploadDate` and a
+// thumbnail, and invalid structured data is treated worse than none at all.
+const videoSchema =
+  videos.length > 0 && poster && date
+    ? await (async () => {
+        const thumb = await getImage({ src: poster, width: 1200, format: 'jpeg' });
+        return {
+          '@type': 'VideoObject',
+          name: title,
+          description,
+          thumbnailUrl: new URL(thumb.src, Astro.site).href,
+          uploadDate: date,
+          contentUrl: new URL(withBase(videos[0]!.src), Astro.site).href,
+          embedUrl: pageUrl,
+        };
+      })()
+    : null;
+
+const schema = [
+  creativeWork,
+  ...(videoSchema ? [videoSchema] : []),
+  breadcrumbSchema(
+    [
+      { name: 'Home', path: '/' },
+      { name: 'Work', path: '/#work' },
+      { name: title, path: `work/${project.id}/` },
+    ],
+    Astro.site
+  ),
+];
+
+const title_ = pageTitle(title, label);
+const metaDescription = projectDescription({
+  description,
+  category,
+  tools,
+  categoryLabel: label,
+});
+
+const galleryWidths = [700, 1100, 1600];
+const gallerySizes = '(max-width: 900px) 94vw, 860px';
+
+// Poster frame for the inline <video>. Without one the player shows a black
+// box until metadata arrives, which reads as a broken embed.
+const posterUrl = poster
+  ? (await getImage({ src: poster, width: 1100, format: 'jpeg' })).src
+  : undefined;
+---
+
+<BaseLayout
+  title={title_}
+  description={metaDescription}
+  ogType="article"
+  shareImage={shareImage}
+  schema={schema}
+>
+  <Header />
+
+  <main id="main" class="project-page">
+    <div class="shell">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href={withBase('')}>Home</a>
+        <span aria-hidden="true">/</span>
+        <a href={withBase('#work')}>Work</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{title}</span>
+      </nav>
+
+      <article class="project-article">
+        <header class="project-head">
+          <p class="section-index">{label}</p>
+          <h1>{title}</h1>
+          <p class="lede project-lede">{description}</p>
+
+          <dl class="project-meta">
+            {
+              tools.length > 0 && (
+                <div class="project-meta-row">
+                  <dt>Tools</dt>
+                  <dd>
+                    {tools.map((tool) => (
+                      <span class="tool-tag">{tool}</span>
+                    ))}
+                  </dd>
+                </div>
+              )
+            }
+            {
+              date && (
+                <div class="project-meta-row">
+                  <dt>Published</dt>
+                  <dd>
+                    <time datetime={date}>
+                      {new Date(date).toLocaleDateString('en-GB', {
+                        year: 'numeric',
+                        month: 'long',
+                      })}
+                    </time>
+                  </dd>
+                </div>
+              )
+            }
+            <div class="project-meta-row">
+              <dt>Category</dt>
+              <dd>{label}</dd>
+            </div>
+          </dl>
+
+          {
+            links.length > 0 && (
+              <div class="project-links">
+                {links.map((link) => (
+                  <a class="btn btn--ghost" href={link.url} target="_blank" rel="noopener">
+                    {link.label}
+                    <Icon name="arrow-up-right-from-square" />
+                  </a>
+                ))}
+              </div>
+            )
+          }
+        </header>
+
+        <div class="project-media">
+          {
+            media.map((item, i) =>
+              item.type === 'image' ? (
+                <figure class="project-figure">
+                  <Image
+                    src={item.src}
+                    alt={item.alt ?? `${title} — ${label.toLowerCase()} by ${site.name}`}
+                    widths={galleryWidths}
+                    sizes={gallerySizes}
+                    format="webp"
+                    quality={82}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    fetchpriority={i === 0 ? 'high' : 'auto'}
+                    decoding="async"
+                  />
+                </figure>
+              ) : (
+                <figure class="project-figure">
+                  <video controls playsinline preload="metadata" poster={posterUrl}>
+                    <source src={withBase(item.src)} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </figure>
+              )
+            )
+          }
+        </div>
+      </article>
+
+      <nav class="project-pager" aria-label="More projects">
+        <a class="pager-link pager-prev" href={withBase(`work/${prev.id}/`)}>
+          <span class="mono-label">
+            <Icon name="chevron-left" />Previous
+          </span>
+          <span class="pager-title">{prev.data.title}</span>
+        </a>
+        <a class="pager-link pager-all" href={withBase('#work')}>
+          <span class="mono-label">All work</span>
+        </a>
+        <a class="pager-link pager-next" href={withBase(`work/${next.id}/`)}>
+          <span class="mono-label">
+            Next<Icon name="chevron-right" />
+          </span>
+          <span class="pager-title">{next.data.title}</span>
+        </a>
+      </nav>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

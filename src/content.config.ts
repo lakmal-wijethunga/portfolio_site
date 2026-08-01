@@ -38,7 +38,21 @@ const projects = defineCollection({
           ])
         )
         .min(1),
-      links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
+      /**
+       * Still frame for a video project. Used as the <video poster>, as the
+       * project page's share image, and as the VideoObject thumbnail — Google
+       * cannot see inside an MP4, so a video project without one is invisible
+       * to image search and shares with the generic site-wide card.
+       */
+      poster: image().optional(),
+      /**
+       * ISO date (YYYY-MM-DD) the work was published. Optional, but a
+       * VideoObject is only emitted when a video project has both this and a
+       * poster — Google requires `uploadDate`, and invalid structured data is
+       * worse than none.
+       */
+      date: z.iso.date().optional(),
+      links: z.array(z.object({ label: z.string(), url: z.url() })).default([]),
     }),
 });
 

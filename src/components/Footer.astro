@@ -1,17 +1,18 @@
 ---
 import Icon from './Icon.astro';
-import { withBase } from '../utils/url';
+import { withBase, navHref } from '../utils/url';
 import { site, navItems, socials } from '../data/site';
 
 const cvUrl = withBase(site.cvFile);
 const year = new Date().getFullYear();
+const href = (hash: string) => navHref(hash, Astro.url.pathname);
 ---
 
 <footer class="site-footer">
   <div class="shell">
     <div class="footer-top">
       <div>
-        <a href="#top" class="brand">
+        <a href={href('#top')} class="brand">
           <span class="brand-mark" aria-hidden="true">{site.initials}</span>
           <span class="brand-name">
             <strong>{site.name}</strong>
@@ -25,7 +26,7 @@ const year = new Date().getFullYear();
       </div>
 
       <nav class="footer-nav" aria-label="Footer">
-        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        {navItems.map((item) => <a href={href(item.href)}>{item.label}</a>)}
         <a href={cvUrl} download={site.cvDownloadName}>
           <Icon name="download" />CV
         </a>

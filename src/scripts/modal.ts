@@ -21,6 +21,7 @@ export function initModal() {
   const toolsBlock = modal.querySelector<HTMLElement>('[data-modal-tools-block]')!;
   const toolsEl = modal.querySelector<HTMLElement>('[data-modal-tools]')!;
   const linksEl = modal.querySelector<HTMLElement>('[data-modal-links]')!;
+  const fullLink = modal.querySelector<HTMLAnchorElement>('[data-modal-full]')!;
   const likeBtn = modal.querySelector<HTMLButtonElement>('[data-modal-like]')!;
   const likeCount = modal.querySelector<HTMLElement>('[data-modal-like-count]')!;
 
@@ -89,6 +90,9 @@ export function initModal() {
     );
     toolsBlock.hidden = tools.length === 0;
 
+    fullLink.href = data.href ?? '#';
+    fullLink.setAttribute('aria-label', `View the full ${data.title ?? 'project'} page`);
+
     let links: { label: string; url: string }[] = [];
     try {
       links = JSON.parse(data.links ?? '[]');
@@ -140,7 +144,14 @@ export function initModal() {
 
   // --- wiring ---------------------------------------------------------------
   document.querySelectorAll<HTMLElement>('.project-card').forEach((card) => {
-    card.querySelector<HTMLButtonElement>('[data-open]')?.addEventListener('click', () => {
+    card.querySelector<HTMLAnchorElement>('[data-open]')?.addEventListener('click', (event) => {
+      // The trigger is a real <a href="/work/…/">, so a plain click is upgraded
+      // to the dialog while every other kind of click keeps its native
+      // behaviour: ctrl/cmd/shift-click opens the project page in a new tab,
+      // and with JavaScript off the link simply navigates.
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (event.button !== 0) return;
+      event.preventDefault();
       open(card);
     });
 

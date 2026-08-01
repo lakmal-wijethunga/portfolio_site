@@ -1,0 +1,63 @@
+---
+/**
+ * GitHub Pages serves this automatically for any unmatched path. Worth having
+ * a real one: a dead end that still offers the nav and a route back into the
+ * work keeps a mistyped or stale inbound link from bouncing.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import { withBase } from '../utils/url';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title={`Page not found | ${site.name}`}
+  description="That page doesn't exist. Head back to the portfolio to see the selected work."
+>
+  <Header />
+
+  <main id="main" class="project-page">
+    <div class="shell">
+      <div class="notfound">
+        <p class="section-index">Error 404</p>
+        <h1>This page isn't here.</h1>
+        <p class="lede">
+          The link may be out of date, or the address slightly off. The work is all still where you
+          left it.
+        </p>
+        <div class="notfound-actions">
+          <a class="btn btn--solid" href={withBase('')}>
+            Back to home<Icon name="arrow-right" />
+          </a>
+          <a class="btn btn--ghost" href={withBase('#work')}>See selected work</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .notfound {
+    display: grid;
+    gap: var(--sp-5);
+    max-width: 52ch;
+    padding-block: var(--sp-10);
+  }
+
+  .notfound h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .notfound-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-top: var(--sp-3);
+  }
+</style>

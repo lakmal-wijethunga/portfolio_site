@@ -2,6 +2,10 @@
 /**
  * The document shell: fonts, SEO, structured data, theme bootstrap and the
  * fixed page chrome (scroll progress + back-to-top).
+ *
+ * Every SEO field is per-page. The canonical in particular is derived from
+ * `Astro.url` rather than hardcoded to the site root — a shared canonical would
+ * quietly collapse every project page into the homepage.
  */
 import '@fontsource-variable/saira';
 import '@fontsource-variable/saira/wght-italic.css';
@@ -9,38 +13,48 @@ import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 
 import { getImage } from 'astro:assets';
-import heroBackground from '../assets/hero-background.jpg';
+import defaultShareImage from '../assets/hero-background.jpg';
 import Icon from '../components/Icon.astro';
 import { withBase } from '../utils/url';
-import { site, socials, toolkit } from '../data/site';
+import { absoluteUrl, personSchema, websiteSchema } from '../utils/seo';
+import { site } from '../data/site';
 
 interface Props {
   title: string;
   description: string;
+  /** `article` for a single project, `website` for index pages. */
+  ogType?: 'website' | 'article';
+  /** Per-page share image. Falls back to the site-wide one. */
+  shareImage?: ImageMetadata;
+  /** Extra JSON-LD nodes merged into the page's `@graph`. */
+  schema?: Record<string, unknown>[];
+  /** Skip-link target, since not every page has a #work section. */
+  skipTo?: string;
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  ogType = 'website',
+  shareImage,
+  schema = [],
+  skipTo = '#main',
+} = Astro.props;
 
-const canonicalURL = new URL(withBase(''), Astro.site);
-const ogImage = await getImage({ src: heroBackground, width: 1200, format: 'jpeg' });
-const ogImageURL = new URL(ogImage.src, Astro.site);
+const canonicalURL = absoluteUrl(Astro.url.pathname, Astro.site);
 
-const personSchema = {
+// Width is fixed at 1200 (the widest any scraper renders); height is derived
+// from the source so the aspect ratio is never distorted and the width/height
+// tags we emit are actually true.
+const source = shareImage ?? defaultShareImage;
+const shareWidth = 1200;
+const shareHeight = Math.round((source.height / source.width) * shareWidth);
+const rendered = await getImage({ src: source, width: shareWidth, format: 'jpeg' });
+const shareImageURL = new URL(rendered.src, Astro.site).href;
+
+const graph = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: site.name,
-  jobTitle: site.role,
-  url: canonicalURL.href,
-  email: site.email,
-  telephone: site.phoneHref,
-  address: {
-    '@type': 'PostalAddress',
-    addressRegion: site.region,
-    addressLocality: 'Mirigama',
-    addressCountry: site.country,
-  },
-  knowsAbout: [...toolkit],
-  sameAs: socials.map((s) => s.url),
+  '@graph': [personSchema(Astro.site), websiteSchema(Astro.site), ...schema],
 };
 ---
 
@@ -70,7 +84,6 @@ const personSchema = {
     <!-- Primary SEO -->
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
-    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)" />
     <link rel="canonical" href={canonicalURL} />
@@ -79,13 +92,16 @@ const personSchema = {
     <meta name="generator" content={Astro.generator} />
 
     <!-- Open Graph (Facebook, LinkedIn) -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image" content={shareImageURL} />
+    <meta property="og:image:width" content={String(shareWidth)} />
+    <meta property="og:image:height" content={String(shareHeight)} />
     <meta property="og:image:alt" content={`${site.name} — ${site.role}`} />
     <meta property="og:site_name" content={`${site.name} Portfolio`} />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter/X Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -93,15 +109,15 @@ const personSchema = {
     <meta name="twitter:creator" content="@lakmal_wijeth" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image" content={shareImageURL} />
+    <meta name="twitter:image:alt" content={`${site.name} — ${site.role}`} />
 
-    <!-- Structured data: Person -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(graph)} />
   </head>
 
   <body>
     <div id="scroll-progress" aria-hidden="true"></div>
-    <a class="skip-link" href="#work">Skip to work</a>
+    <a class="skip-link" href={skipTo}>Skip to content</a>
 
     <slot />
 
